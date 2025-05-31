@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-05-2025 a las 13:35:14
+-- Tiempo de generación: 31-05-2025 a las 13:43:34
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `tiem`
 --
+CREATE DATABASE IF NOT EXISTS `tiem` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `tiem`;
 
 -- --------------------------------------------------------
 
@@ -35,11 +37,6 @@ CREATE TABLE `tiendas` (
   `stock` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncar tablas antes de insertar `tiendas`
---
-
-TRUNCATE TABLE `tiendas`;
 --
 -- Índices para tablas volcadas
 --
