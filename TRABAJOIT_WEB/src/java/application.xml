@@ -1,0 +1,25 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<!-- Author: Jose -->
+ 
+<struts>
+    <package name="inicio" namespace="/inicio" extends="struts-default">
+        <action name="navInicio">
+            <result>/inicio.jsp</result>
+        </action>
+    </package>
+    
+    <package name="login" namespace="/login" extends="struts-default">
+        
+        <action name="navLogin">
+            <result>/login.jsp</result>
+        </action>
+        
+        <action name="loginAction" class="controller.loginAction">
+            <result name="success">/inicio.jsp</result>
+            <result name="input">/login.jsp</result>
+        </action>
+    </package>
+</struts>

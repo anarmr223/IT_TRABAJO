@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +14,14 @@
 
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Iniciar session</h1>
+        
+        <s:form action="loginAction">
+            <s:textfield name="usuario" label="usuario"/>
+            <br/>
+            <s:textfield name="contrasenia" label="contraseña"/>
+            <br/>
+            <s:submit name="Iniciar sesion"/>
+        </s:form>
     </body>
 </html>

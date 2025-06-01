@@ -5,11 +5,27 @@
 <struts>
     <!-- Configuration for the default package. -->
     <include file="gestion.xml"/>
+    <include file="application.xml"/>
     <package name="default" extends="struts-default">
+        
         <action name="">
             <result type="chain">
-                <param name="actionName">inicio</param>
-                <param name="namespace">/gestion</param>
+                <param name="namespace">/inicio</param>
+                <param name="actionName">navInicio</param>
+            </result>
+        </action>
+        
+        <action name="navLogin">
+            <result type="chain">
+                <param name="namespace">/login</param>
+                <param name="actionName">navLogin</param>
+            </result>
+        </action>
+        
+        <action name="loginAction">
+            <result type="chain">
+                <param name="namespace">/login</param>
+                <param name="actionName">loginAction</param>
             </result>
         </action>
     </package>
