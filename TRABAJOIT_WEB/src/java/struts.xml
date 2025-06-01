@@ -4,6 +4,7 @@
 
 <struts>
     <!-- Configuration for the default package. -->
+    <include file="gestion.xml"/>
     <package name="default" extends="struts-default">
         <action name="">
             <result type="chain">
