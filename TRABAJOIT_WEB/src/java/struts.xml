@@ -6,7 +6,10 @@
     <!-- Configuration for the default package. -->
     <package name="default" extends="struts-default">
         <action name="">
-            
+            <result>
+                <param name="actionName">inicio</param>
+                <param name="namespace">/gestion</param>
+            </result>
         </action>
     </package>
 </struts>
