@@ -7,7 +7,7 @@
 }
 
 body {
-  background-image: url('marRecortada.jpeg');
+  background-image: url('./imagenes/marRecortada.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
