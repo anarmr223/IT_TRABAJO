@@ -4,7 +4,6 @@
 
 <struts>
     <!-- Configuration for the default package. -->
-    <include file="gestion.xml"/>
     <include file="application.xml"/>
     <package name="default" extends="struts-default">
         

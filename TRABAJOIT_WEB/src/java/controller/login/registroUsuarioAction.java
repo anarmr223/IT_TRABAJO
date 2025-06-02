@@ -5,6 +5,7 @@
  */
 package controller.login;
 
+import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
@@ -24,7 +25,7 @@ public class registroUsuarioAction extends ActionSupport {
     
     @Override
     public String execute() throws Exception {
-        
+        return SUCCESS;
     }
 
     
@@ -41,7 +42,7 @@ public class registroUsuarioAction extends ActionSupport {
         return contrasenia;
     }
     
-    @RequiredStringValidator("Debe rellenar la contraseña")
+    @RequiredStringValidator(message ="Debe rellenar la contraseña")
     @StringLengthFieldValidator(minLength = "8", message = "La contraseña debe tener almenos 8 carácteres")
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
@@ -51,7 +52,7 @@ public class registroUsuarioAction extends ActionSupport {
         return correo;
     }
     
-    @RequiredStringValidator(message = "Debe rellenar el correo")
+
     public void setCorreo(String correo) {
         this.correo = correo;
     }

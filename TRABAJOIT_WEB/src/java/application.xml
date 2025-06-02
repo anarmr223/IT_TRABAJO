@@ -7,33 +7,21 @@
 <struts>
     <package name="inicio" namespace="/inicio" extends="struts-default">
         <action name="navInicio">
-            <result>/inicio.jsp</result>
+            <result>/vistas/inicio.html</result>
         </action>
     </package>
     
     <package name="login" namespace="/login" extends="struts-default">
         
         <action name="navLogin">
-            <result>/login.jsp</result>
+            <result>/vistas/login.html</result>
         </action>
         
-        <action name="loginAction" class="controller.loginAction">
-            <result name="success">/inicio.jsp</result>
-            <result name="input">/login.jsp</result>
+        <action name="loginAction" class="controller.login.loginAction">
+            <result name="success">/vistas/inicio.html</result>
+            <result name="input">/vistas/login.html</result>
         </action>
         
     </package>
     
-    <package name="registrar" namespace="/registrar" extends="struts-default">
-        
-        <action name="navRegistroUsuario">
-            <result>/registroUsuario.jsp</result>
-        </action>
-        
-        <action name="registroUsuarioAction" class="controller.registroUsuarioAction">
-            <result name="success">/inicio.jsp</result>
-            <result name="input">/registro.jsp</result>
-        </action>
-        
-    </package>
 </struts>

@@ -44,7 +44,7 @@ public class registroVendedorAction extends ActionSupport {
         return contrasenia;
     }
     
-    @RequiredStringValidator("Debe rellenar la contraseña")
+    @RequiredStringValidator(message="Debe rellenar la contraseña")
     @StringLengthFieldValidator(minLength = "8", message = "La contraseña debe tener almenos 8 carácteres")
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
