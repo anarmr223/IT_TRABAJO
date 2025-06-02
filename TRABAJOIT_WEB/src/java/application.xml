@@ -7,7 +7,7 @@
 <struts>
     <package name="inicio" namespace="/inicio" extends="struts-default">
         <action name="navInicio">
-            <result>/vistas/inicio.html</result>
+            <result>/vistas/inicio.jsp</result>
         </action>
     </package>
     
@@ -18,7 +18,7 @@
         </action>
         
         <action name="loginAction" class="controller.login.loginAction">
-            <result name="success">/vistas/inicio.html</result>
+            <result name="success">/vistas/inicio.jsp</result>
             <result name="input">/vistas/login.html</result>
         </action>
         
