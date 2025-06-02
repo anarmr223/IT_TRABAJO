@@ -5,7 +5,6 @@
  */
 package controller.login;
 
-import WebServices.application.CuentaWS;
 import com.opensymphony.xwork2.ActionSupport;
 import controller.util.GestorContrasenias;
 
@@ -23,8 +22,7 @@ public class loginAction extends ActionSupport {
     
     @Override
     public String execute() throws Exception {
-        CuentaWS cuentaDB= new CuentaWS();
-        cuentaDB.f
+        
         
     }
     

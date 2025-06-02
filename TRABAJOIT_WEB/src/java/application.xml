@@ -21,5 +21,19 @@
             <result name="success">/inicio.jsp</result>
             <result name="input">/login.jsp</result>
         </action>
+        
+    </package>
+    
+    <package name="registrar" namespace="/registrar" extends="struts-default">
+        
+        <action name="navRegistroUsuario">
+            <result>/registroUsuario.jsp</result>
+        </action>
+        
+        <action name="registroUsuarioAction" class="controller.registroUsuarioAction">
+            <result name="success">/inicio.jsp</result>
+            <result name="input">/registro.jsp</result>
+        </action>
+        
     </package>
 </struts>
