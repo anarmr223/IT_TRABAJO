@@ -51,7 +51,7 @@
 
         <div class="container containerGeneral">
             <div class="row justify-content-center">
-                <div class="col-12 col-md-6 col-lg-3 producto-item">
+                <div class="col-12 col-sm-6 col-lg-3 col-xl-2 producto-item">
                     <div class="card h-100">
                         <img src="<c:url value="/imagenes/camiseta.png"/>" class="card-img-top" alt="Nombre del producto">
                         <div class="card-body d-flex flex-column">
@@ -61,13 +61,13 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6 col-lg-3 producto-item">
+                <div class="col-12 col-sm-6 col-lg-3 producto-item">
                     patampiasd
                 </div>
-                <div class="col-12 col-md-6 col-lg-3 producto-item">
+                <div class="col-12 col-sm-6 col-lg-3 producto-item">
                     patampiasd
                 </div>
-                <div class="col-12 col-md-6 col-lg-3 producto-item">
+                <div class="col-12 col-sm-6 col-lg-3 producto-item">
                     patampiasd
                 </div>
             </div>
