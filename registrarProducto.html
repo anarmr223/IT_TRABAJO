@@ -42,31 +42,55 @@
 
         <!--login-->
         
-        <div class="container mt-5 login"> <!--mt es margin top-->
-            <h2 class="mb-4 text-center">Iniciar sesión</h2>
-            <form>
-                <div class="mb-3">
-                    <label for="inputEmail" class="form-label">Nombre de producto</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Camiseta azul" required>
-                </div>
-                <div class="mb-3">
-                    <label for="inputEmail" class="form-label">Descripcion</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Camiseta azul" required>
-                </div>
+        <div class="container-fluid registrarProducto"> <!--mt es margin top-->
+            <h2 class="mb-4 text-center">Registrar producto</h2>
+            <div class="row">
+                <div class="col-md-6 col-sm-12 productoForm">
+                    <!--AQUI TENGO INPUTS-->
+                    <form>
+                        <div class="mb-3">
+                            <label for="inputEmail" class="form-label">Nombre de producto</label>
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Camiseta azul" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputEmail" class="form-label">Descripcion</label>
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Camiseta azul" required>
+                        </div>
 
-                <div class="mb-3">
-                    <label for="inputPassword" class="form-label">Precio</label>
-                    <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña" required>
-                </div>
+                        <div class="mb-3">
+                            <label for="inputPassword" class="form-label">Precio</label>
+                            <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña" required>
+                        </div>
 
-                <div class="mb-3 text-center">
-                    <label for="imagen">Subir foto:</label>
-                    <input type="file" name="imagen" id="imagen" accept="image/*" required>
+                        <div class="mb-3 text-center">
+                            <label for="imagen">Subir foto del producto:</label>
+                            <input type="file" name="imagen" id="imagen" accept="image/*" required>
+                        </div>
+                        
+                    
+                    </form> 
+
                 </div>
-                
-               
-                <button type="submit" class="btn btn-primary w-75 d-block mx-auto">Entrar</button> <!-- w-100 indica que se ocupa el 100% del container    -->
-            </form>  <!-- boton es un objeto inline, ocupa solo el espacio necesario, pero si lo pasamos a block si se puede ajustar-->
+                 <div class="col-md-6 col-sm-12 tablaProductoForm">
+                    <!--AQUI TENGO TABLAS-->
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                            <th scope="col">TALLAS</th>
+                            <th scope="col">Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">TALLA</th>
+                                <td><input type="input" class="form-control" id="inputCantidad" placeholder="Cantidad" required></td>
+                            </tr>
+                        </tbody>
+                        </table>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-50 d-block mx-auto botonRegistrarProd">Enviar</button> <!-- w-100 indica que se ocupa el 100% del container    -->
+                 <!-- boton es un objeto inline, ocupa solo el espacio necesario, pero si lo pasamos a block si se puede ajustar-->
         </div>
 
 
