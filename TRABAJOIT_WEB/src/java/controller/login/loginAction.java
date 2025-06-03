@@ -32,7 +32,7 @@ public class loginAction extends ActionSupport {
         Cuenta c=servicio.getCuentaByUsuario(genericType, usuario);
         GestorContrasenias gc = new GestorContrasenias();
         
-        if(c.getContraseniaHash().equals(contrasenia)){
+        if(gc.verificarContrasenia(contrasenia, c.getContraseniaHash(), c.getSalt())){
             return SUCCESS;
         }
         

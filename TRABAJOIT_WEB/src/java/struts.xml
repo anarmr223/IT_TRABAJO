@@ -30,14 +30,14 @@
         </action>
         
         <action name="navRegistro">
-            <result>
+            <result type="chain">
                 <param name="namespace">/registrar</param>
                 <param name="actionName">navRegistro</param>
             </result>
         </action>
         
         <action name="registroAction">
-            <result>
+            <result type="chain">
                 <param name="namespace">/registrar</param>
                 <param name="actionName">registrarUsuarioAction</param>
             </result>

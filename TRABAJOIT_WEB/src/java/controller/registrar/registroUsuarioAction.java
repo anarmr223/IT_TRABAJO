@@ -25,6 +25,7 @@ public class registroUsuarioAction extends ActionSupport {
     private String usuario;
     private String contrasenia;
     private String correo;
+    private String repetirContrasenia;
     
     public registroUsuarioAction() {
     }
@@ -69,35 +70,56 @@ public class registroUsuarioAction extends ActionSupport {
         return correo;
     }
     
-
+    @RequiredStringValidator(message ="Debe rellenar el correo")
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+
+    public String getRepetirContrasenia() {
+        return repetirContrasenia;
+    }
+
+    public void setRepetirContrasenia(String repetirContrasenia) {
+        this.repetirContrasenia = repetirContrasenia;
+    }
+    
+    
     
     @Override
     public void validate(){
-        if(!correo.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")){
+        if(!correo.isEmpty()&&!correo.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")){
             addFieldError("correo", "No es un correo válido");
         }
         
-        if(!usuario.matches("\"^[a-zA-Z0-9_-]{3,20}$\"")){
+        if(!usuario.isEmpty()&&!usuario.matches("^[a-zA-Z0-9_-]{0,20}$")){
             addFieldError("usuario","El nombre de usuario solo puede contener: letras, numeros, -, _");
         }
         
         CuentaWS servicio= new CuentaWS();
         
-        GenericType<Cuenta> gn= new GenericType<Cuenta>(){};
+        GenericType<Cuenta> genericType = new GenericType<Cuenta>() {
+        };
         
-        Cuenta c=servicio.getCuentaByUsuario(gn, usuario);
+        Cuenta c=null;
+        
+        if(!usuario.isEmpty()){
+            c=servicio.getCuentaByUsuario(genericType, usuario);
+        }
         
         if(c!=null){
             addFieldError("usuario", "El nombre de usuario ya está registrado.");
         }
         
-        c=servicio.getCuentaByCorreo(gn, correo);
+        if(!correo.isEmpty()){
+            c=servicio.getCuentaByCorreo(genericType, correo);
+        }
         
         if(c!=null){
             addFieldError("correo", "El correo ya está registrado");
+        }
+        
+        if(!contrasenia.equals(repetirContrasenia)){
+            addFieldError("contrasenia", "Las contraseñas no son iguales");
         }
     }
 }

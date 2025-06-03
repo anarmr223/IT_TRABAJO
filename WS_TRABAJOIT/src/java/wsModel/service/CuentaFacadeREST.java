@@ -8,6 +8,7 @@ package wsModel.service;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -66,18 +67,28 @@ public class CuentaFacadeREST extends AbstractFacade<Cuenta> {
     @Path("usuario/{usuario}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Cuenta findByUsuario(@PathParam("usuario") String usuario) {
-        return em.createQuery("SELECT c FROM Cuenta c WHERE c.usuario = :usuario", Cuenta.class)
+        try{
+            return em.createQuery("SELECT c FROM Cuenta c WHERE c.usuario = :usuario", Cuenta.class)
                  .setParameter("usuario", usuario)
                  .getSingleResult();
+        }catch(NoResultException ex){
+            return null;
+        }
+        
     }
     
     @GET
     @Path("correo/{correo}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Cuenta findByCorreo(@PathParam("correo") String correo) {
-        return em.createQuery("SELECT c FROM Cuenta c WHERE c.usuario = :usuario", Cuenta.class)
+    public Cuenta findByCorreo(@PathParam("correo") String correo){
+        try{
+            return em.createQuery("SELECT c FROM Cuenta c WHERE c.usuario = :usuario", Cuenta.class)
                  .setParameter("usuario", correo)
                  .getSingleResult();
+        }catch(NoResultException ex){
+            return null;
+        }
+        
     }
 
     @GET

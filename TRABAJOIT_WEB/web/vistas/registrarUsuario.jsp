@@ -26,17 +26,21 @@
     <h2>Registrar Usuario</h2>
     
     <div class="container login">
-        <s:form action="registrarUsuario" method="post" cssClass="needs-validation">
+        <s:form action="registrarUsuarioAction" method="post" cssClass="needs-validation">
             <div class="form-group">
-                <s:textfield name="nombreUsuario" label="Nombre" cssClass="form-control" />
+                <s:textfield name="usuario" label="Nombre Usuario" cssClass="form-control" />
             </div>
 
             <div class="form-group">
-                <s:textfield name="correoUsuario" label="Correo" cssClass="form-control" />
+                <s:textfield name="correo" label="Correo" cssClass="form-control" />
             </div>
 
             <div class="form-group">
                 <s:password name="contrasenia" label="Contraseña" cssClass="form-control"/>
+            </div>
+            
+            <div class="form-group">
+                <s:password name="repetirContrasenia" label="Repite la contraseña" cssClass="form-control"/>
             </div>
 
             <div id="inputsAdicionales" style="display: none;">
@@ -61,8 +65,8 @@
             <div class="form-group form-check">
                 <s:checkbox name="mostrarInputsVendedor" label="¿Eres vendedor?" id="mostrarInputsVendedor" cssClass="form-check-input" />
             </div>
-
-            <s:submit value="Enviar Formulario" cssClass="btn btn-primary mt-3" />
+            
+            <s:submit  value="Enviar Formulario" cssClass="btn btn-primary mt-3" />
 
         </s:form>
     </div>
