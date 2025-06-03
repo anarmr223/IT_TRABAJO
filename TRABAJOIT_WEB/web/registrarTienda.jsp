@@ -17,6 +17,6 @@
         
         <s:textfield name="nombreTienda"/>
         
-        
+        <
     </body>
 </html>
