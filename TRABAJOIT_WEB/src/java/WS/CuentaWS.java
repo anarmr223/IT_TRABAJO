@@ -26,11 +26,11 @@ public class CuentaWS {
 
     private WebTarget webTarget;
     private Client client;
-    private static final String BASE_URI = "http://localhost:8080/WS_TRABAJOIT/webresources/";
+    private static final String BASE_URI = "http://localhost:8080/WSTRABAJOIT/webresources/";
 
     public CuentaWS() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
-        webTarget = client.target(BASE_URI).path("wsmodel.cuenta");
+        webTarget = client.target(BASE_URI).path("model.cuenta");
     }
 
     /**

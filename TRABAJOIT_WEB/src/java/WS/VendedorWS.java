@@ -25,11 +25,11 @@ public class VendedorWS {
 
     private WebTarget webTarget;
     private Client client;
-    private static final String BASE_URI = "http://localhost:8080/WS_TRABAJOIT/webresources/";
+    private static final String BASE_URI = "http://localhost:8080/WSTRABAJOIT/webresources/";
 
     public VendedorWS() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
-        webTarget = client.target(BASE_URI).path("wsmodel.vendedor");
+        webTarget = client.target(BASE_URI).path("model.vendedor");
     }
 
     /**

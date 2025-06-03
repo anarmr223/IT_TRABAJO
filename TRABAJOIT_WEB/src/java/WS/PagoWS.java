@@ -8,13 +8,12 @@ package WS;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
 
 /**
- * Jersey REST client generated for REST resource:we [wsmodel.producto]<br>
+ * Jersey REST client generated for REST resource:we [model.pago]<br>
  * USAGE:
  * <pre>
- *        ProductoWS client = new ProductoWS();
+ *        PagoWS client = new PagoWS();
  *        Object response = client.XXX(...);
  *        // do whatever with response
  *        client.close();
@@ -22,15 +21,15 @@ import javax.ws.rs.core.GenericType;
  *
  * @author Jose
  */
-public class ProductoWS {
+public class PagoWS {
 
     private WebTarget webTarget;
     private Client client;
     private static final String BASE_URI = "http://localhost:8080/WSTRABAJOIT/webresources/";
 
-    public ProductoWS() {
+    public PagoWS() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
-        webTarget = client.target(BASE_URI).path("model.producto");
+        webTarget = client.target(BASE_URI).path("model.pago");
     }
 
     /**
@@ -53,11 +52,6 @@ public class ProductoWS {
      */
     public <T> T findAll_XML(Class<T> responseType) throws ClientErrorException {
         return webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
-    }
-    
-    public <T> T findById(GenericType<T> superType, int id) throws ClientErrorException{
-        WebTarget resource=webTarget;
-        return resource.path(""+id).request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(superType);
     }
 
     /**
