@@ -61,7 +61,8 @@ body {
 .containerGeneral {
     background-color: rgba(252, 252, 252, 0.845);
     position: relative;
-    margin-top: 75px;
+    border-radius: 5px; 
+    margin-top: 65px;
     padding-top: 0;
     overflow-y: scroll;
     max-height: 550px; /* o la altura que necesites */
@@ -85,11 +86,11 @@ body {
   height: 150px;
 }
 
-.containerGeneral.producto{
+/*.containerGeneral.producto{
   background-color: blue;
   margin-top: 80px;
   padding-top: 20px;
-}
+}*/
 
 .Boton{
   margin-top: 30px;
