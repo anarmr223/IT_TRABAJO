@@ -6,7 +6,7 @@
  
 <struts>
     <package name="inicio" namespace="/inicio" extends="struts-default">
-        <action name="navInicio">
+        <action name="navInicio" class="controller.login.autoLoginAction">
             <result>/vistas/inicio.jsp</result>
         </action>
     </package>

@@ -81,7 +81,7 @@ public class CuentaFacadeREST extends AbstractFacade<Cuenta> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Cuenta findByCorreo(@PathParam("correo") String correo) {
         try{
-            return em.createQuery("SELECT * FROM Cuenta WHERE correo = :correo", Cuenta.class)
+            return em.createQuery("SELECT c FROM Cuenta c WHERE c.correo = :correo", Cuenta.class)
                  .setParameter("correo", correo)
                  .getSingleResult();
         }catch(NoResultException ex){

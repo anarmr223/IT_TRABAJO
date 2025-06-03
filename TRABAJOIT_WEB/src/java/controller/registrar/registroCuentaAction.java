@@ -15,7 +15,12 @@ import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import controller.util.GestorContrasenias;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.GenericType;
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
 import wsModel.Cuenta;
 import wsModel.Usuario;
@@ -25,7 +30,7 @@ import wsModel.Vendedor;
  *
  * @author Jose
  */
-public class registroCuentaAction extends ActionSupport implements SessionAware{
+public class registroCuentaAction extends ActionSupport implements SessionAware, ServletResponseAware{
     
     private String usuario;
     private String contrasenia;
@@ -35,8 +40,10 @@ public class registroCuentaAction extends ActionSupport implements SessionAware{
     private String dni;
     private String telefono;
     private String cuenta;
-    private Map<String, Object> session;
     private boolean mostrarInputsVendedor;
+    private Map<String, Object> session;
+    private HttpServletResponse response;
+    
     
     public registroCuentaAction() {
     }
@@ -66,6 +73,9 @@ public class registroCuentaAction extends ActionSupport implements SessionAware{
             Usuario u=new Usuario();
             u.setIdCuenta(c);
             servicioU.create_XML(u);
+            Cookie cookie=new Cookie("usuario", c.getUsuario());
+            cookie.setMaxAge(60*60*24);
+            response.addCookie(cookie);
             session.put("usuario", c);
             return SUCCESS;
         }else{
@@ -233,5 +243,10 @@ public class registroCuentaAction extends ActionSupport implements SessionAware{
     @Override
     public void setSession(Map<String, Object> session) {
         this.session=session;
+    }
+
+    @Override
+    public void setServletResponse(HttpServletResponse hsr) {
+        this.response=hsr;
     }
 }

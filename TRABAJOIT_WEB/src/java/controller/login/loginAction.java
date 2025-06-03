@@ -11,18 +11,24 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import wsModel.Cuenta;
 import controller.util.GestorContrasenias;
 import java.util.Map;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.GenericType;
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 /**
  *
  * @author Jose
  */
-public class loginAction extends ActionSupport implements SessionAware{
+public class loginAction extends ActionSupport implements SessionAware, ServletResponseAware{
     
     private String usuario;
     private String contrasenia;
     private Map<String, Object> session;
+    private HttpServletResponse response;
     public loginAction() {
     }
     
@@ -35,6 +41,9 @@ public class loginAction extends ActionSupport implements SessionAware{
         GestorContrasenias gc = new GestorContrasenias();
         
         if(c!=null&&gc.verificarContrasenia(contrasenia, c.getContraseniaHash(), c.getSalt())){
+            Cookie cookie=new Cookie("usuario", c.getUsuario());
+            cookie.setMaxAge(60*60*24);
+            response.addCookie(cookie);
             session.put("usuario", c);
             return SUCCESS;
         }
@@ -63,6 +72,11 @@ public class loginAction extends ActionSupport implements SessionAware{
     @Override
     public void setSession(Map<String, Object> session) {
         this.session=session;
+    }
+
+    @Override
+    public void setServletResponse(HttpServletResponse hsr) {
+        this.response=hsr;
     }
     
     

@@ -5,6 +5,7 @@
  */
 package wsModel;
 
+import wsModel.Tienda;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
