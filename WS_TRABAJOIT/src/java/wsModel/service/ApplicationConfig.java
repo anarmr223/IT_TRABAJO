@@ -31,14 +31,11 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(wsModel.service.CarritoFacadeREST.class);
         resources.add(wsModel.service.CuentaFacadeREST.class);
-        resources.add(wsModel.service.LineaproductoFacadeREST.class);
         resources.add(wsModel.service.PagoFacadeREST.class);
-        resources.add(wsModel.service.ProductoFacadeREST.class);
-        resources.add(wsModel.service.PublicacionFacadeREST.class);
         resources.add(wsModel.service.SuscripcionFacadeREST.class);
+        resources.add(wsModel.service.TallaFacadeREST.class);
         resources.add(wsModel.service.TiendaFacadeREST.class);
         resources.add(wsModel.service.UsuarioFacadeREST.class);
-        resources.add(wsModel.service.VendedorFacadeREST.class);
         resources.add(wsModel.service.VentaFacadeREST.class);
     }
     

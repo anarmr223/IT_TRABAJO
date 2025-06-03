@@ -20,7 +20,7 @@
     <body>
         <nav class="navbar navbar-expand-sm mx-auto barraNavegacion">
             <div class="container-fluid bs-info-bg-subtle">
-            <a class="navbar-brand ms-2" href="inicio.html">
+                <a class="navbar-brand ms-2" href="<s:url action=""/>">
                 <img class="imagenLogo" src="<c:url value="/imagenes/umiLOGO.png"/>">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#elementosNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
