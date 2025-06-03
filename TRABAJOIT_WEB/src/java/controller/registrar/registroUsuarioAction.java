@@ -12,7 +12,9 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import controller.util.GestorContrasenias;
 import java.util.List;
+import java.util.Map;
 import javax.ws.rs.core.GenericType;
+import org.apache.struts2.interceptor.SessionAware;
 import wsModel.Cuenta;
 import wsModel.Usuario;
 
@@ -20,12 +22,13 @@ import wsModel.Usuario;
  *
  * @author Jose
  */
-public class registroUsuarioAction extends ActionSupport {
+public class registroUsuarioAction extends ActionSupport implements SessionAware{
     
     private String usuario;
     private String contrasenia;
     private String correo;
     private String repetirContrasenia;
+    private Map<String, Object> session;
     
     public registroUsuarioAction() {
     }
@@ -43,6 +46,7 @@ public class registroUsuarioAction extends ActionSupport {
         Usuario u=new Usuario();
         c.setUsuarioCollection(u);
         servicio.create_XML(c);
+        session.put("usuario", c);
         return SUCCESS;
     }
 
@@ -121,5 +125,10 @@ public class registroUsuarioAction extends ActionSupport {
         if(!contrasenia.equals(repetirContrasenia)){
             addFieldError("contrasenia", "Las contraseñas no son iguales");
         }
+    }
+
+    @Override
+    public void setSession(Map<String, Object> session) {
+        this.session=session;
     }
 }

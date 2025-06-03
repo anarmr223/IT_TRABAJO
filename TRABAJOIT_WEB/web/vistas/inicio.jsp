@@ -18,8 +18,7 @@
         <title>Inicio</title>
     </head>
     <body>
-        
-
+        <jsp:include page="navbar.jsp"/>
         <div class="container containerGeneral">
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-6 col-lg-3 col-xl-2 producto-item">
@@ -42,9 +41,6 @@
                     patampiasd
                 </div>
             </div>
-        </div>     
-                        <s:form action="navRegistro">
-                            <s:submit value="Registrarse"/>
-                        </s:form>                
+        </div>                   
     </body>
 </html>

@@ -27,12 +27,12 @@
         <h2 class="mb-4 text-center">Iniciar sesión</h2>
 
         <!-- Formulario Struts -->
-        <s:form action="loginUsuario" method="post" cssClass="w-100 mx-auto">
+        <s:form action="loginAction" method="post" cssClass="w-100 mx-auto">
             <div class="form-group">
-                <s:textfield name="correo" label="Email" cssClass="form-control mb-2" placeholder="nombre@ejemplo.com" required="true" />
+                <s:textfield name="usuario" label="Usuario" cssClass="form-control mb-2" placeholder="nombre@ejemplo.com/usuario" required="true" />
             </div>
             <div class="form-group">
-                <s:password name="contrasena" label="Contraseña" cssClass="form-control mb-2" placeholder="Contraseña" required="true" />
+                <s:password name="contrasenia" label="Contraseña" cssClass="form-control mb-2" placeholder="Contraseña" required="true" />
             </div>
             <div class="form-group">
                 <s:submit value="Entrar" cssClass="btn btn-primary w-100 d-block mx-auto" />

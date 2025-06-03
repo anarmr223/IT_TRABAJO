@@ -10,17 +10,19 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import wsModel.Cuenta;
 import controller.util.GestorContrasenias;
+import java.util.Map;
 import javax.ws.rs.core.GenericType;
+import org.apache.struts2.interceptor.SessionAware;
 
 /**
  *
  * @author Jose
  */
-public class loginAction extends ActionSupport {
+public class loginAction extends ActionSupport implements SessionAware{
     
     private String usuario;
     private String contrasenia;
-    
+    private Map<String, Object> session;
     public loginAction() {
     }
     
@@ -32,7 +34,8 @@ public class loginAction extends ActionSupport {
         Cuenta c=servicio.getCuentaByUsuario(genericType, usuario);
         GestorContrasenias gc = new GestorContrasenias();
         
-        if(gc.verificarContrasenia(contrasenia, c.getContraseniaHash(), c.getSalt())){
+        if(c!=null&&gc.verificarContrasenia(contrasenia, c.getContraseniaHash(), c.getSalt())){
+            session.put("usuario", c);
             return SUCCESS;
         }
         
@@ -55,6 +58,11 @@ public class loginAction extends ActionSupport {
     @RequiredStringValidator(message ="Debe rellenar la contraseña")
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
+    }
+
+    @Override
+    public void setSession(Map<String, Object> session) {
+        this.session=session;
     }
     
     
