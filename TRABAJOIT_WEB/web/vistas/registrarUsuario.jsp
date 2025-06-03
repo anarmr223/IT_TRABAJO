@@ -21,15 +21,19 @@
 <body>
 
 <div class="container mt-5">
-    <h2>Formulario de Ejemplo</h2>
+    <h2>Registrar Usuario</h2>
 
     <s:form action="registrarUsuario" method="post" cssClass="needs-validation">
         <div class="form-group">
-                <s:textfield name="nombreUsuario" label="Nombre" cssClass="form-control" />
+            <s:textfield name="nombreUsuario" label="Nombre" cssClass="form-control" />
         </div>
         
         <div class="form-group">
-                <s:textfield name="correoUsuario" label="Correo" cssClass="form-control" />
+            <s:textfield name="correoUsuario" label="Correo" cssClass="form-control" />
+        </div>
+        
+        <div class="form-group">
+            <s:password name="contrasenia" label="Contraseña" cssClass="form-control"/>
         </div>
         
         <div id="inputsAdicionales" style="display: none;">

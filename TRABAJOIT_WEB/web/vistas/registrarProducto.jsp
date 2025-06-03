@@ -55,7 +55,7 @@
 
             <div class="container-fluid registrarProducto"> <!--mt es margin top-->
                 <h2 class="mb-4 text-center">Registrar producto</h2>
-                <s:form action="guardarProducto" method="post" enctype="multipart/form-data">
+                <s:form action="guardarProducto" theme="simple" method="post" enctype="multipart/form-data">
                 <div class="d-flex">
                     <div class="col-md-6 col-sm-12 productoForm">
                         <!--AQUI COL IZQ-->
@@ -64,7 +64,7 @@
                         <s:textfield name="precio" label="Precio" cssClass="form-control" placeholder="19.99" required="true" />
                         <s:file name="imagen" label="Subir foto del producto" accept="image/*" required="true" />
                     </div>
-                    </s:form>
+                    
                             
                     <div class="col-md-6 tablaProductoForm">
                         <!--COL DCHA-->
@@ -89,7 +89,7 @@
                 <div class="text-center">
                     <s:submit value="Enviar" cssClass="btn btn-primary w-50 d-block mx-auto botonRegistrarProd" />
                 </div>
-                
+                </s:form>
             
             </div>
         </body>
