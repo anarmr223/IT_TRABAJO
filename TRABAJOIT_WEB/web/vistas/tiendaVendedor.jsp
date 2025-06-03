@@ -16,7 +16,7 @@
 
         <title>Inicio</title>
     </head>
-    <body class="a">
+    <body>
         <!--Menu navegacion-->
         <nav class="navbar navbar-expand-sm mx-auto barraNavegacion">
             <div class="container-fluid bs-info-bg-subtle">

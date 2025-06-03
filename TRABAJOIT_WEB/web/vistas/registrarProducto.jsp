@@ -64,6 +64,7 @@
                         <s:textfield name="precio" label="Precio" cssClass="form-control" placeholder="19.99" required="true" />
                         <s:file name="imagen" label="Subir foto del producto" accept="image/*" required="true" />
                     </div>
+                    </s:form>
                             
                     <div class="col-md-6 tablaProductoForm">
                         <!--COL DCHA-->
@@ -88,7 +89,7 @@
                 <div class="text-center">
                     <s:submit value="Enviar" cssClass="btn btn-primary w-50 d-block mx-auto botonRegistrarProd" />
                 </div>
-                </s:form>
+                
             
             </div>
         </body>

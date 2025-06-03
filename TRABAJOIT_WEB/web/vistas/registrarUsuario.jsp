@@ -36,15 +36,18 @@
             <p class="mt-3">Por favor, rellena la siguiente información adicional para registrarte como vendedor:</p>
 
             <div class="form-group">
-                <s:textfield name="campoAdicional1" label="Numero de cuenta" cssClass="form-control" />
+                <label for="nCuenta">Numero de cuenta: </label>
+                <s:textfield name="nCuenta" id="nCuenta" label="Numero de cuenta" theme="simple" cssClass="form-control" />
             </div>
 
             <div class="form-group">
-                <s:textfield name="campoAdicional2" label="DNI" cssClass="form-control" />
+                <label for="DNI">DNI: </label>
+                <s:textfield name="DNI" id="DNI" label="DNI" theme="simple" cssClass="form-control" />
             </div>
 
             <div class="form-group">
-                <s:textfield name="telefono" label="Telfono" cssClass="form-control"></s:textfield>
+                <label for="tlf">Telefono</label>
+                <s:textfield name="telefono" id="tlf" theme="simple" cssClass="form-control"></s:textfield>
             </div>
         </div>
             
