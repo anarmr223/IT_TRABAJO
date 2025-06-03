@@ -36,7 +36,7 @@
                     </s:if>
                     <s:if test="#session.usuario!=null">
                         <li class="nav-item">
-                            <a class="nav-link" href="<s:url action="navLogin"/>"><s:property value="%{#session.usuario.usuario}"/></a>
+                            <a class="nav-link" href="<s:url action="verDetalleUsuario"/>"><s:property value="%{#session.usuario.usuario}"/></a>
                         </li>
                     </s:if>
                     <li class="nav-item dropdown">      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tiendas</a>

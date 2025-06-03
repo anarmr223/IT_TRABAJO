@@ -42,5 +42,13 @@
                 <param name="actionName">registrarUsuarioAction</param>
             </result>
         </action>
+        
+        <action name="verDetalleUsuario">
+            <result type="chain">
+                <param name="namespace">/detalleUsuario </param>
+                <param name="actionName">navVerDetalleUsuario</param>
+            </result>
+        </action>
+        
     </package>
 </struts>

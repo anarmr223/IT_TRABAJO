@@ -38,4 +38,16 @@
         
     </package>
     
+    
+    <package name="detalleUsuario" namespace="/detalleUsuario" extends="struts-default">
+        
+        <action name="navVerDetalleUsuario">
+            <result>/usuario_detalle.jsp</result>
+        </action>
+        
+        
+        
+    </package>
+    
+    
 </struts>
