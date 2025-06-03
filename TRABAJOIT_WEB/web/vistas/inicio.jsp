@@ -18,37 +18,7 @@
         <title>Inicio</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-sm mx-auto barraNavegacion">
-            <div class="container-fluid bs-info-bg-subtle">
-            <a class="navbar-brand ms-2" href="inicio.html">
-                <img class="imagenLogo" src="<c:url value="/imagenes/umiLOGO.png"/>">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#elementosNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span> </button>
-            <div class="collapse navbar-collapse" id="elementosNav"> <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.html">Iniciar sesión</a>
-                    </li>
-                    <li class="nav-item dropdown">      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tiendas</a>
-
-                        <ul class="dropdown-menu" aria-labelledby="dropdownTiendas">
-                            <li><a class="dropdown-item" href="tiendaUsuario.html">Tienda 1</a></li>
-                            <li><a class="dropdown-item" href="tiendaUsuario.html">Tienda 2</a></li>
-                            <li><a class="dropdown-item" href="tiendaUsuario.html">Tienda 3</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-cart"></i></a>
-                    </li>
-                </ul>
-                <form class="d-flex ms-auto barraBuscar" role="search"> <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search"/>
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
-                </form>
-            </div>
-        </nav>
-        <div class="container-fluid">
-             <h1 class="titulo">Umi</h1>
-        </div>
+        
 
         <div class="container containerGeneral">
             <div class="row justify-content-center">
