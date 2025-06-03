@@ -3,12 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.login;
+package controller.registrar;
 
+import WS.CuentaWS;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
+import controller.util.GestorContrasenias;
+import java.util.List;
+import javax.ws.rs.core.GenericType;
+import wsModel.Cuenta;
+import wsModel.Usuario;
 
 /**
  *
@@ -25,6 +31,17 @@ public class registroUsuarioAction extends ActionSupport {
     
     @Override
     public String execute() throws Exception {
+        CuentaWS servicio= new CuentaWS();
+        Cuenta c= new Cuenta();
+        c.setUsuario(usuario);
+        c.setCorreo(correo);
+        GestorContrasenias gc= new GestorContrasenias();
+        String[] passparam=gc.generarPasswordHash(contrasenia);
+        c.setContraseniaHash(passparam[0]);
+        c.setSalt(passparam[1]);
+        Usuario u=new Usuario();
+        c.setUsuarioCollection(u);
+        servicio.create_XML(c);
         return SUCCESS;
     }
 
@@ -67,6 +84,20 @@ public class registroUsuarioAction extends ActionSupport {
             addFieldError("usuario","El nombre de usuario solo puede contener: letras, numeros, -, _");
         }
         
-        //validar si el nombre de usuario o el correo ya está cogido 
+        CuentaWS servicio= new CuentaWS();
+        
+        GenericType<Cuenta> gn= new GenericType<Cuenta>(){};
+        
+        Cuenta c=servicio.getCuentaByUsuario(gn, usuario);
+        
+        if(c!=null){
+            addFieldError("usuario", "El nombre de usuario ya está registrado.");
+        }
+        
+        c=servicio.getCuentaByCorreo(gn, correo);
+        
+        if(c!=null){
+            addFieldError("correo", "El correo ya está registrado");
+        }
     }
 }

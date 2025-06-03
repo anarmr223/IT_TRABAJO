@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -67,8 +68,8 @@ public class Cuenta implements Serializable {
     private String correo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCuenta")
     private Collection<Vendedor> vendedorCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCuenta")
-    private Collection<Usuario> usuarioCollection;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idCuenta")
+    private Usuario usuario1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCuenta")
     private Collection<Publicacion> publicacionCollection;
 
@@ -137,12 +138,12 @@ public class Cuenta implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Usuario> getUsuarioCollection() {
-        return usuarioCollection;
+    public Usuario getUsuarioCollection() {
+        return usuario1;
     }
 
-    public void setUsuarioCollection(Collection<Usuario> usuarioCollection) {
-        this.usuarioCollection = usuarioCollection;
+    public void setUsuarioCollection(Usuario usuarioCollection) {
+        this.usuario1 = usuarioCollection;
     }
 
     @XmlTransient

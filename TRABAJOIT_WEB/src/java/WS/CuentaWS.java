@@ -51,6 +51,11 @@ public class CuentaWS {
         WebTarget resource = webTarget;
         return resource.path("usuario").path(usuario).request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(superType);
     }
+    
+    public <T> T getCuentaByCorreo(GenericType<T> superType, String correo){
+        WebTarget resource = webTarget;
+        return resource.path("correo").path(correo).request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(superType);
+    }
 
     /**
      * @param responseType Class representing the response

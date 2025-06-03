@@ -70,6 +70,15 @@ public class CuentaFacadeREST extends AbstractFacade<Cuenta> {
                  .setParameter("usuario", usuario)
                  .getSingleResult();
     }
+    
+    @GET
+    @Path("correo/{correo}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Cuenta findByCorreo(@PathParam("correo") String correo) {
+        return em.createQuery("SELECT c FROM Cuenta c WHERE c.usuario = :usuario", Cuenta.class)
+                 .setParameter("usuario", correo)
+                 .getSingleResult();
+    }
 
     @GET
     @Override

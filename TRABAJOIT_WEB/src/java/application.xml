@@ -24,4 +24,17 @@
         
     </package>
     
+    <package name="reistrar" namespace="/registrar" extends="struts-default">
+        
+        <action name="navRegistro">
+            <result>/vistas/registrarUsuario.jsp</result>
+        </action>
+        
+        <action name="registrarUsuarioAction" class="controller.registrar.registroUsuarioAction">
+            <result>/vistas/inicio.jsp</result>
+            <result name="input">/vistas/registrarUsuario.jsp</result>
+        </action>
+        
+    </package>
+    
 </struts>

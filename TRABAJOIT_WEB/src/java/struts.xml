@@ -28,5 +28,19 @@
                 <param name="actionName">loginAction</param>
             </result>
         </action>
+        
+        <action name="navRegistro">
+            <result>
+                <param name="namespace">/registrar</param>
+                <param name="actionName">navRegistro</param>
+            </result>
+        </action>
+        
+        <action name="registroAction">
+            <result>
+                <param name="namespace">/registrar</param>
+                <param name="actionName">registrarUsuarioAction</param>
+            </result>
+        </action>
     </package>
 </struts>
