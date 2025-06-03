@@ -32,7 +32,7 @@
                 <s:textfield name="correo" label="Email" cssClass="form-control mb-2" placeholder="nombre@ejemplo.com" required="true" />
             </div>
             <div class="form-group">
-                <s:password name="contrasena" label="Contraseña" placeholder="Contraseña" required="true" />
+                <s:password name="contrasena" label="Contraseña" cssClass="form-control mb-2" placeholder="Contraseña" required="true" />
             </div>
             <div class="form-group">
                 <s:submit value="Entrar" cssClass="btn btn-primary w-100 d-block mx-auto" />
