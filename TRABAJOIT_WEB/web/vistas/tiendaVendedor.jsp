@@ -1,3 +1,11 @@
+<%-- 
+    Document   : tiendaVendedor
+    Created on : 03-jun-2025, 8:54:33
+    Author     : Asus
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,7 +16,7 @@
 
         <title>Inicio</title>
     </head>
-    <body>
+    <body class="a">
         <!--Menu navegacion-->
         <nav class="navbar navbar-expand-sm mx-auto barraNavegacion">
             <div class="container-fluid bs-info-bg-subtle">
@@ -42,7 +50,7 @@
             <div class="row">
                 <div class="col-3 col-md-3">
                     <ul class="navbar-var">
-                        <li class="nav-link">Registrar producto</li>
+                        <li class="nav-link"><a href="registrarProducto.jsp">Registrar producto</a></li>
                         <li class="nav-link">Eliminar producto</li>
                         <li class="nav-link">Editar  producto</li>
                     </ul>

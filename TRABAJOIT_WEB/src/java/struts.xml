@@ -7,6 +7,7 @@
     <include file="application.xml"/>
     <package name="default" extends="struts-default">
         
+        
         <action name="">
             <result type="chain">
                 <param name="namespace">/inicio</param>
