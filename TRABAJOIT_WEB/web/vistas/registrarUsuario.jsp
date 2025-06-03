@@ -14,6 +14,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario con Inputs Desplegables</title>
+    <link rel="stylesheet" href="<c:url value="/css/estilo.css"/>">
+
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -22,47 +24,50 @@
 
 <div class="container mt-5">
     <h2>Registrar Usuario</h2>
-
-    <s:form action="registrarUsuario" method="post" cssClass="needs-validation">
-        <div class="form-group">
-            <s:textfield name="nombreUsuario" label="Nombre" cssClass="form-control" />
-        </div>
-        
-        <div class="form-group">
-            <s:textfield name="correoUsuario" label="Correo" cssClass="form-control" />
-        </div>
-        
-        <div class="form-group">
-            <s:password name="contrasenia" label="Contraseña" cssClass="form-control"/>
-        </div>
-        
-        <div id="inputsAdicionales" style="display: none;">
-            <p class="mt-3">Por favor, rellena la siguiente información adicional para registrarte como vendedor:</p>
-
+    
+    <div class="container login">
+        <s:form action="registrarUsuario" method="post" cssClass="needs-validation">
             <div class="form-group">
-                <label for="nCuenta">Numero de cuenta: </label>
-                <s:textfield name="nCuenta" id="nCuenta" label="Numero de cuenta" theme="simple" cssClass="form-control" />
+                <s:textfield name="nombreUsuario" label="Nombre" cssClass="form-control" />
             </div>
 
             <div class="form-group">
-                <label for="DNI">DNI: </label>
-                <s:textfield name="DNI" id="DNI" label="DNI" theme="simple" cssClass="form-control" />
+                <s:textfield name="correoUsuario" label="Correo" cssClass="form-control" />
             </div>
 
             <div class="form-group">
-                <label for="tlf">Telefono</label>
-                <s:textfield name="telefono" id="tlf" theme="simple" cssClass="form-control"></s:textfield>
+                <s:password name="contrasenia" label="Contraseña" cssClass="form-control"/>
             </div>
-        </div>
-            
-        <div class="form-group form-check">
-            <s:checkbox name="mostrarInputsVendedor" label="¿Eres vendedor?" id="mostrarInputsVendedor" cssClass="form-check-input" />
-        </div>
 
-        <s:submit value="Enviar Formulario" cssClass="btn btn-primary mt-3" />
+            <div id="inputsAdicionales" style="display: none;">
+                <p class="mt-3">Por favor, rellena la siguiente información adicional para registrarte como vendedor:</p>
 
-    </s:form>
-</div>
+                <div class="form-group">
+                    <label for="nCuenta">Numero de cuenta: </label>
+                    <s:textfield name="nCuenta" id="nCuenta" label="Numero de cuenta" theme="simple" cssClass="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label for="DNI">DNI: </label>
+                    <s:textfield name="DNI" id="DNI" label="DNI" theme="simple" cssClass="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label for="tlf">Telefono</label>
+                    <s:textfield name="telefono" id="tlf" theme="simple" cssClass="form-control"></s:textfield>
+                </div>
+            </div>
+
+            <div class="form-group form-check">
+                <s:checkbox name="mostrarInputsVendedor" label="¿Eres vendedor?" id="mostrarInputsVendedor" cssClass="form-check-input" />
+            </div>
+
+            <s:submit value="Enviar Formulario" cssClass="btn btn-primary mt-3" />
+
+        </s:form>
+    </div>
+    </div>
+    
 
 <script>
     $(document).ready(function() {

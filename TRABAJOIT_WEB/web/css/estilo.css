@@ -50,11 +50,12 @@ body {
     z-index: 10;
 }
 .containerGeneral {
-  position: relative;
-  margin-top: 75px;
-  padding-top: 0;
-  overflow-y: scroll;
-  max-height: 550px; /* o la altura que necesites */
+    background-color: rgba(252, 252, 252, 0.845);
+    position: relative;
+    margin-top: 75px;
+    padding-top: 0;
+    overflow-y: scroll;
+    max-height: 550px; /* o la altura que necesites */
   
 }
 
