@@ -49,5 +49,12 @@
         
     </package>
     
+    <package name="pruebas" namespace="/pruebas" extends="struts-default">
+        <action name="subirFicheroPruebaAction" class="controller.pruebas.subirFicheroAction">
+            <result>/subirImagenTest.jsp</result>
+            <result name="input">/subirImagenTest.jsp</result>
+        </action>
+    </package>
+    
     
 </struts>

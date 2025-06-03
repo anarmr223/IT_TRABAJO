@@ -4,9 +4,20 @@
 
 <struts>
     <!-- Configuration for the default package. -->
+    <constant name="struts.multipart.maxSize" value="5242880" />
     <include file="application.xml"/>
     <package name="default" extends="struts-default">
         
+        <interceptors>
+        <interceptor-stack name="fileUploadStack">
+            <interceptor-ref name="defaultStack"/>
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">image/jpeg,image/png,image/webp</param>
+                <param name="maximumSize">5242880</param> </interceptor-ref>
+            <interceptor-ref name="validation"/>
+            <interceptor-ref name="workflow"/>
+        </interceptor-stack>
+        </interceptors>
         
         <action name="">
             <result type="chain">
@@ -45,8 +56,15 @@
         
         <action name="verDetalleUsuario">
             <result type="chain">
-                <param name="namespace">/detalleUsuario </param>
+                <param name="namespace">/detalleUsuario</param>
                 <param name="actionName">navVerDetalleUsuario</param>
+            </result>
+        </action>
+        
+        <action name="subirFicheroPrueba">
+            <result type="chain">
+                <param name="namespace">/pruebas</param>
+                <param name="actionName">subirFicheroPruebaAction</param>
             </result>
         </action>
         

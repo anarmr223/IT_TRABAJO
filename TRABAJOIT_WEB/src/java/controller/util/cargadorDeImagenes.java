@@ -5,10 +5,63 @@
  */
 package controller.util;
 
+import static com.opensymphony.xwork2.Action.INPUT;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import javax.servlet.ServletContext;
+import org.apache.struts2.ServletActionContext;
+
 /**
  *
  * @author Jose
  */
+
+/*
+Propiedades para el archivo subido (input type="file" con name="miArchivo")
+private File miArchivo; // Representa el archivo temporal subido
+    private String miArchivoContentType; // Tipo MIME del archivo (ej. image/jpeg)
+    private String miArchivoFileName; // Nombre original del archivo*/
 public class cargadorDeImagenes {
-    public 
+    public static String subirImagenProducto(List<File> archivos,List<String> contentType,String idProducto){
+        if(archivos==null||archivos.isEmpty()){
+            return null;
+        }
+        
+        try{
+            ServletContext servletContext = ServletActionContext.getServletContext();
+            // Construir la ruta de la carpeta "imagenes" dentro del contexto web
+            String directorioImagenesWeb = servletContext.getRealPath("/imagenes/productos"); // La '/' al inicio indica la raíz del contexto web
+            directorioImagenesWeb=directorioImagenesWeb+"/"+idProducto;
+            
+            
+            
+            File uploadDir= new File(directorioImagenesWeb);
+            
+            
+            if(uploadDir.exists()){
+                for(File f: uploadDir.listFiles()){
+                    f.delete();
+                }
+                uploadDir.delete();
+            }
+            
+            uploadDir.mkdirs();
+            
+            for(int i=0;i<archivos.size();i++){
+                File archivo= archivos.get(i);
+                String extension="."+contentType.get(i).split("/")[1];
+                File archivoDestino = new File(directorioImagenesWeb, i+extension);
+                org.apache.commons.io.FileUtils.copyFile(archivo, archivoDestino);
+            }
+            
+            
+            
+            return uploadDir.getAbsolutePath();
+        }catch(  IOException ex){
+            return null;
+        }
+    }
+    
+    
 }
