@@ -22,21 +22,20 @@
 </head>
 <body>
     <jsp:include  page="navbar.jsp"/>
-<div class="container mt-5">
-    <h2>Registrar Usuario</h2>
     
     <div class="container login">
-        <s:form action="registrarUsuarioAction" method="post" cssClass="needs-validation">
+        <h2>Registrar Usuario</h2>
+        <s:form action="registrarUsuarioAction" method="post" cssClass="needs-validation ">
             <div class="form-group">
-                <s:textfield name="usuario" label="Nombre Usuario" cssClass="form-control" />
+                <s:textfield name="usuario" label="Nombre Usuario" cssClass="form-control  w-100" />
             </div>
 
-            <div class="form-group">
-                <s:textfield name="correo" label="Correo" cssClass="form-control" />
+            <div class="form-group w-100">
+                <s:textfield name="correo" label="Correo" cssClass="form-control w-100" />
             </div>
 
-            <div class="form-group">
-                <s:password name="contrasenia" label="Contraseña" cssClass="form-control"/>
+            <div class="form-group w-100">
+                <s:password name="contrasenia" label="Contraseña" cssClass="form-control w-100"/>
             </div>
             
             <div class="form-group">
@@ -76,7 +75,6 @@
             <s:submit  value="Enviar Formulario" cssClass="btn btn-primary mt-3" />
 
         </s:form>
-    </div>
     </div>
     
 

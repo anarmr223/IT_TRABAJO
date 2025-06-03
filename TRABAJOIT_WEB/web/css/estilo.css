@@ -17,11 +17,10 @@ body {
 .login{
     background-color: rgba(252, 252, 252, 0.845);
     border-radius: 5%;
-    padding: 20px;
     margin-top:100px;
     width: 100%;       /* Para flexibilidad en pantallas pequeñas */
     max-width: 600px; /* Para que no se haga demasiado grande en pantallas grandes */
-    height: 300px;
+    min-height: 300px;
 }
 
 .form-group{
@@ -123,3 +122,4 @@ body {
 .tablaProductoForm{
   margin-top: 31px;
 }
+
