@@ -21,7 +21,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+    <jsp:include  page="navbar.jsp"/>
 <div class="container mt-5">
     <h2>Registrar Usuario</h2>
     
@@ -46,14 +46,21 @@
             <div id="inputsAdicionales" style="display: none;">
                 <p class="mt-3">Por favor, rellena la siguiente información adicional para registrarte como vendedor:</p>
 
+                
                 <div class="form-group">
-                    <label for="nCuenta">Numero de cuenta: </label>
-                    <s:textfield name="nCuenta" id="nCuenta" label="Numero de cuenta" theme="simple" cssClass="form-control" />
+                    <label for="Nombre">Nombre Completo: </label>
+                    <s:textfield name="nombre" id="nombre" label="Nombre Completo" theme="simple" cssClass="form-control" />
+                </div>
+                
+                
+                <div class="form-group">
+                    <label for="cuenta">Numero de cuenta: </label>
+                    <s:textfield name="cuenta" label="Número de Cuenta Bancaria" theme="simple" cssClass="form-control"/>
                 </div>
 
                 <div class="form-group">
                     <label for="DNI">DNI: </label>
-                    <s:textfield name="DNI" id="DNI" label="DNI" theme="simple" cssClass="form-control" />
+                    <s:textfield name="dni" id="dni" label="DNI" theme="simple" cssClass="form-control" />
                 </div>
 
                 <div class="form-group">
@@ -74,6 +81,7 @@
     
 
 <script>
+    
     $(document).ready(function() {
         // Seleccionamos el checkbox por su ID
         const checkbox = $('#mostrarInputsVendedor');

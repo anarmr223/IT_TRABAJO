@@ -31,7 +31,7 @@
             <result>/vistas/registrarUsuario.jsp</result>
         </action>
         
-        <action name="registrarUsuarioAction" class="controller.registrar.registroUsuarioAction">
+        <action name="registrarUsuarioAction" class="controller.registrar.registroCuentaAction">
             <result name="success">/vistas/registrarUsuario.jsp</result>
             <result name="input">/vistas/registrarUsuario.jsp</result>
         </action>
