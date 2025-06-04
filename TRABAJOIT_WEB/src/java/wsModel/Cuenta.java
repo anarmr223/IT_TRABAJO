@@ -66,8 +66,8 @@ public class Cuenta implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "correo")
     private String correo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCuenta")
-    private Collection<Vendedor> vendedorCollection;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idCuenta")
+    private Vendedor vendedorCollection;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "idCuenta")
     private Usuario usuario1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCuenta")
@@ -129,11 +129,11 @@ public class Cuenta implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Vendedor> getVendedorCollection() {
+    public Vendedor getVendedorCollection() {
         return vendedorCollection;
     }
 
-    public void setVendedorCollection(Collection<Vendedor> vendedorCollection) {
+    public void setVendedorCollection(Vendedor vendedorCollection) {
         this.vendedorCollection = vendedorCollection;
     }
 

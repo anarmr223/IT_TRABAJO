@@ -7,6 +7,7 @@ package wsModel;
 
 import wsModel.Tienda;
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -69,8 +71,8 @@ public class Producto implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "descripcion")
     private String descripcion;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idProducto")
-    private Lineaproducto lineaproducto;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto")
+    private Collection<Lineaproducto> lineaproducto;
     @JoinColumn(name = "idTienda", referencedColumnName = "id")
     @OneToOne(optional = false)
     private Tienda idTienda;
@@ -139,11 +141,11 @@ public class Producto implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Lineaproducto getLineaproducto() {
+    public Collection<Lineaproducto> getCoolectionLineaproducto() {
         return lineaproducto;
     }
 
-    public void setLineaproducto(Lineaproducto lineaproducto) {
+    public void setCollectionLineaproducto(Collection<Lineaproducto> lineaproducto) {
         this.lineaproducto = lineaproducto;
     }
 

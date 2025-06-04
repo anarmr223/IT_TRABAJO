@@ -193,7 +193,12 @@ public class registroCuentaAction extends ActionSupport implements SessionAware,
         Cuenta c=null;
         
         if(!usuario.isEmpty()){
-            c=servicio.getCuentaByUsuario(genericType, usuario);
+            try{
+                c=servicio.getCuentaByUsuario(genericType, usuario);
+            }catch(Exception ex){
+                c=null;
+            }
+            
         }
         
         if(c!=null){
@@ -201,7 +206,11 @@ public class registroCuentaAction extends ActionSupport implements SessionAware,
         }
         
         if(!correo.isEmpty()){
-            c=servicio.getCuentaByCorreo(genericType, correo);
+            try{
+                c=servicio.getCuentaByCorreo(genericType, usuario);
+            }catch(Exception ex){
+                c=null;
+            }
         }
         
         if(c!=null){
