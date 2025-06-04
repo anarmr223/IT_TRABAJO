@@ -58,7 +58,7 @@ body {
 .containerPrincipal{
     position: relative;
     border-radius: 5px; 
-    margin-top: 300px;
+    margin-top: 30px;
     padding-top: 0;
     overflow-y: scroll;
     max-height: 550px; /* o la altura que necesites */
@@ -116,5 +116,45 @@ body {
 
 .tablaProductoForm{
   margin-top: 31px;
+}
+
+/*VISTA CARRITO*/
+.resumen-pedido-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.resumen-pedido-card .price {
+    font-size: 2em;
+    font-weight: bold;
+    color: #000;
+    text-align: right;
+}
+.resumen-pedido-card .btn-comprar {
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    padding: 12px 0;
+    border-radius: 5px;
+    width: 100%;
+    border: none;
+}
+
+.product-image-container {
+    max-width: 100%; /* Asegura que la imagen no se desborde */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Centra la imagen si es más pequeña que el contenedor */
+}
+.detalleProducto {
+    padding: 20px;
+}
+.vendor-info {
+    margin-top: 15px;
+    color: #6c757d;
+}
+.option-selector {
+    margin-top: 20px;
 }
 

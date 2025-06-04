@@ -25,7 +25,8 @@
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#elementosNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span> </button>
-            <div class="collapse navbar-collapse" id="elementosNav"> <ul class="navbar-nav">
+            <div class="collapse navbar-collapse" id="elementosNav"> 
+                <ul class="navbar-nav">
                     <s:if test="#session.usuario==null">
                         <li class="nav-item">
                             <a class="nav-link" href="<s:url action="navRegistro"/>">Registrarse</a>
@@ -39,7 +40,8 @@
                             <a class="nav-link" href="<s:url action="verDetalleUsuario"/>"><s:property value="%{#session.usuario.usuario}"/></a>
                         </li>
                     </s:if>
-                    <li class="nav-item dropdown">      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tiendas</a>
+                    <li class="nav-item dropdown">      
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tiendas</a>
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownTiendas">
                             <li><a class="dropdown-item" href="tiendaUsuario.html">Tienda 1</a></li>
@@ -51,9 +53,7 @@
                         <a class="nav-link" href="#"><i class="bi bi-cart"></i></a>
                     </li>
                 </ul>
-                <s:form action="navRegistroTienda">
-                    <s:submit value="CrearTienda"/>
-                </s:form>
+                    
                 <form class="d-flex ms-auto barraBuscar" role="search"> <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search"/>
                     <button class="btn btn-outline-success" type="submit">Buscar</button>
                 </form>
