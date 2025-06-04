@@ -43,6 +43,16 @@
             <result name="input">/vistas/registrarUsuario.jsp</result>
         </action>
         
+        <action name="registrarProductoAction" class="controller.registrar.registroProductoAction">
+            <result name="success">/vistas/registrarUsuario.jsp</result>
+            <result name="input">/vistas/registrarUsuario.jsp</result>
+        </action>
+        
+        <action name="registrarTiendaAction" class="controller.registrar.registroTiendaAction">
+            <result name="success">/registrarTienda.jsp</result>
+            <result name="input">/vistas/registrarUsuario.jsp</result>
+        </action>
+        
     </package>
     
     
@@ -73,6 +83,10 @@
     <package name="nav" namespace="/nav" extends="struts-default">
         <action name="navProducto">
             <result>/vistas/producto.jsp</result>
+        </action>
+        
+        <action name="navRegistroTienda">
+            <result>/registrarTienda.jsp</result>
         </action>
     </package>
     

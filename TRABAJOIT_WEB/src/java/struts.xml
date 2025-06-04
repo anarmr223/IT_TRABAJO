@@ -54,6 +54,20 @@
             </result>
         </action>
         
+        <action name="registroProductoAction">
+            <result type="chain">
+                <param name="namespace">/registrar</param>
+                <param name="actionName">registrarProductoAction</param>
+            </result>
+        </action>
+        
+        <action name="registroTiendaAction">
+            <result type="chain">
+                <param name="namespace">/registrar</param>
+                <param name="actionName">registrarTiendaAction</param>
+            </result>
+        </action>
+        
         <action name="verDetalleUsuario">
             <result type="chain">
                 <param name="namespace">/detalleUsuario</param>
@@ -90,5 +104,11 @@
             </result>
         </action>
         
+        <action name="navRegistroTienda">
+            <result type="chain">
+                <param name="namespace">/nav</param>
+                <param name="actionName">navRegistroTienda</param>
+            </result>
+        </action>
     </package>
 </struts>

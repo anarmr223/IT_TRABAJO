@@ -15,12 +15,13 @@
     <body>
         <h1>Registrar producto</h1>
         
-        <s:form action="" enctype="multipart/form-data">
+        <s:form action="registroProductoAction" enctype="multipart/form-data">
             <s:textfield name="nombre"/>
-            <s:file name="miImagen"/>
+            <s:file name="miArchivo"/>
             <s:textfield name="stock"/>
             <s:textfield name="precio"/>
             <s:textfield name="descripcion"/>
+            <s:submit value="crear"/>
         </s:form>
     </body>
 </html>

@@ -14,7 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -44,7 +43,7 @@ public class Usuario implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private Suscripcion suscripcion;
     @JoinColumn(name = "idCuenta", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @OneToOne(optional = false)
     private Cuenta idCuenta;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private Carrito carrito;
@@ -118,7 +117,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "wsModel.Usuario[ id=" + id + " ]";
+        return "model.Usuario[ id=" + id + " ]";
     }
     
 }

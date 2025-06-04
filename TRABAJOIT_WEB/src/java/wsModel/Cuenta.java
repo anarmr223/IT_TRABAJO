@@ -66,8 +66,8 @@ public class Cuenta implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "correo")
     private String correo;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idCuenta")
-    private Vendedor vendedorCollection;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "cuenta") // Renamed mappedBy to 'cuenta' to avoid confusion with column name
+    private Vendedor vendedor; // Renamed to singular 'vendedor'
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "idCuenta")
     private Usuario usuario1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCuenta")
@@ -128,22 +128,20 @@ public class Cuenta implements Serializable {
         this.correo = correo;
     }
 
-    @XmlTransient
-    public Vendedor getVendedorCollection() {
-        return vendedorCollection;
+    public Vendedor getVendedor() {
+        return vendedor;
     }
 
-    public void setVendedorCollection(Vendedor vendedorCollection) {
-        this.vendedorCollection = vendedorCollection;
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
     }
 
-    @XmlTransient
-    public Usuario getUsuarioCollection() {
+    public Usuario getUsuario1() {
         return usuario1;
     }
 
-    public void setUsuarioCollection(Usuario usuarioCollection) {
-        this.usuario1 = usuarioCollection;
+    public void setUsuario1(Usuario usuario1) {
+        this.usuario1 = usuario1;
     }
 
     @XmlTransient
@@ -177,7 +175,7 @@ public class Cuenta implements Serializable {
 
     @Override
     public String toString() {
-        return "wsModel.Cuenta[ id=" + id + " ]";
+        return "model.Cuenta[ id=" + id + " ]";
     }
     
 }

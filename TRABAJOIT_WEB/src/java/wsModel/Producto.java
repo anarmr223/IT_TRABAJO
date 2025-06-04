@@ -5,9 +5,8 @@
  */
 package wsModel;
 
-import wsModel.Tienda;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -72,8 +71,8 @@ public class Producto implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "descripcion")
     private String descripcion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto")
-    private Collection<Lineaproducto> lineaproducto;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto", targetEntity = Lineaproducto.class)
+    private List<Lineaproducto> lineaproductoList;
     @JoinColumn(name = "idTienda", referencedColumnName = "id")
     @OneToOne(optional = false)
     private Tienda idTienda;
@@ -141,16 +140,16 @@ public class Producto implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-    
-    public Collection<Lineaproducto> getCoolectionLineaproducto() {
-        return lineaproducto;
+
+    public List<Lineaproducto> getLineaproductoList() {
+        return lineaproductoList;
     }
 
-    public void setCollectionLineaproducto(Collection<Lineaproducto> lineaproducto) {
-        this.lineaproducto = lineaproducto;
+    public void setLineaproductoList(List<Lineaproducto> lineaproductoList) {
+        this.lineaproductoList = lineaproductoList;
     }
-
+    
+    
     
     @XmlTransient
     public Tienda getIdTienda() {
@@ -183,7 +182,7 @@ public class Producto implements Serializable {
 
     @Override
     public String toString() {
-        return "wsModel.Producto[ id=" + id + " ]";
+        return "model.Producto[ id=" + id + " ]";
     }
     
 }

@@ -81,7 +81,7 @@ public class registroCuentaAction extends ActionSupport implements SessionAware,
         }else{
             VendedorWS servicioV= new VendedorWS();
             Vendedor v=new Vendedor();
-            v.setIdCuenta(c);
+            v.setCuenta(c);
             v.setDni(dni);
             v.setNCuentaBancaria(cuenta);
             v.setNombre(nombre);

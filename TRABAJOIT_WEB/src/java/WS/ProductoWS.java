@@ -7,8 +7,10 @@ package WS;
 
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
+import wsModel.Producto;
 
 /**
  * Jersey REST client generated for REST resource:we [wsmodel.producto]<br>
@@ -68,7 +70,16 @@ public class ProductoWS {
     public <T> T findAll_JSON(Class<T> responseType) throws ClientErrorException {
         return webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
-
+    
+    public void actualizarProducto(Producto p){
+        Entity<Producto> producto=Entity.xml(p);
+        webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_XML).put(producto);
+    }
+    
+    public <T> T getProducto(GenericType<T> superType,int idTienda, String nombre){
+        WebTarget resource=webTarget;
+        return resource.path("nombre").path(""+idTienda).path(nombre).request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(superType);
+    }
     public void close() {
         client.close();
     }

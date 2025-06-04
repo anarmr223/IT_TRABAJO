@@ -36,6 +36,6 @@
                     </div>
                 </s:iterator>
             </div>
-        </div>                   
+        </div>
     </body>
 </html>

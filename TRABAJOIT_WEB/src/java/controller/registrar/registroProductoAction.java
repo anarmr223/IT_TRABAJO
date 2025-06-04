@@ -5,18 +5,21 @@
  */
 package controller.registrar;
 
+import WS.ProductoWS;
 import com.opensymphony.xwork2.ActionSupport;
 import controller.util.cargadorDeImagenes;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ws.rs.core.GenericType;
 import wsModel.Producto;
+import wsModel.Tienda;
 
 /**
  *
  * @author Jose
  */
-public class registrarProductoAction extends ActionSupport {
+public class registroProductoAction extends ActionSupport {
     
     private String nombre;
     private int stock;
@@ -27,7 +30,7 @@ public class registrarProductoAction extends ActionSupport {
     private String miArchivoContentType;
     private String miArchivoFileName;
     
-    public registrarProductoAction() {
+    public registroProductoAction() {
     }
     
     @Override
@@ -40,12 +43,17 @@ public class registrarProductoAction extends ActionSupport {
         
         Producto p= new Producto();
         p.setDescripcion(descripcion);
-        //p.setIdTienda(idTienda);
+        p.setIdTienda(new Tienda(1, nombre));
         p.setNombre(nombre);
         p.setPrecio(precio);
         p.setStock(stock);
-        
-        //String url=cargadorDeImagenes.subirImagenProducto(misArchivos, misArchivosContentType, );
+        ProductoWS ps=new ProductoWS();
+        ps.create_XML(p);
+        GenericType<Producto> gt= new GenericType<Producto>(){};
+        Producto producto=ps.getProducto(gt, 1, nombre);
+        String url=cargadorDeImagenes.subirImagenProducto(misArchivos, misArchivosContentType, String.valueOf(producto.getId()));
+        producto.setUrlImagen(url);
+        ps.actualizarProducto(p);
         
        return SUCCESS; 
     }

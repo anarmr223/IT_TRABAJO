@@ -71,8 +71,8 @@ public class Vendedor implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVendedor")
     private Collection<Tienda> tiendaCollection;
     @JoinColumn(name = "idCuenta", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Cuenta idCuenta;
+    @OneToOne(optional = false) // Changed to OneToOne
+    private Cuenta cuenta; // Renamed to singular 'cuenta'
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "idVendedor")
     private Venta venta;
 
@@ -140,13 +140,23 @@ public class Vendedor implements Serializable {
         this.tiendaCollection = tiendaCollection;
     }
 
-    public Cuenta getIdCuenta() {
-        return idCuenta;
+    public Cuenta getCuenta() {
+        return cuenta;
     }
 
-    public void setIdCuenta(Cuenta idCuenta) {
-        this.idCuenta = idCuenta;
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
     }
+
+    public String getnCuentaBancaria() {
+        return nCuentaBancaria;
+    }
+
+    public void setnCuentaBancaria(String nCuentaBancaria) {
+        this.nCuentaBancaria = nCuentaBancaria;
+    }
+    
+    
 
     public Venta getVenta() {
         return venta;
@@ -178,7 +188,7 @@ public class Vendedor implements Serializable {
 
     @Override
     public String toString() {
-        return "wsModel.Vendedor[ id=" + id + " ]";
+        return "model.Vendedor[ id=" + id + " ]";
     }
     
 }

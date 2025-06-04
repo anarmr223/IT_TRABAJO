@@ -14,9 +14,10 @@
     </head>
     <body>
         <h1>Registrar tienda</h1>
+        <s:form action="registroTiendaAction">
+            <s:textfield name="nombreTienda" label="nombre"/>
+            <s:submit/>
+        </s:form>
         
-        <s:textfield name="nombreTienda"/>
-        
-        <
     </body>
 </html>
