@@ -30,11 +30,9 @@ body {
 
 
 .producto-item{
-    background-color: rgba(252, 252, 252, 0.5);
     margin: 10px 10px 10px 10px;
     border-radius: 5%;
     max-width: 250px;
-
 }
 
 .muestraProductos .row {
@@ -57,17 +55,14 @@ body {
     right: 0;
     z-index: 10;
 }
-.containerGeneral {
-    background-color: rgba(252, 252, 252, 0.845);
+.containerPrincipal{
     position: relative;
     border-radius: 5px; 
-    margin-top: 65px;
+    margin-top: 300px;
     padding-top: 0;
     overflow-y: scroll;
     max-height: 550px; /* o la altura que necesites */
-  
 }
-
 /* Capa superior difuminada */
 .containerGeneral::before {
   content: "";

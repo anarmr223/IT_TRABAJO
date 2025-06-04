@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,29 +23,41 @@
         <div class="container-fluid banner mt-5">
             <h1 class="text-center pt-5">TIENDA TAL</h1>
         </div>
-
-        <div class="container containerGeneral">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-6 col-lg-3 producto-item">
-                    <div class="card h-100">
-                        <img src="camiseta.png" class="card-img-top" alt="Nombre del producto">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title"><a href="producto.html">Nombre del Producto</a></h5>
+        
+        <div class="row">
+            <div class="col-xl-2 mt-2 ml-2">
+                <s:url var="registrarSuscriptorUrl" action="registrarSuscriptor">
+                        <s:param name="id" value="%{#session.idTienda}"/>
+                    </s:url>
+                    <a href="${registrarSuscriptorUrl}" class="btn btn-primary">
+                        Registrar Suscriptor
+                    </a>
+            </div>
+            <div class="col-xl-10">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-6 col-lg-3 producto-item">
+                        <div class="card h-100">
+                            <img src="camiseta.png" class="card-img-top" alt="Nombre del producto">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title"><a href="producto.html">Nombre del Producto</a></h5>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-12 col-md-6 col-lg-3 producto-item">
-                    patampiasd
-                </div>
-                <div class="col-12 col-md-6 col-lg-3 producto-item">
-                    patampiasd
-                </div>
-                <div class="col-12 col-md-6 col-lg-3 producto-item">
-                    patampiasd
+                    <div class="col-12 col-md-6 col-lg-3 producto-item">
+                        patampiasd
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3 producto-item">
+                        patampiasd
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3 producto-item">
+                        patampiasd
+                    </div>
                 </div>
             </div>
         </div>
+
+        
 
     </body>
     </html>

@@ -13,13 +13,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-        <link rel="stylesheet" href="<c:url value="/css/estilo.css"/>">
+        <link rel="stylesheet" href="<c:url value='/css/estilo.css?v=2'/>">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <title>Inicio</title>
     </head>
     <body>
         <jsp:include page="navbar.jsp"/>
-        <div class="container containerGeneral">
+        <div class="container containerPrincipal">
             <div class="row justify-content-center">
                 <s:iterator value="#session.listaProductos" id="prod">
                     <div class="col-12 col-sm-6 col-lg-3 col-xl-2 producto-item">
