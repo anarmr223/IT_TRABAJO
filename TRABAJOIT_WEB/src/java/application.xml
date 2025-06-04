@@ -53,6 +53,12 @@
         </action>
         
         
+         <action name="actualizarPasswordAction" class="controller.detalle.actualizarPasswordAction">
+            <result>/usuario_detalle.jsp</result>
+        </action>
+        
+        
+        
         
     </package>
     

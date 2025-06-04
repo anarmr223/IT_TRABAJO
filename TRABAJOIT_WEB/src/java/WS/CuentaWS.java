@@ -7,8 +7,10 @@ package WS;
 
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
+import wsModel.Cuenta;
 
 /**
  * Jersey REST client generated for REST resource:we [wsmodel.cuenta]<br>
@@ -72,6 +74,15 @@ public class CuentaWS {
     public <T> T findAll_JSON(Class<T> responseType) throws ClientErrorException {
         return webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
+    
+    public void actualizarPassword(Cuenta c){
+        
+         Entity<Cuenta> productoEntity = Entity.xml(c);
+         
+        webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(productoEntity);
+        
+    }
+    
 
     public void close() {
         client.close();

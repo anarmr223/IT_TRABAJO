@@ -17,6 +17,15 @@
             
         <s:property value="%{#session.usuario.usuario}"/>
         
+        <s:form action="actualizarPassword">
+            
+            <s:password label="Introduzca su Contraseña" name="oldPassword"/>
+            <s:password label="Introduzca la nueva Contraseña" name="newPassword"/>
+            <s:submit value="Actualizar Contraseña"/>
+            
+        </s:form>
+        
+        
         <s:form action="logOut">
             <s:submit value="logout"/>
         </s:form>   
