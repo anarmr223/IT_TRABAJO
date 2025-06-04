@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package wsModel;
+package model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -27,14 +27,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Jose
+ * @author Asus
  */
 @Entity
 @Table(name = "publicacion")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Publicacion.findAll", query = "SELECT p FROM Publicacion p")
-    , @NamedQuery(name = "Publicacion.findById", query = "SELECT p FROM Publicacion p WHERE p.id = :id")
+    , @NamedQuery(name = "Publicacion.findByIdPublicacion", query = "SELECT p FROM Publicacion p WHERE p.idPublicacion = :idPublicacion")
     , @NamedQuery(name = "Publicacion.findByFechaPublicacion", query = "SELECT p FROM Publicacion p WHERE p.fechaPublicacion = :fechaPublicacion")})
 public class Publicacion implements Serializable {
 
@@ -42,12 +42,12 @@ public class Publicacion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "idPublicacion")
+    private Integer idPublicacion;
     @Basic(optional = false)
     @NotNull
     @Lob
-    @Size(min = 1, max = 2147483647)
+    @Size(min = 1, max = 65535)
     @Column(name = "contenido")
     private String contenido;
     @Basic(optional = false)
@@ -55,29 +55,29 @@ public class Publicacion implements Serializable {
     @Column(name = "fechaPublicacion")
     @Temporal(TemporalType.DATE)
     private Date fechaPublicacion;
-    @JoinColumn(name = "idCuenta", referencedColumnName = "id")
+    @JoinColumn(name = "idCuenta", referencedColumnName = "idCuenta")
     @ManyToOne(optional = false)
     private Cuenta idCuenta;
 
     public Publicacion() {
     }
 
-    public Publicacion(Integer id) {
-        this.id = id;
+    public Publicacion(Integer idPublicacion) {
+        this.idPublicacion = idPublicacion;
     }
 
-    public Publicacion(Integer id, String contenido, Date fechaPublicacion) {
-        this.id = id;
+    public Publicacion(Integer idPublicacion, String contenido, Date fechaPublicacion) {
+        this.idPublicacion = idPublicacion;
         this.contenido = contenido;
         this.fechaPublicacion = fechaPublicacion;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdPublicacion() {
+        return idPublicacion;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdPublicacion(Integer idPublicacion) {
+        this.idPublicacion = idPublicacion;
     }
 
     public String getContenido() {
@@ -107,7 +107,7 @@ public class Publicacion implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idPublicacion != null ? idPublicacion.hashCode() : 0);
         return hash;
     }
 
@@ -118,7 +118,7 @@ public class Publicacion implements Serializable {
             return false;
         }
         Publicacion other = (Publicacion) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idPublicacion == null && other.idPublicacion != null) || (this.idPublicacion != null && !this.idPublicacion.equals(other.idPublicacion))) {
             return false;
         }
         return true;
@@ -126,7 +126,7 @@ public class Publicacion implements Serializable {
 
     @Override
     public String toString() {
-        return "wsModel.Publicacion[ id=" + id + " ]";
+        return "model.Publicacion[ idPublicacion=" + idPublicacion + " ]";
     }
     
 }

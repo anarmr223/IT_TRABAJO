@@ -7,13 +7,10 @@ package WS;
 
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
-import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
-import wsModel.Cuenta;
 
 /**
- * Jersey REST client generated for REST resource:we [wsmodel.cuenta]<br>
+ * Jersey REST client generated for REST resource:we [model.cuenta]<br>
  * USAGE:
  * <pre>
  *        CuentaWS client = new CuentaWS();
@@ -28,7 +25,7 @@ public class CuentaWS {
 
     private WebTarget webTarget;
     private Client client;
-    private static final String BASE_URI = "http://localhost:8080/WSTRABAJOIT/webresources/";
+    private static final String BASE_URI = "http://localhost:8080/WS_TrabajoIt/webresources/";
 
     public CuentaWS() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
@@ -48,16 +45,6 @@ public class CuentaWS {
     public void create_JSON(Object requestEntity) throws ClientErrorException {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
-    
-    public <T> T getCuentaByUsuario(GenericType<T> superType, String usuario){
-        WebTarget resource = webTarget;
-        return resource.path("usuario").path(usuario).request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(superType);
-    }
-    
-    public <T> T getCuentaByCorreo(GenericType<T> superType, String correo){
-        WebTarget resource = webTarget;
-        return resource.path("correo").path(correo).request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(superType);
-    }
 
     /**
      * @param responseType Class representing the response
@@ -74,15 +61,6 @@ public class CuentaWS {
     public <T> T findAll_JSON(Class<T> responseType) throws ClientErrorException {
         return webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
-    
-    public void actualizarPassword(Cuenta c){
-        
-         Entity<Cuenta> productoEntity = Entity.xml(c);
-         
-        webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).put(productoEntity);
-        
-    }
-    
 
     public void close() {
         client.close();

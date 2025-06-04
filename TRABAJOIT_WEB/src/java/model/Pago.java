@@ -3,20 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package wsModel;
+package model;
 
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,36 +25,30 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Jose
+ * @author Asus
  */
 @Entity
 @Table(name = "pago")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Pago.findAll", query = "SELECT p FROM Pago p")
-    , @NamedQuery(name = "Pago.findById", query = "SELECT p FROM Pago p WHERE p.id = :id")
-    , @NamedQuery(name = "Pago.findByIdOrder", query = "SELECT p FROM Pago p WHERE p.idOrder = :idOrder")
-    , @NamedQuery(name = "Pago.findByEstado", query = "SELECT p FROM Pago p WHERE p.estado = :estado")
+    , @NamedQuery(name = "Pago.findByIdPago", query = "SELECT p FROM Pago p WHERE p.pagoPK.idPago = :idPago")
+    , @NamedQuery(name = "Pago.findByIdVenta", query = "SELECT p FROM Pago p WHERE p.pagoPK.idVenta = :idVenta")
     , @NamedQuery(name = "Pago.findByFecha", query = "SELECT p FROM Pago p WHERE p.fecha = :fecha")
+    , @NamedQuery(name = "Pago.findByPagado", query = "SELECT p FROM Pago p WHERE p.pagado = :pagado")
     , @NamedQuery(name = "Pago.findByMetodo", query = "SELECT p FROM Pago p WHERE p.metodo = :metodo")
-    , @NamedQuery(name = "Pago.findByDescripcion", query = "SELECT p FROM Pago p WHERE p.descripcion = :descripcion")})
+    , @NamedQuery(name = "Pago.findByTotal", query = "SELECT p FROM Pago p WHERE p.total = :total")})
 public class Pago implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
+    @EmbeddedId
+    protected PagoPK pagoPK;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idOrder")
-    private int idOrder;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 9)
-    @Column(name = "estado")
-    private String estado;
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = "descripcion")
+    private String descripcion;
     @Basic(optional = false)
     @NotNull
     @Column(name = "fecha")
@@ -63,75 +56,47 @@ public class Pago implements Serializable {
     private Date fecha;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "pagado")
+    private boolean pagado;
+    @Basic(optional = false)
+    @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "metodo")
     private String metodo;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 500)
-    @Column(name = "descripcion")
-    private String descripcion;
-    @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
-    @OneToOne(optional = false)
+    @Column(name = "total")
+    private double total;
+    @JoinColumn(name = "idVenta", referencedColumnName = "idVenta", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
     private Venta venta;
-    @JoinColumn(name = "id", referencedColumnName = "idPago", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private Venta venta1;
 
     public Pago() {
     }
 
-    public Pago(Integer id) {
-        this.id = id;
+    public Pago(PagoPK pagoPK) {
+        this.pagoPK = pagoPK;
     }
 
-    public Pago(Integer id, int idOrder, String estado, Date fecha, String metodo, String descripcion) {
-        this.id = id;
-        this.idOrder = idOrder;
-        this.estado = estado;
-        this.fecha = fecha;
-        this.metodo = metodo;
+    public Pago(PagoPK pagoPK, String descripcion, Date fecha, boolean pagado, String metodo, double total) {
+        this.pagoPK = pagoPK;
         this.descripcion = descripcion;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public int getIdOrder() {
-        return idOrder;
-    }
-
-    public void setIdOrder(int idOrder) {
-        this.idOrder = idOrder;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
         this.fecha = fecha;
-    }
-
-    public String getMetodo() {
-        return metodo;
-    }
-
-    public void setMetodo(String metodo) {
+        this.pagado = pagado;
         this.metodo = metodo;
+        this.total = total;
+    }
+
+    public Pago(int idPago, int idVenta) {
+        this.pagoPK = new PagoPK(idPago, idVenta);
+    }
+
+    public PagoPK getPagoPK() {
+        return pagoPK;
+    }
+
+    public void setPagoPK(PagoPK pagoPK) {
+        this.pagoPK = pagoPK;
     }
 
     public String getDescripcion() {
@@ -142,6 +107,38 @@ public class Pago implements Serializable {
         this.descripcion = descripcion;
     }
 
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public boolean getPagado() {
+        return pagado;
+    }
+
+    public void setPagado(boolean pagado) {
+        this.pagado = pagado;
+    }
+
+    public String getMetodo() {
+        return metodo;
+    }
+
+    public void setMetodo(String metodo) {
+        this.metodo = metodo;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
     public Venta getVenta() {
         return venta;
     }
@@ -150,18 +147,10 @@ public class Pago implements Serializable {
         this.venta = venta;
     }
 
-    public Venta getVenta1() {
-        return venta1;
-    }
-
-    public void setVenta1(Venta venta1) {
-        this.venta1 = venta1;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (pagoPK != null ? pagoPK.hashCode() : 0);
         return hash;
     }
 
@@ -172,7 +161,7 @@ public class Pago implements Serializable {
             return false;
         }
         Pago other = (Pago) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.pagoPK == null && other.pagoPK != null) || (this.pagoPK != null && !this.pagoPK.equals(other.pagoPK))) {
             return false;
         }
         return true;
@@ -180,7 +169,7 @@ public class Pago implements Serializable {
 
     @Override
     public String toString() {
-        return "wsModel.Pago[ id=" + id + " ]";
+        return "model.Pago[ pagoPK=" + pagoPK + " ]";
     }
     
 }

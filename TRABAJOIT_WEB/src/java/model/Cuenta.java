@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package wsModel;
+package model;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -14,10 +14,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -26,14 +26,14 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Jose
+ * @author Asus
  */
 @Entity
 @Table(name = "cuenta")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Cuenta.findAll", query = "SELECT c FROM Cuenta c")
-    , @NamedQuery(name = "Cuenta.findById", query = "SELECT c FROM Cuenta c WHERE c.id = :id")
+    , @NamedQuery(name = "Cuenta.findByIdCuenta", query = "SELECT c FROM Cuenta c WHERE c.idCuenta = :idCuenta")
     , @NamedQuery(name = "Cuenta.findByUsuario", query = "SELECT c FROM Cuenta c WHERE c.usuario = :usuario")
     , @NamedQuery(name = "Cuenta.findByContraseniaHash", query = "SELECT c FROM Cuenta c WHERE c.contraseniaHash = :contraseniaHash")
     , @NamedQuery(name = "Cuenta.findBySalt", query = "SELECT c FROM Cuenta c WHERE c.salt = :salt")
@@ -44,8 +44,8 @@ public class Cuenta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "idCuenta")
+    private Integer idCuenta;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -66,34 +66,38 @@ public class Cuenta implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "correo")
     private String correo;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "cuenta") // Renamed mappedBy to 'cuenta' to avoid confusion with column name
-    private Vendedor vendedor; // Renamed to singular 'vendedor'
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idCuenta")
-    private Usuario usuario1;
+    @ManyToMany(mappedBy = "cuentaCollection")
+    private Collection<Vendedor> vendedorCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuenta")
+    private Collection<Vendedor> vendedorCollection1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCuenta")
+    private Collection<Venta> ventaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuenta")
+    private Collection<Carrito> carritoCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCuenta")
     private Collection<Publicacion> publicacionCollection;
 
     public Cuenta() {
     }
 
-    public Cuenta(Integer id) {
-        this.id = id;
+    public Cuenta(Integer idCuenta) {
+        this.idCuenta = idCuenta;
     }
 
-    public Cuenta(Integer id, String usuario, String contraseniaHash, String salt, String correo) {
-        this.id = id;
+    public Cuenta(Integer idCuenta, String usuario, String contraseniaHash, String salt, String correo) {
+        this.idCuenta = idCuenta;
         this.usuario = usuario;
         this.contraseniaHash = contraseniaHash;
         this.salt = salt;
         this.correo = correo;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdCuenta() {
+        return idCuenta;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdCuenta(Integer idCuenta) {
+        this.idCuenta = idCuenta;
     }
 
     public String getUsuario() {
@@ -128,20 +132,40 @@ public class Cuenta implements Serializable {
         this.correo = correo;
     }
 
-    public Vendedor getVendedor() {
-        return vendedor;
+    @XmlTransient
+    public Collection<Vendedor> getVendedorCollection() {
+        return vendedorCollection;
     }
 
-    public void setVendedor(Vendedor vendedor) {
-        this.vendedor = vendedor;
+    public void setVendedorCollection(Collection<Vendedor> vendedorCollection) {
+        this.vendedorCollection = vendedorCollection;
     }
 
-    public Usuario getUsuario1() {
-        return usuario1;
+    @XmlTransient
+    public Collection<Vendedor> getVendedorCollection1() {
+        return vendedorCollection1;
     }
 
-    public void setUsuario1(Usuario usuario1) {
-        this.usuario1 = usuario1;
+    public void setVendedorCollection1(Collection<Vendedor> vendedorCollection1) {
+        this.vendedorCollection1 = vendedorCollection1;
+    }
+
+    @XmlTransient
+    public Collection<Venta> getVentaCollection() {
+        return ventaCollection;
+    }
+
+    public void setVentaCollection(Collection<Venta> ventaCollection) {
+        this.ventaCollection = ventaCollection;
+    }
+
+    @XmlTransient
+    public Collection<Carrito> getCarritoCollection() {
+        return carritoCollection;
+    }
+
+    public void setCarritoCollection(Collection<Carrito> carritoCollection) {
+        this.carritoCollection = carritoCollection;
     }
 
     @XmlTransient
@@ -156,7 +180,7 @@ public class Cuenta implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idCuenta != null ? idCuenta.hashCode() : 0);
         return hash;
     }
 
@@ -167,7 +191,7 @@ public class Cuenta implements Serializable {
             return false;
         }
         Cuenta other = (Cuenta) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idCuenta == null && other.idCuenta != null) || (this.idCuenta != null && !this.idCuenta.equals(other.idCuenta))) {
             return false;
         }
         return true;
@@ -175,7 +199,7 @@ public class Cuenta implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Cuenta[ id=" + id + " ]";
+        return "model.Cuenta[ idCuenta=" + idCuenta + " ]";
     }
     
 }

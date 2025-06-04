@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package wsModel;
+package model;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -13,23 +13,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Jose
+ * @author Asus
  */
 @Entity
 @Table(name = "lineaproducto")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Lineaproducto.findAll", query = "SELECT l FROM Lineaproducto l")
-    , @NamedQuery(name = "Lineaproducto.findById", query = "SELECT l FROM Lineaproducto l WHERE l.id = :id")
+    , @NamedQuery(name = "Lineaproducto.findByIdLinea", query = "SELECT l FROM Lineaproducto l WHERE l.idLinea = :idLinea")
     , @NamedQuery(name = "Lineaproducto.findByCantidad", query = "SELECT l FROM Lineaproducto l WHERE l.cantidad = :cantidad")})
 public class Lineaproducto implements Serializable {
 
@@ -37,37 +38,40 @@ public class Lineaproducto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "idLinea")
+    private Integer idLinea;
     @Basic(optional = false)
     @NotNull
     @Column(name = "cantidad")
     private int cantidad;
-    @JoinColumn(name = "idCarrito", referencedColumnName = "id")
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
+    @JoinColumns({ // <--- ¡Añade esta anotación en plural!
+        @JoinColumn(name = "idCarrito", referencedColumnName = "idCarrito", insertable = false, updatable = false),
+        @JoinColumn(name = "idCuenta", referencedColumnName = "idCuenta", insertable = false, updatable = false)
+    })
     private Carrito idCarrito;
-    @JoinColumn(name = "idProducto", referencedColumnName = "id")
-    @OneToOne(optional = false)
+    @JoinColumn(name = "idProducto", referencedColumnName = "idProducto")
+    @ManyToOne(optional = false)
     private Producto idProducto;
 
     public Lineaproducto() {
     }
 
-    public Lineaproducto(Integer id) {
-        this.id = id;
+    public Lineaproducto(Integer idLinea) {
+        this.idLinea = idLinea;
     }
 
-    public Lineaproducto(Integer id, int cantidad) {
-        this.id = id;
+    public Lineaproducto(Integer idLinea, int cantidad) {
+        this.idLinea = idLinea;
         this.cantidad = cantidad;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdLinea() {
+        return idLinea;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdLinea(Integer idLinea) {
+        this.idLinea = idLinea;
     }
 
     public int getCantidad() {
@@ -97,7 +101,7 @@ public class Lineaproducto implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idLinea != null ? idLinea.hashCode() : 0);
         return hash;
     }
 
@@ -108,7 +112,7 @@ public class Lineaproducto implements Serializable {
             return false;
         }
         Lineaproducto other = (Lineaproducto) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idLinea == null && other.idLinea != null) || (this.idLinea != null && !this.idLinea.equals(other.idLinea))) {
             return false;
         }
         return true;
@@ -116,7 +120,7 @@ public class Lineaproducto implements Serializable {
 
     @Override
     public String toString() {
-        return "wsModel.Lineaproducto[ id=" + id + " ]";
+        return "model.Lineaproducto[ idLinea=" + idLinea + " ]";
     }
     
 }
