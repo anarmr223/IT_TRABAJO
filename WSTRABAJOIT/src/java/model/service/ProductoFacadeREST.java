@@ -8,6 +8,7 @@ package model.service;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -18,6 +19,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import model.Cuenta;
 import model.Producto;
 
 /**
@@ -63,10 +65,14 @@ public class ProductoFacadeREST extends AbstractFacade<Producto> {
     }
 
     @GET
-    @Override
+    @Path("all")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Producto> findAll() {
-        return super.findAll();
+        try {
+            return em.createQuery("SELECT p FROM Producto p", Producto.class).getResultList();
+        } catch (NoResultException e) {
+            return null; // o lanzar una excepción 404 si prefieres
+        }
     }
 
     @GET
