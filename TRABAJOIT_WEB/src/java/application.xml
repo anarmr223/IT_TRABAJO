@@ -23,6 +23,13 @@
             <result name="error">/error.jsp</result>
         </action>
         
+        <action name="logOut" class="controller.login.logOutAction">
+            <result type="redirectAction">
+                <param name="namespace">/inicio</param>
+                <param name="actionName">navInicio</param>
+            </result>
+        </action>
+        
     </package>
     
     <package name="registrar" namespace="/registrar" extends="struts-default">

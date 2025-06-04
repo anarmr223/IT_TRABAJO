@@ -79,5 +79,17 @@ public class loginAction extends ActionSupport implements SessionAware, ServletR
         this.response=hsr;
     }
     
+    @Override
+    public void validate(){
+        CuentaWS servicio= new CuentaWS();
+        GenericType<Cuenta> genericType = new GenericType<Cuenta>() {
+        };
+        try{
+           servicio.getCuentaByUsuario(genericType, usuario); 
+        }catch(Exception ex){
+            addFieldError("usuario", "No existe ese usuario en la base de datos");
+        }
+    }
+    
     
 }

@@ -13,6 +13,7 @@ import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -71,10 +72,10 @@ public class CuentaFacadeREST extends AbstractFacade<Cuenta> {
             return em.createQuery("SELECT c FROM Cuenta c WHERE c.usuario = :usuario", Cuenta.class)
                      .setParameter("usuario", usuario)
                      .getSingleResult();
-        } catch (NoResultException e) {
-            return null; // o lanzar una excepción 404 si prefieres
+        } catch (Exception e) {
+            throw new NotFoundException("No hay usuarios registrados");
         }
-}
+    }
     
     @GET
     @Path("correo/{correo}")

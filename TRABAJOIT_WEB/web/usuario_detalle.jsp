@@ -17,7 +17,9 @@
             
         <s:property value="%{#session.usuario.usuario}"/>
         
-           
+        <s:form action="logOut">
+            <s:submit value="logout"/>
+        </s:form>   
         
     </body>
 </html>

@@ -68,5 +68,12 @@
             </result>
         </action>
         
+        <action name="logOut">
+            <result type="chain">
+                <param name="namespace">/login</param>
+                <param name="actionName">logOut</param>
+            </result>
+        </action>
+        
     </package>
 </struts>

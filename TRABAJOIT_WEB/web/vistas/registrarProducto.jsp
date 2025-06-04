@@ -77,9 +77,39 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row">TALLA</th>
+                                    <th scope="row">XS</th>
                                     <td>
-                                        <s:textfield name="cantidad" placeholder="Cantidad" />
+                                        <s:textfield name="cantidadXS" placeholder="Cantidad" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">S</th>
+                                    <td>
+                                        <s:textfield name="cantidadS" placeholder="Cantidad" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">M</th>
+                                    <td>
+                                        <s:textfield name="cantidadM" placeholder="Cantidad" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">L</th>
+                                    <td>
+                                        <s:textfield name="cantidadL" placeholder="Cantidad" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">XL</th>
+                                    <td>
+                                        <s:textfield name="cantidadXL" placeholder="Cantidad" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2XL</th>
+                                    <td>
+                                        <s:textfield name="cantidad2XL" placeholder="Cantidad" />
                                     </td>
                                 </tr>
                             </tbody>
