@@ -26,7 +26,7 @@
                         <div class="card h-100">
                             <img src="<c:url value='#prod.urlImagen'/>" class="card-img-top" alt="Nombre del producto">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title"><a href="<s:url action="navProducto"><s:param name="id" value="%{#prod.nombre}"/></s:url>"><s:property value="#prod.nombre"/></a></h5><!--NECESITO EL ID DEL PRODUCTO-->
+                                <h5 class="card-title"><a href="<s:url action="navProducto"><s:param name="id" value="%{#prod.nombre}"/></s:url>"><s:property value="#prod.nombre"/></a></h5>
                                 <p class="card-text text-muted mb-3"> 
                                     <a href="<s:url action="navTienda"><s:param name="idTienda" value="%{#prod.idTienda}"/></s:url>">
                                         <s:property value="#prod.idTienda.nombreTienda"/></a>
