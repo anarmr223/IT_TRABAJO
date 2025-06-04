@@ -24,6 +24,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -140,7 +141,8 @@ public class Producto implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
+    
+    
     public Collection<Lineaproducto> getCoolectionLineaproducto() {
         return lineaproducto;
     }
@@ -149,6 +151,8 @@ public class Producto implements Serializable {
         this.lineaproducto = lineaproducto;
     }
 
+    
+    @XmlTransient
     public Tienda getIdTienda() {
         return idTienda;
     }
