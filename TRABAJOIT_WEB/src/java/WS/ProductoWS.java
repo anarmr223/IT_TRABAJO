@@ -52,7 +52,8 @@ public class ProductoWS {
      * @return response object (instance of responseType class)
      */
     public <T> T findAll_XML(GenericType<T> responseType) throws ClientErrorException {
-        return webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
+        WebTarget resource=webTarget;
+        return resource.path("all").request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
     }
     
     public <T> T findById(GenericType<T> superType, int id) throws ClientErrorException{
