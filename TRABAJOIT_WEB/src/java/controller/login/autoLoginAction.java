@@ -28,7 +28,6 @@ public class autoLoginAction extends ActionSupport implements ServletRequestAwar
     
     private HttpServletRequest request;
     private Map<String,Object> session;
-    private List<ProductoWS> listaProductos;
     
     public autoLoginAction() {
     }
@@ -68,14 +67,6 @@ public class autoLoginAction extends ActionSupport implements ServletRequestAwar
     @Override
     public void setSession(Map<String, Object> map) {
        this.session=map;
-    }
-
-    public List<ProductoWS> getListaProductos() {
-        return listaProductos;
-    }
-
-    public void setListaProductos(List<ProductoWS> listaProductos) {
-        this.listaProductos = listaProductos;
     }
 
     public HttpServletRequest getRequest() {
