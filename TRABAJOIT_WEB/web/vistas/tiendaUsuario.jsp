@@ -18,7 +18,7 @@
     <body>
         <!--Menu navegacion-->
         <jsp:include page="navbar.jsp"/>
-        <div class="container-fluid banner">
+        <div class="container-fluid banner mt-5">
             <h1 class="text-center pt-5">TIENDA TAL</h1>
         </div>
 
