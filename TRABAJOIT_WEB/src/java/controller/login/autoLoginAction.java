@@ -38,7 +38,7 @@ public class autoLoginAction extends ActionSupport implements ServletRequestAwar
         Cookie[] cookies=request.getCookies();
         boolean enc=false;
         int i=0;
-        while(!enc&& i<cookies.length){
+        while(!enc && ( cookies!=null && i<cookies.length  )){
             enc=cookies[i].getName().equals("usuario");
             i++;
         }
