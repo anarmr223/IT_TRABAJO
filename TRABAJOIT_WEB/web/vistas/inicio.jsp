@@ -21,18 +21,20 @@
         <jsp:include page="navbar.jsp"/>
         <div class="container containerGeneral">
             <div class="row justify-content-center">
-                <s:iterator value="#session.listarProductos" id="prod">
+                <s:iterator value="#session.listaProductos" id="prod">
                     <div class="col-12 col-sm-6 col-lg-3 col-xl-2 producto-item">
                         <div class="card h-100">
-                            <img src=src="<c:url value='/imagenes/'/><s:property value='imagen'/>" class="card-img-top" alt="Nombre del producto">
+                            <img src="<c:url value='#prod.urlImagen'/>" class="card-img-top" alt="Nombre del producto">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title"><a href="<s:url action="navProducto"><s:param name="id" value="%{#prod.nombre}"/></s:url>"></a></h5><!--NECESITO EL ID DEL PRODUCTO-->
-                                <p class="card-text text-muted mb-3"> <a href="<s:url action="navTienda"><s:param name="idTienda" value="%{#prod.idTienda}"/></s:url>"></a></p>
+                                <h5 class="card-title"><a href="<s:url action="navProducto"><s:param name="id" value="%{#prod.nombre}"/></s:url>"><s:property value="#prod.nombre"/></a></h5><!--NECESITO EL ID DEL PRODUCTO-->
+                                <p class="card-text text-muted mb-3"> 
+                                    <a href="<s:url action="navTienda"><s:param name="idTienda" value="%{#prod.idTienda}"/></s:url>">
+                                        <s:property value="#prod.idTienda.nombreTienda"/></a>
+                                </p>
                             </div>
                         </div>
                     </div>
                 </s:iterator>
-                
             </div>
         </div>                   
     </body>

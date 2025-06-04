@@ -75,5 +75,12 @@
             </result>
         </action>
         
+        <action name="navProducto">
+            <result type="chain">
+                <param name="namespace">/nav</param>
+                <param name="actionName">navProducto</param>
+            </result>
+        </action>
+        
     </package>
 </struts>

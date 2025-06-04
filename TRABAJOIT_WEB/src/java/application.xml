@@ -63,5 +63,12 @@
         </action>
     </package>
     
+    <!-- PACKAGE PARA LOS NAV-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! AS-->
+    <package name="nav" namespace="/nav" extends="struts-default">
+        <action name="navProducto">
+            <result>/vistas/producto.jsp</result>
+        </action>
+    </package>
+    
     
 </struts>
