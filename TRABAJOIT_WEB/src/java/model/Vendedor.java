@@ -171,7 +171,7 @@ public class Vendedor implements Serializable {
         this.ventaCollection = ventaCollection;
     }
     
-    
+    @XmlTransient
     public Collection<Producto> getProductoCollection() {
         return productoCollection;
     }
