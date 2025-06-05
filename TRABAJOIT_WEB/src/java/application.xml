@@ -102,7 +102,8 @@
         
         <action name="navCrearPublicacion">
             <result>/vistas/crearPublicacion.jsp</result>
-            
+        </action>
+        
         <action name="navRegistrarProducto">
             <result>/vistas/registrarProducto.jsp</result>
         </action>
