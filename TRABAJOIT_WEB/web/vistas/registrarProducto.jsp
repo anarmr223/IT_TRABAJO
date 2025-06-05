@@ -19,24 +19,49 @@
             <title>JSP Page</title>
         </head>
         <body>
-        <jsp:include page="navbar.jsp"/>
+            <!--Menu navegacion-->
+            <nav class="navbar navbar-expand-sm mx-auto">
+                <div class="container-fluid bs-info-bg-subtle">
+                <a class="navbar-brand ms-2" href="#">Umi</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#elementosNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span> <!-- boton para cuando se ponga la pantalla muy pequeña-->
+                </button>
+                <div class="collapse navbar-collapse" id="elementosNav"> <!-- se pone collapse indicando que puede ser ocultable-->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="inicio.html">Inicio</a>
+                        </li>
+                        <!--despleglable de tiendas-->
+                        <li class="nav-item dropdown">      <!--toggle es alternar, cambiar de un estado a otro-->
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tiendas</a>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownTiendas">
+                                <li><a class="dropdown-item" href="#">Tienda 1</a></li>
+                                <li><a class="dropdown-item" href="#">Tienda 2</a></li>
+                                <li><a class="dropdown-item" href="#">Tienda 3</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">demonio</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <h1 class="titulo text-center">Umi</h1>
+
+            <!--login-->
+
             <div class="container-fluid registrarProducto"> <!--mt es margin top-->
                 <h2 class="mb-4 text-center">Registrar producto</h2>
-                <s:form action="registrarProductoAction" theme="simple" method="post" enctype="multipart/form-data">
+                <s:form action="guardarProducto" theme="simple" method="post" enctype="multipart/form-data">
                 <div class="d-flex">
-                    <div class="col-md-6 col-sm-12 me-2 productoForm">
+                    <div class="col-md-6 col-sm-12 productoForm">
                         <!--AQUI COL IZQ-->
-                        <label for="nombre">Nombre</label>
-                        <s:textfield name="nombre" id="nombre" cssClass="form-control" placeholder="Camiseta azul" required="true" />
-
-                        <label for="descripcion">Descripción</label>
-                        <s:textfield name="descripcion" id="descripcion" cssClass="form-control" placeholder="Camiseta azul" required="true" />
-
-                        <label for="precio">Precio</label>
-                        <s:textfield name="precio" id="precio" cssClass="form-control" placeholder="19.99" required="true" />
-
-                        <label class="mt-2" for="imagen">Subir fotos del producto</label>
-                        <s:file name="imagen1" id="imagen" cssClass="form-control mb-2" accept="image/*" required="true" />
+                        <s:textfield name="nombre" label="Nombre" cssClass="form-control" placeholder="Camiseta azul" required="true" />
+                        <s:textfield name="descripcion" label="Descripcion" cssClass="form-control" placeholder="Camiseta azul" required="true" />
+                        <s:textfield name="precio" label="Precio" cssClass="form-control" placeholder="19.99" required="true" />
+                        <s:file name="imagen" label="Subir foto del producto" accept="image/*" required="true" />
                     </div>
                     
                             
@@ -53,45 +78,45 @@
                                 <tr>
                                     <th scope="row">XS</th>
                                     <td>
-                                        <s:textfield name="cantidadXS" cssClass="form-control" placeholder="Cantidad" />
+                                        <s:textfield name="cantidadXS" placeholder="Cantidad" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">S</th>
                                     <td>
-                                        <s:textfield name="cantidadS" cssClass="form-control" placeholder="Cantidad" />
+                                        <s:textfield name="cantidadS" placeholder="Cantidad" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">M</th>
                                     <td>
-                                        <s:textfield name="cantidadM" cssClass="form-control" placeholder="Cantidad" />
+                                        <s:textfield name="cantidadM" placeholder="Cantidad" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">L</th>
                                     <td>
-                                        <s:textfield name="cantidadL" cssClass="form-control" placeholder="Cantidad" />
+                                        <s:textfield name="cantidadL" placeholder="Cantidad" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">XL</th>
                                     <td>
-                                        <s:textfield name="cantidadXL" cssClass="form-control" placeholder="Cantidad" />
+                                        <s:textfield name="cantidadXL" placeholder="Cantidad" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">2XL</th>
                                     <td>
-                                        <s:textfield name="cantidad2XL" cssClass="form-control"  placeholder="Cantidad" />
+                                        <s:textfield name="cantidad2XL" placeholder="Cantidad" />
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
+                </div>
                 </div>
                 <div class="text-center">
-                <s:submit value="Enviar" cssClass="btn btn-primary w-50 d-block mx-auto botonRegistrarProd" />
+                    <s:submit value="Enviar" cssClass="btn btn-primary w-50 d-block mx-auto botonRegistrarProd" />
                 </div>
                 </s:form>
             

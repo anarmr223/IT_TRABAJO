@@ -6,8 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@taglib prefix="s" uri="/struts-tags" %>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -29,27 +27,28 @@
             <div class="row">
                 <div class="col-3 col-md-3">
                     <ul class="navbar-var">
-                        <li class="nav-link">
-                            <a class="nav-link" href="<s:url action="navRegistrarProducto"/>">Registrar nuevo Producto</a></li>
+                        <li class="nav-link"><a href="registrarProducto.jsp">Registrar producto</a></li>
                         <li class="nav-link">Eliminar producto</li>
                         <li class="nav-link">Editar  producto</li>
                     </ul>
                 </div>
-                <div class="row justify-content-center">
-                    <s:iterator value="#session.listaProductos" id="prod">
-                        <div class="col-12 col-sm-6 col-lg-3 col-xl-2 producto-item">
-                            <div class="card h-100">
-                                <img src="<c:url value='#prod.urlImagen'/>" class="card-img-top" alt="Nombre del producto">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title"><a href="<s:url action="navProducto"><s:param name="id" value="%{#prod.nombre}"/></s:url>"><s:property value="#prod.nombre"/></a></h5>
-                                    <p class="card-text text-muted mb-3"> 
-                                        <a href="<s:url action="navTienda"><s:param name="idTienda" value="%{#prod.idTienda}"/></s:url>">
-                                            <s:property value="#prod.idTienda.nombreTienda"/></a>
-                                    </p>
-                                </div>
-                            </div>
+                <div class="col-12 col-md-6 col-lg-3 producto-item">
+                    <div class="card h-100">
+                        <img src="camiseta.png" class="card-img-top" alt="Nombre del producto">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title"><a href="producto.html">Nombre del Producto</a></h5>
                         </div>
-                    </s:iterator>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3 producto-item">
+                    patampiasd
+                </div>
+                <div class="col-12 col-md-6 col-lg-3 producto-item">
+                    patampiasd
+                </div>
+                <div class="col-12 col-md-6 col-lg-3 producto-item">
+                    patampiasd
                 </div>
             </div>
         </div>

@@ -54,7 +54,7 @@
             </result>
         </action>
         
-        <action name="registrarProductoAction">
+        <action name="registroProductoAction">
             <result type="chain">
                 <param name="namespace">/registrar</param>
                 <param name="actionName">registrarProductoAction</param>

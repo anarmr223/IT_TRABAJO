@@ -8,13 +8,11 @@
 package controller.registrar;
 
 import com.opensymphony.xwork2.ActionSupport;
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import controller.util.cargadorDeImagenes;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.core.GenericType;
-import model.Producto;
 
 /**
  *
@@ -23,54 +21,65 @@ import model.Producto;
 
 public class registroProductoAction extends ActionSupport {
     
-      private String nombre;
+    private String nombre;
+    private int stock;
+    private double precio;
     private String descripcion;
-    private int precio;
-
-    // Imagen subida
-    private File imagen1;
-    private String imagen1FileName; // Struts automáticamente mapea esto
-    private String imagen1ContentType;
-
-    // Cantidades por talla
-    private int cantidadXS;
-    private int cantidadS;
-    private int cantidadM;
-    private int cantidadL;
-    private int cantidadXL;
-    private int cantidad2XL;
-
-    // Aquí va tu lógica para registrar el producto
+    private int idTienda;
+    private File miArchivo;
+    private String miArchivoContentType;
+    private String miArchivoFileName;
+    
+    public registroProductoAction() {
+    }
+    
     @Override
-    public String execute() {
-        try {
-            // 1. Validar datos (puedes usar validate() también si prefieres)
-            
+    public String execute() throws Exception {
+        /*List<File> misArchivos=new ArrayList();
+        List<String> misArchivosContentType= new ArrayList();
+        
+        misArchivos.add(miArchivo);
+        misArchivosContentType.add(miArchivoContentType);
+        
+        Producto p= new Producto();
+        p.setDescripcion(descripcion);
+        p.setIdTienda(new Tienda(1, nombre));
+        p.setNombre(nombre);
+        p.setPrecio(precio);
+        p.setStock(stock);
+        ProductoWS ps=new ProductoWS();
+        ps.create_XML(p);
+        GenericType<Producto> gt= new GenericType<Producto>(){};
+        Producto producto=ps.getProducto(gt, 1, nombre);
+        String url=cargadorDeImagenes.subirImagenProducto(misArchivos, misArchivosContentType, String.valueOf(producto.getId()));
+        producto.setUrlImagen(url);
+        ps.actualizarProducto(p);
+        */
+       return SUCCESS; 
+    }
 
-            // 2. Guardar la imagen (ejemplo: en disco)
-            //String path = request.getServletContext().getRealPath("/imagenes");
-           // File destino = new File(path, imagen1FileName);
-           // imagen1.renameTo(destino);
+    public File getMiArchivo() {
+        return miArchivo;
+    }
 
-            // 3. Crear objeto Producto (ejemplo)
-            Producto producto = new Producto();
-            producto.setNombre(nombre);
-            producto.setDescripcion(descripcion);
-            producto.setPrecio(precio);
-            producto.setURLImagen("/imagenes/" + imagen1FileName);
+    public void setMiArchivo(File miArchivo) {
+        this.miArchivo = miArchivo;
+    }
 
-            // 4. Guardar en base de datos (esto depende de tu capa DAO o JPA)
-            // productoDAO.save(producto);
+    public String getMiArchivoContentType() {
+        return miArchivoContentType;
+    }
 
-            // 5. Guardar tallas si es necesario (puedes usar una lista/mapa)
+    public void setMiArchivoContentType(String miArchivoContentType) {
+        this.miArchivoContentType = miArchivoContentType;
+    }
 
-            return SUCCESS;
+    public String getMiArchivoFileName() {
+        return miArchivoFileName;
+    }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            addActionError("Error al registrar el producto: " + e.getMessage());
-            return ERROR;
-        }
+    public void setMiArchivoFileName(String miArchivoFileName) {
+        this.miArchivoFileName = miArchivoFileName;
     }
 
     public String getNombre() {
@@ -81,9 +90,20 @@ public class registroProductoAction extends ActionSupport {
         this.nombre = nombre;
     }
 
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
 
     public double getPrecio() {
         return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 
     public String getDescripcion() {
@@ -93,4 +113,16 @@ public class registroProductoAction extends ActionSupport {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public int getIdTienda() {
+        return idTienda;
+    }
+
+    public void setIdTienda(int idTienda) {
+        this.idTienda = idTienda;
+    }
+
+    
+    
+    
 }
