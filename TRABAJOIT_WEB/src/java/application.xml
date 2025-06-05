@@ -53,6 +53,12 @@
             <result name="input">/vistas/registrarUsuario.jsp</result>
         </action>
         
+        <action name="registrarSuscripcionAction" class="controller.registrar.registroSuscripcionAction">
+            <result name="success">/vistas/tiendaUsuario.jsp</result>
+            
+        </action>
+        
+        
     </package>
     
     

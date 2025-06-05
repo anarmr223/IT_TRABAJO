@@ -43,9 +43,9 @@
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tiendas</a>
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownTiendas">
-                            <li><a class="dropdown-item" href="tiendaUsuario.html">Tienda 1</a></li>
-                            <li><a class="dropdown-item" href="tiendaUsuario.html">Tienda 2</a></li>
-                            <li><a class="dropdown-item" href="tiendaUsuario.html">Tienda 3</a></li>
+                            <li><a class="dropdown-item" href="tiendaUsuario.jsp">Tienda 1</a></li>
+                            <li><a class="dropdown-item" href="tiendaUsuario.jsp">Tienda 2</a></li>
+                            <li><a class="dropdown-item" href="tiendaUsuario.jsp">Tienda 3</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

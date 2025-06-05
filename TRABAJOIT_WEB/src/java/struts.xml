@@ -104,6 +104,13 @@
             </result>
         </action>
         
+         <action name="registrarSuscripcion">
+            <result type="chain">
+                <param name="namespace">/registrar</param>
+                <param name="actionName">registrarSuscripcionAction</param>
+            </result>
+        </action>
+        
         <action name="navRegistroTienda">
             <result type="chain">
                 <param name="namespace">/nav</param>

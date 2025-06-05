@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-xl-2 mt-2 ml-2">
                 <s:url var="registrarSuscriptorUrl" action="registrarSuscriptor">
-                        <s:param name="id" value="%{#session.idTienda}"/>
+                        <s:param name="id" value="%{#session.usuario.vendedor.vendedorPK.dni}"/>
                     </s:url>
                     <a href="${registrarSuscriptorUrl}" class="btn btn-primary">
                         Registrar Suscriptor
