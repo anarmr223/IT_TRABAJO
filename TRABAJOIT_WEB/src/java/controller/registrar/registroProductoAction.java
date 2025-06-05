@@ -17,8 +17,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import javax.servlet.ServletContext;
 import javax.ws.rs.core.GenericType;
 import model.Producto;
+import model.Talla;
 import org.apache.struts2.ServletActionContext;
 
 /**
@@ -49,35 +52,55 @@ public class registroProductoAction extends ActionSupport {
     @Override
     public String execute() throws Exception {
        // Guardar imagen en una ruta del servidor (puedes personalizar la ruta)
-        String path = ServletActionContext.getServletContext().getRealPath("/uploads");
-        File dir = new File(path);
-        if (!dir.exists()) dir.mkdirs();
+            // 1. Guardar imagen en carpeta imgsProd
+            String folderRelativo = "imgsProd";
+            ServletContext context = ServletActionContext.getServletContext();
+            String pathAbsoluto = context.getRealPath("/" + folderRelativo);
 
-        File destFile = new File(dir, imagenFileName);
-        try (InputStream in = new FileInputStream(imagen);
-             OutputStream out = new FileOutputStream(destFile)) {
-            byte[] buffer = new byte[1024];
-            int len;
-            while ((len = in.read(buffer)) > 0) {
-                out.write(buffer, 0, len);
+            File folder = new File(pathAbsoluto);
+            if (!folder.exists()) folder.mkdirs();
+
+            // Nombre único (para evitar sobrescribir)
+            String nombreImagenUnico = UUID.randomUUID().toString() + "_" + imagenFileName;
+            File destino = new File(folder, nombreImagenUnico);
+
+            try (InputStream in = new FileInputStream(imagen);
+                 OutputStream out = new FileOutputStream(destino)) {
+                byte[] buffer = new byte[1024];
+                int len;
+                while ((len = in.read(buffer)) > 0) {
+                    out.write(buffer, 0, len);
+                }
             }
+
+            // 2. Crear producto
+            Producto producto = new Producto();
+            producto.setNombre(nombre);
+            producto.setDescripcion(descripcion);
+            producto.setPrecio(precio);
+            producto.setURLImagen(folderRelativo + "/" + nombreImagenUnico);
+
+            // Creamos tallas y asociarlas al producto
+            String[] tallas = {"XS", "S", "M", "L", "XL", "2XL"};
+            int[] cantidades = {cantidadXS, cantidadS, cantidadM, cantidadL, cantidadXL, cantidad2XL};
+
+            List<Talla> tallaList = new ArrayList<>();
+            for (int i = 0; i < tallas.length; i++) {
+                Talla talla = new Talla();
+                talla.setTalla(tallas[i]);
+                talla.setCantidad(cantidades[i]);
+                talla.setIdProducto(producto); // relación inversa
+                tallaList.add(talla);
+            }
+
+            producto.setTallaCollection(tallaList);
+
+           ProductoWS em= new ProductoWS();
+           // Guardar producto en base de datos
+           em.create_XML(producto);
+           return SUCCESS;
         }
-
-        // Crear el producto
-        Producto producto = new Producto();
-        producto.setNombre(nombre);
-        producto.setDescripcion(descripcion);
-        producto.setPrecio(precio);
-        producto.setURLImagen("uploads/" + imagenFileName); // o guardar en base64 o blob según tu modelo
-
-        // Asignar cantidades por talla
-
-        
-        ProductoWS em= new ProductoWS();
-        // Guardar producto en base de datos
-        em.create_XML(producto);
-        return SUCCESS;
-    }
+    
 
     public String getNombre() {
         return nombre;
