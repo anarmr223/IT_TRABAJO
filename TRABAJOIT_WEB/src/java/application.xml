@@ -58,6 +58,11 @@
             
         </action>
         
+        <action name="crearPublicacionAction" class="controller.registrar.crearPublicacionAction">
+            <result name="success">/vistas/inicio.jsp</result>
+            <result name="input">/vistas/crearPublicacion.jsp</result>
+        </action>
+        
         
     </package>
     
@@ -93,6 +98,10 @@
         
         <action name="navTiendaVendedor">
             <result>/vistas/tiendaVendedor.jsp</result>
+        </action>
+        
+        <action name="navCrearPublicacion">
+            <result>/vistas/crearPublicacion.jsp</result>
         </action>
         
     </package>

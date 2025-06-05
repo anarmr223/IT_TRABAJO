@@ -124,5 +124,19 @@
                 <param name="actionName">navTiendaVendedor</param>
             </result>
         </action>
+        
+        <action name="navCrearPublicacion">
+            <result type="chain">
+                <param name="namespace">/nav</param>
+                <param name="actionName">navCrearPublicacion</param>
+            </result>
+        </action>
+        
+        <action name="CrearPublicacionAction">
+            <result type="chain">
+                <param name="namespace">/registrar</param>
+                <param name="actionName">crearPublicacionAction</param>
+            </result>
+        </action>
     </package>
 </struts>

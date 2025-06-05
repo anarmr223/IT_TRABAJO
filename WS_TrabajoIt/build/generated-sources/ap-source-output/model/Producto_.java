@@ -8,10 +8,11 @@ import model.Lineaproducto;
 import model.Talla;
 import model.Vendedor;
 
-@Generated(value="EclipseLink-2.6.1.v20150605-rNA", date="2025-06-05T03:28:54")
+@Generated(value="EclipseLink-2.6.1.v20150605-rNA", date="2025-06-05T12:41:08")
 @StaticMetamodel(Producto.class)
 public class Producto_ { 
 
+    public static volatile SingularAttribute<Producto, String> descripcion;
     public static volatile SingularAttribute<Producto, Integer> precio;
     public static volatile SingularAttribute<Producto, String> uRLImagen;
     public static volatile CollectionAttribute<Producto, Lineaproducto> lineaproductoCollection;
