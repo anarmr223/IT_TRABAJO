@@ -1,0 +1,114 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<!-- Author: Jose -->
+ 
+<struts>
+    <package name="inicio" namespace="/inicio" extends="struts-default">
+        <action name="navInicio" class="controller.login.autoLoginAction">
+            <result>/vistas/inicio.jsp</result>
+        </action>
+    </package>
+    
+    <package name="login" namespace="/login" extends="struts-default">
+        
+        <action name="navLogin">
+            <result>/vistas/login.jsp</result>
+        </action>
+        
+        <action name="loginAction" class="controller.login.loginAction">
+            <result name="success">/vistas/inicio.jsp</result>
+            <result name="input">/vistas/login.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        
+        <action name="logOut" class="controller.login.logOutAction">
+            <result type="redirectAction">
+                <param name="namespace">/inicio</param>
+                <param name="actionName">navInicio</param>
+            </result>
+        </action>
+        
+    </package>
+    
+    <package name="registrar" namespace="/registrar" extends="struts-default">
+        
+        <action name="navRegistro">
+            <result>/vistas/registrarUsuario.jsp</result>
+        </action>
+        
+        <action name="registrarUsuarioAction" class="controller.registrar.registroCuentaAction">
+            <result name="success">/vistas/inicio.jsp</result>
+            <result name="input">/vistas/registrarUsuario.jsp</result>
+        </action>
+        
+        <action name="registrarProductoAction" class="controller.registrar.registroProductoAction">
+            <result name="success">/vistas/tiendaVendedor.jsp</result>
+            <result name="input">/vistas/registrarProducto.jsp</result>
+        </action>
+        
+        <action name="registrarTiendaAction" class="controller.registrar.registroTiendaAction">
+            <result name="success">/registrarTienda.jsp</result>
+            <result name="input">/vistas/registrarUsuario.jsp</result>
+        </action>
+        
+        <action name="registrarSuscripcionAction" class="controller.registrar.registroSuscripcionAction">
+            <result name="success">/vistas/tiendaUsuario.jsp</result>
+            
+        </action>
+        
+        <action name="crearPublicacionAction" class="controller.registrar.crearPublicacionAction">
+            <result name="success">/vistas/inicio.jsp</result>
+            <result name="input">/vistas/crearPublicacion.jsp</result>
+        </action>
+        
+        
+    </package>
+    
+    
+    <package name="detalleUsuario" namespace="/detalleUsuario" extends="struts-default">
+        
+        <action name="navVerDetalleUsuario">
+            <result>/usuario_detalle.jsp</result>
+        </action>
+        
+        
+         <action name="actualizarPasswordAction" class="controller.detalle.actualizarUsuarioAction">
+            <result>/usuario_detalle.jsp</result>
+        </action>
+        
+        
+        
+        
+    </package>
+    
+    <package name="pruebas" namespace="/pruebas" extends="struts-default">
+        <action name="subirFicheroPruebaAction" class="controller.pruebas.subirFicheroAction">
+            <result>/subirImagenTest.jsp</result>
+            <result name="input">/subirImagenTest.jsp</result>
+        </action>
+    </package>
+    
+    <!-- PACKAGE PARA LOS NAV-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! AS-->
+    <package name="nav" namespace="/nav" extends="struts-default">
+        <action name="navProducto">
+            <result>/vistas/producto.jsp</result>
+        </action>
+        
+        <action name="navTiendaVendedor">
+            <result>/vistas/tiendaVendedor.jsp</result>
+        </action>
+        
+        <action name="navCrearPublicacion">
+            <result>/vistas/crearPublicacion.jsp</result>
+        </action>
+        
+        <action name="navRegistrarProducto">
+            <result>/vistas/registrarProducto.jsp</result>
+        </action>
+        
+    </package>
+    
+    
+</struts>

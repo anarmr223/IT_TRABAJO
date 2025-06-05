@@ -1,0 +1,149 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <constant name="struts.multipart.maxSize" value="5242880" />
+    <include file="application.xml"/>
+    <package name="default" extends="struts-default">
+        
+        <interceptors>
+        <interceptor-stack name="fileUploadStack">
+            <interceptor-ref name="defaultStack"/>
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">image/jpeg,image/png,image/webp</param>
+                <param name="maximumSize">5242880</param> </interceptor-ref>
+            <interceptor-ref name="validation"/>
+            <interceptor-ref name="workflow"/>
+        </interceptor-stack>
+        </interceptors>
+        
+        <action name="">
+            <result type="chain">
+                <param name="namespace">/inicio</param>
+                <param name="actionName">navInicio</param>
+            </result>
+        </action>
+        
+        <action name="navLogin">
+            <result type="chain">
+                <param name="namespace">/login</param>
+                <param name="actionName">navLogin</param>
+            </result>
+        </action>
+        
+        <action name="loginAction">
+            <result type="chain">
+                <param name="namespace">/login</param>
+                <param name="actionName">loginAction</param>
+            </result>
+        </action>
+        
+        <action name="navRegistro">
+            <result type="chain">
+                <param name="namespace">/registrar</param>
+                <param name="actionName">navRegistro</param>
+            </result>
+        </action>
+        
+        <action name="registroAction">
+            <result type="chain">
+                <param name="namespace">/registrar</param>
+                <param name="actionName">registrarUsuarioAction</param>
+            </result>
+        </action>
+        
+        <action name="registrarProductoAction">
+            <result type="chain">
+                <param name="namespace">/registrar</param>
+                <param name="actionName">registrarProductoAction</param>
+            </result>
+        </action>
+        
+        <action name="registroTiendaAction">
+            <result type="chain">
+                <param name="namespace">/registrar</param>
+                <param name="actionName">registrarTiendaAction</param>
+            </result>
+        </action>
+        
+        <action name="verDetalleUsuario">
+            <result type="chain">
+                <param name="namespace">/detalleUsuario</param>
+                <param name="actionName">navVerDetalleUsuario</param>
+            </result>
+        </action>
+        
+         <action name="actualizarUsuario">
+            <result type="chain">
+                <param name="namespace">/detalleUsuario</param>
+                <param name="actionName">actualizarPasswordAction</param>
+            </result>
+        </action>
+        
+        
+        <action name="subirFicheroPrueba">
+            <result type="chain">
+                <param name="namespace">/pruebas</param>
+                <param name="actionName">subirFicheroPruebaAction</param>
+            </result>
+        </action>
+        
+        <action name="logOut">
+            <result type="chain">
+                <param name="namespace">/login</param>
+                <param name="actionName">logOut</param>
+            </result>
+        </action>
+        
+        <action name="navProducto">
+            <result type="chain">
+                <param name="namespace">/nav</param>
+                <param name="actionName">navProducto</param>
+            </result>
+        </action>
+        
+         <action name="registrarSuscripcion">
+            <result type="chain">
+                <param name="namespace">/registrar</param>
+                <param name="actionName">registrarSuscripcionAction</param>
+            </result>
+        </action>
+        
+        <action name="navRegistroTienda">
+            <result type="chain">
+                <param name="namespace">/nav</param>
+                <param name="actionName">navRegistroTienda</param>
+            </result>
+        </action>
+        
+        <action name="navTiendaVendedor">
+            <result type="chain">
+                <param name="namespace">/nav</param>
+                <param name="actionName">navTiendaVendedor</param>
+            </result>
+        </action>
+        
+        <action name="navRegistrarProducto">
+            <result type="chain">
+                <param name="namespace">/nav</param>
+                <param name="actionName">navRegistrarProducto</param>
+            </result>
+        </action>
+        
+        <action name="navCrearPublicacion">
+            <result type="chain">
+                <param name="namespace">/nav</param>
+                <param name="actionName">navCrearPublicacion</param>
+            </result>
+        </action>
+        
+        <action name="CrearPublicacionAction">
+            <result type="chain">
+                <param name="namespace">/registrar</param>
+                <param name="actionName">crearPublicacionAction</param>
+            </result>
+        </action>
+    </package>
+</struts>

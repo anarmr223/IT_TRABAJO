@@ -1,0 +1,114 @@
+
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css');
+
+
+.imagenLogo{
+  max-width: 100px;
+}
+
+body {
+  background-image: url('marRecortada.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.login{
+    background-color: rgba(252, 252, 252, 0.845);
+    border-radius: 5%;
+    padding: 20px 20px 20px 20px;
+    margin-top:200px;
+}
+
+.producto-item{
+    background-color: rgba(252, 252, 252, 0.5);
+    margin: 10px 10px 10px 10px;
+    border-radius: 5%;
+    max-width: 250px;
+
+}
+
+.muestraProductos .row {
+  gap: 20px; /* separa los items entre sí */
+  padding-top: 0;
+}
+
+.dropdown-item{
+  z-index: 20;
+}
+
+
+.titulo{
+    text-align: center;
+    position: fixed;
+    margin: 0 auto;
+    padding: 10px 0;
+    top: 56px;    
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+.containerGeneral {
+  position: relative;
+  margin-top: 75px;
+  padding-top: 0;
+  overflow-y: scroll;
+  max-height: 550px; /* o la altura que necesites */
+  
+}
+
+/* Capa superior difuminada */
+.containerGeneral::before {
+  content: "";
+  position: absolute;
+  top: 0;               /* donde empieza el difuminado */
+  left: 0;
+  right: 0;
+  height: 50px;           /* altura del difuminado */
+  pointer-events: none;
+  z-index: 10;
+}
+
+.banner{
+  background-color: cadetblue;
+  height: 150px;
+}
+
+.containerGeneral.producto{
+  background-color: blue;
+  margin-top: 80px;
+  padding-top: 20px;
+}
+
+.Boton{
+  margin-top: 30px;
+}
+
+.fotoProducto{
+  width: 500px;
+  margin-top: 20px 20;
+}
+
+.especificacionProducto{
+  margin: 20px 10px 70px; /*top horizontal y bottom*/
+}
+
+
+/*uniquifier.montserrat-<> {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}*/
+
+
+.registrarProducto{
+  background-color: rgba(252, 252, 252, 0.5);
+  margin-top: 100px;
+  padding-bottom: 20px;
+}
+
+.tablaProductoForm{
+  margin-top: 31px;
+}
