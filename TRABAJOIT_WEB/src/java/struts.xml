@@ -117,5 +117,12 @@
                 <param name="actionName">navRegistroTienda</param>
             </result>
         </action>
+        
+        <action name="navTiendaVendedor">
+            <result type="chain">
+                <param name="namespace">/nav</param>
+                <param name="actionName">navTiendaVendedor</param>
+            </result>
+        </action>
     </package>
 </struts>

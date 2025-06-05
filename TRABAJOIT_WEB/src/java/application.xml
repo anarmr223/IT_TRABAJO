@@ -91,9 +91,10 @@
             <result>/vistas/producto.jsp</result>
         </action>
         
-        <action name="navRegistroTienda">
-            <result>/registrarTienda.jsp</result>
+        <action name="navTiendaVendedor">
+            <result>/vistas/tiendaVendedor.jsp</result>
         </action>
+        
     </package>
     
     
