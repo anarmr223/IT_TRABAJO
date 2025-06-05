@@ -142,7 +142,7 @@ public class Cuenta implements Serializable {
     public void setVendedorCollection(Collection<Vendedor> vendedorCollection) {
         this.vendedorCollection = vendedorCollection;
     }
-    
+ 
     public Vendedor getVendedor() { 
         return vendedor;
 }
