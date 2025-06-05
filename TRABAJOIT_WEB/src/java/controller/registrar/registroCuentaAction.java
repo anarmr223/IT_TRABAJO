@@ -75,6 +75,7 @@ public class registroCuentaAction extends ActionSupport implements SessionAware,
             v.setTelefono(telefono);
             v.setNombreTienda(nombreTienda);
             servicioV.create_XML(v);
+            session.put("vendedor", v);
         }
         return SUCCESS;
         

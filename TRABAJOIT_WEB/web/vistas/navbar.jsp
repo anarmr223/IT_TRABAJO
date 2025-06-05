@@ -52,8 +52,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="bi bi-cart"></i></a>
                     </li>
+                    <s:if test="#session.usuario!=null">
+                        <li class="nav-item ms-auto">
+                            <a class="nav-link" href="<s:url action="navTiendaVendedor"/>"><s:property value="%{#session.vendedor.nombreTienda}"/></a>
+                        </li>
+                    </s:if>
                 </ul>
-                    
+                
                 <form class="d-flex ms-auto barraBuscar" role="search"> <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search"/>
                     <button class="btn btn-outline-success" type="submit">Buscar</button>
                 </form>
