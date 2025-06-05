@@ -48,7 +48,7 @@ public class Venta implements Serializable {
     @ManyToOne(optional = false) // O las opciones que tengas para esta relación
     @JoinColumns({
         @JoinColumn(name = "dni", referencedColumnName = "dni", insertable = false, updatable = false),
-        @JoinColumn(name = "idCuentaVendedor", referencedColumnName = "idCuenta", insertable = false, updatable = false)
+        @JoinColumn(name = "idCuenta", referencedColumnName = "idCuenta", insertable = false, updatable = false)
     })
     private Vendedor vendedor;
     @ManyToOne(optional = false)
