@@ -5,16 +5,15 @@
  */
 package controller.consultar;
 
-import WS.ProductoWS;
 import com.opensymphony.xwork2.ActionSupport;
 import javax.ws.rs.core.GenericType;
-import wsModel.Cuenta;
-import wsModel.Producto;
+
 
 /**
  *
  * @author Asus
  */
+
 public class detalleProductoAction extends ActionSupport {
     private int id;
     public detalleProductoAction() {
@@ -22,9 +21,9 @@ public class detalleProductoAction extends ActionSupport {
     
     @Override
     public String execute() throws Exception {
-        ProductoWS prod= new ProductoWS();
+        /*ProductoWS prod= new ProductoWS();
         GenericType<Producto> genericType = new GenericType<Producto>() {};
-        Producto p =prod.findById(genericType, id);
+        Producto p =prod.findById(genericType, id);*/
         return SUCCESS;
     }
     

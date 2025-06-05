@@ -5,17 +5,17 @@
  */
 package controller.registrar;
 
-import WS.TiendaWs;
+
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
-import wsModel.Cuenta;
-import wsModel.Tienda;
+
 
 /**
  *
  * @author Jose
  */
+
 public class registroTiendaAction extends ActionSupport implements SessionAware{
     
     private Map<String, Object> session;
@@ -26,7 +26,7 @@ public class registroTiendaAction extends ActionSupport implements SessionAware{
     
     @Override
     public String execute() throws Exception {
-        Cuenta c=(Cuenta)session.get("usuario");
+        /*Cuenta c=(Cuenta)session.get("usuario");
         if(c==null||c.getVendedor()==null){
             return ERROR;
         }
@@ -37,7 +37,7 @@ public class registroTiendaAction extends ActionSupport implements SessionAware{
         TiendaWs tiendaS= new TiendaWs();
         
         tiendaS.create_XML(t);
-        
+        */
         return SUCCESS;
     }
 

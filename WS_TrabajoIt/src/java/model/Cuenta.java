@@ -18,6 +18,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -68,8 +69,9 @@ public class Cuenta implements Serializable {
     private String correo;
     @ManyToMany(mappedBy = "cuentaCollection")
     private Collection<Vendedor> vendedorCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuenta")
-    private Collection<Vendedor> vendedorCollection1;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "cuenta", optional = true) // 'cuenta' es el campo ManyToOne en Vendedor
+    private Vendedor vendedor; // ¡Nombre singular!
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCuenta")
     private Collection<Venta> ventaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuenta")
@@ -140,15 +142,14 @@ public class Cuenta implements Serializable {
     public void setVendedorCollection(Collection<Vendedor> vendedorCollection) {
         this.vendedorCollection = vendedorCollection;
     }
+ 
+    public Vendedor getVendedor() { 
+        return vendedor;
+}
 
-    @XmlTransient
-    public Collection<Vendedor> getVendedorCollection1() {
-        return vendedorCollection1;
-    }
-
-    public void setVendedorCollection1(Collection<Vendedor> vendedorCollection1) {
-        this.vendedorCollection1 = vendedorCollection1;
-    }
+    public void setVendedor(Vendedor vendedor) { 
+        this.vendedor = vendedor;
+}
 
     @XmlTransient
     public Collection<Venta> getVentaCollection() {

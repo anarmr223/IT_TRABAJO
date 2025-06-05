@@ -6,7 +6,6 @@
 package controller.registrar;
 
 import WS.CuentaWS;
-import WS.UsuarioWS;
 import WS.VendedorWS;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
@@ -19,12 +18,12 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.GenericType;
+import model.Cuenta;
+import model.Vendedor;
+import model.VendedorPK;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
-import wsModel.Cuenta;
-import wsModel.Usuario;
-import wsModel.Vendedor;
 
 /**
  *
@@ -39,6 +38,7 @@ public class registroCuentaAction extends ActionSupport implements SessionAware,
     private String nombre;
     private String dni;
     private String telefono;
+    private String nombreTienda;
     private String cuenta;
     private boolean mostrarInputsVendedor;
     private Map<String, Object> session;
@@ -63,29 +63,17 @@ public class registroCuentaAction extends ActionSupport implements SessionAware,
             c.setSalt(passparam[1]);
             //creamos la cuenta en la base de datos
             servicioC.create_XML(c);
-            //obtenemos la cuenta con el id generado
-            GenericType<Cuenta> genericType = new GenericType<Cuenta>() {
-            };
-            c=servicioC.getCuentaByUsuario(genericType, usuario);
-        if(!mostrarInputsVendedor){
-            UsuarioWS servicioU= new UsuarioWS();
-            //asociamos la cuenta con el usuario y lo registramos en la base de datos
-            Usuario u=new Usuario();
-            u.setIdCuenta(c);
-            servicioU.create_XML(u);
-            Cookie cookie=new Cookie("usuario", c.getUsuario());
-            cookie.setMaxAge(60*60*24);
-            response.addCookie(cookie);
-            session.put("usuario", c);
-            return SUCCESS;
-        }else{
+        if(mostrarInputsVendedor){
+            GenericType<Cuenta> gn= new GenericType<Cuenta>(){};
+            c=servicioC.findCuentaByUsuario(gn, usuario);
             VendedorWS servicioV= new VendedorWS();
             Vendedor v=new Vendedor();
             v.setCuenta(c);
-            v.setDni(dni);
+            v.setVendedorPK(new VendedorPK(dni, c.getIdCuenta()));
             v.setNCuentaBancaria(cuenta);
             v.setNombre(nombre);
             v.setTelefono(telefono);
+            v.setNombreTienda(nombreTienda);
             servicioV.create_XML(v);
         }
         return SUCCESS;
@@ -169,6 +157,14 @@ public class registroCuentaAction extends ActionSupport implements SessionAware,
         this.cuenta = cuenta;
     }
 
+    public String getNombreTienda() {
+        return nombreTienda;
+    }
+
+    public void setNombreTienda(String nombreTienda) {
+        this.nombreTienda = nombreTienda;
+    }
+
     
     
     
@@ -194,7 +190,7 @@ public class registroCuentaAction extends ActionSupport implements SessionAware,
         
         if(!usuario.isEmpty()){
             try{
-                c=servicio.getCuentaByUsuario(genericType, usuario);
+                c=servicio.findCuentaByUsuario(genericType, usuario);
             }catch(Exception ex){
                 c=null;
             }
@@ -207,7 +203,7 @@ public class registroCuentaAction extends ActionSupport implements SessionAware,
         
         if(!correo.isEmpty()){
             try{
-                c=servicio.getCuentaByCorreo(genericType, usuario);
+                c=servicio.findCuentaByCorreo(genericType, usuario);
             }catch(Exception ex){
                 c=null;
             }

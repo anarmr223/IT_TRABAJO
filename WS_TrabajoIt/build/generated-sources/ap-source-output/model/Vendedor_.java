@@ -9,7 +9,7 @@ import model.Producto;
 import model.VendedorPK;
 import model.Venta;
 
-@Generated(value="EclipseLink-2.6.1.v20150605-rNA", date="2025-06-05T00:43:44")
+@Generated(value="EclipseLink-2.6.1.v20150605-rNA", date="2025-06-05T03:28:54")
 @StaticMetamodel(Vendedor.class)
 public class Vendedor_ { 
 
@@ -20,7 +20,7 @@ public class Vendedor_ {
     public static volatile SingularAttribute<Vendedor, String> nombreTienda;
     public static volatile CollectionAttribute<Vendedor, Producto> productoCollection;
     public static volatile SingularAttribute<Vendedor, String> telefono;
-    public static volatile SingularAttribute<Vendedor, Integer> nombre;
+    public static volatile SingularAttribute<Vendedor, String> nombre;
     public static volatile CollectionAttribute<Vendedor, Cuenta> cuentaCollection;
 
 }

@@ -66,6 +66,11 @@
                     <label for="tlf">Telefono</label>
                     <s:textfield name="telefono" id="tlf" theme="simple" cssClass="form-control"></s:textfield>
                 </div>
+                
+                <div class="form-group">
+                    <label for="nombreTienda">Nombre Tienda</label>
+                    <s:textfield name="nombreTienda" id="nombreTienda" theme="simple" cssClass="form-control"></s:textfield>
+                </div>
             </div>
 
             <div class="form-group form-check">

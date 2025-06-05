@@ -156,6 +156,7 @@ public class Producto implements Serializable {
         this.lineaproductoCollection = lineaproductoCollection;
     }
 
+    @XmlTransient
     public Vendedor getDni() {
         return dni;
     }

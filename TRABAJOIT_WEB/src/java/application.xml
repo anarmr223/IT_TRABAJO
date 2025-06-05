@@ -39,7 +39,7 @@
         </action>
         
         <action name="registrarUsuarioAction" class="controller.registrar.registroCuentaAction">
-            <result name="success">/vistas/registrarUsuario.jsp</result>
+            <result name="success">/vistas/inicio.jsp</result>
             <result name="input">/vistas/registrarUsuario.jsp</result>
         </action>
         
@@ -63,7 +63,7 @@
         </action>
         
         
-         <action name="actualizarPasswordAction" class="controller.detalle.actualizarPasswordAction">
+         <action name="actualizarPasswordAction" class="controller.detalle.actualizarUsuarioAction">
             <result>/usuario_detalle.jsp</result>
         </action>
         

@@ -15,15 +15,16 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.GenericType;
+import model.Cuenta;
+import model.Producto;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
-import wsModel.Cuenta;
-import wsModel.Producto;
 
 /**
  *
  * @author Jose
  */
+
 public class autoLoginAction extends ActionSupport implements ServletRequestAware, SessionAware{
     
     private HttpServletRequest request;
@@ -45,7 +46,7 @@ public class autoLoginAction extends ActionSupport implements ServletRequestAwar
         if(enc){
             CuentaWS servicioC=new CuentaWS();
             GenericType<Cuenta> genericType= new GenericType<Cuenta>(){};
-            Cuenta c=servicioC.getCuentaByUsuario(genericType, cookies[i].getValue());
+            Cuenta c=servicioC.findCuentaByUsuario(genericType, cookies[i].getValue());
             session.put("usuario", c);
         }
         
@@ -53,7 +54,12 @@ public class autoLoginAction extends ActionSupport implements ServletRequestAwar
             List<Producto> listaProd;
             ProductoWS prod= new ProductoWS();
             GenericType<List<Producto>> genericType= new GenericType<List<Producto>>(){};
-            listaProd = prod.findAll_XML(genericType);
+            try{
+                listaProd = prod.findAll_XML(genericType);
+            }catch(Exception ex){
+                listaProd=null;
+            }
+            
             session.put("listaProductos", listaProd);
         }
         return SUCCESS;

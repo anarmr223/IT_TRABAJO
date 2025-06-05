@@ -7,16 +7,13 @@ package WS;
 
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
-import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
-import model.Cuenta;
 
 /**
- * Jersey REST client generated for REST resource:we [model.cuenta]<br>
+ * Jersey REST client generated for REST resource:we [model.vendedor]<br>
  * USAGE:
  * <pre>
- *        CuentaWS client = new CuentaWS();
+ *        VendedorWS client = new VendedorWS();
  *        Object response = client.XXX(...);
  *        // do whatever with response
  *        client.close();
@@ -24,15 +21,15 @@ import model.Cuenta;
  *
  * @author Jose
  */
-public class CuentaWS {
+public class VendedorWS {
 
     private WebTarget webTarget;
     private Client client;
     private static final String BASE_URI = "http://localhost:8080/WS_TrabajoIt/webresources/";
 
-    public CuentaWS() {
+    public VendedorWS() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
-        webTarget = client.target(BASE_URI).path("model.cuenta");
+        webTarget = client.target(BASE_URI).path("model.vendedor");
     }
 
     /**
@@ -63,24 +60,6 @@ public class CuentaWS {
      */
     public <T> T findAll_JSON(Class<T> responseType) throws ClientErrorException {
         return webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
-    }
-    
-    //METODOS NUESTROS
-    
-    public <T> T findCuentaByUsuario(GenericType<T> gn, String usuario){
-        WebTarget resource=webTarget;
-        return resource.path("usuario").path(usuario).request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(gn);
-    }
-    
-    public <T> T findCuentaByCorreo(GenericType<T> gn, String correo){
-        WebTarget resource=webTarget;
-        return resource.path("correo").path(correo).request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(gn);
-    }
-    
-    public void actualizarCuenta(Cuenta c){
-        WebTarget resource = webTarget.path(String.valueOf(c.getIdCuenta()));
-        Entity<Cuenta> cuenta=  Entity.xml(c);
-        resource.request(javax.ws.rs.core.MediaType.APPLICATION_XML).put(cuenta);
     }
 
     public void close() {

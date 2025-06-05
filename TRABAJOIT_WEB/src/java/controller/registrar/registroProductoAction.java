@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
 package controller.registrar;
 
-import WS.ProductoWS;
 import com.opensymphony.xwork2.ActionSupport;
 import controller.util.cargadorDeImagenes;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.core.GenericType;
-import wsModel.Producto;
-import wsModel.Tienda;
 
 /**
  *
  * @author Jose
  */
+
 public class registroProductoAction extends ActionSupport {
     
     private String nombre;
@@ -35,7 +35,7 @@ public class registroProductoAction extends ActionSupport {
     
     @Override
     public String execute() throws Exception {
-        List<File> misArchivos=new ArrayList();
+        /*List<File> misArchivos=new ArrayList();
         List<String> misArchivosContentType= new ArrayList();
         
         misArchivos.add(miArchivo);
@@ -54,7 +54,7 @@ public class registroProductoAction extends ActionSupport {
         String url=cargadorDeImagenes.subirImagenProducto(misArchivos, misArchivosContentType, String.valueOf(producto.getId()));
         producto.setUrlImagen(url);
         ps.actualizarProducto(p);
-        
+        */
        return SUCCESS; 
     }
 

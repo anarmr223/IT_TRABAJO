@@ -8,13 +8,13 @@ package controller.login;
 import WS.CuentaWS;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
-import wsModel.Cuenta;
 import controller.util.GestorContrasenias;
 import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.GenericType;
+import model.Cuenta;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
@@ -23,6 +23,7 @@ import org.apache.struts2.interceptor.SessionAware;
  *
  * @author Jose
  */
+
 public class loginAction extends ActionSupport implements SessionAware, ServletResponseAware{
     
     private String usuario;
@@ -37,7 +38,7 @@ public class loginAction extends ActionSupport implements SessionAware, ServletR
         CuentaWS servicio= new CuentaWS();
         GenericType<Cuenta> genericType = new GenericType<Cuenta>() {
         };
-        Cuenta c=servicio.getCuentaByUsuario(genericType, usuario);
+        Cuenta c=servicio.findCuentaByUsuario(genericType, usuario);
         GestorContrasenias gc = new GestorContrasenias();
         
         if(c!=null&&gc.verificarContrasenia(contrasenia, c.getContraseniaHash(), c.getSalt())){
@@ -85,7 +86,7 @@ public class loginAction extends ActionSupport implements SessionAware, ServletR
         GenericType<Cuenta> genericType = new GenericType<Cuenta>() {
         };
         try{
-           servicio.getCuentaByUsuario(genericType, usuario); 
+           servicio.findCuentaByUsuario(genericType, usuario); 
         }catch(Exception ex){
             addFieldError("usuario", "No existe ese usuario en la base de datos");
         }

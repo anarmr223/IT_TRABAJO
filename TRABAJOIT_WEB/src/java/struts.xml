@@ -75,7 +75,7 @@
             </result>
         </action>
         
-         <action name="actualizarPassword">
+         <action name="actualizarUsuario">
             <result type="chain">
                 <param name="namespace">/detalleUsuario</param>
                 <param name="actionName">actualizarPasswordAction</param>

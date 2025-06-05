@@ -47,8 +47,9 @@ public class Vendedor implements Serializable {
     protected VendedorPK vendedorPK;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 255)
     @Column(name = "nombre")
-    private int nombre;
+    private String nombre;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -91,7 +92,7 @@ public class Vendedor implements Serializable {
         this.vendedorPK = vendedorPK;
     }
 
-    public Vendedor(VendedorPK vendedorPK, int nombre, String nCuentaBancaria, String nombreTienda, String telefono) {
+    public Vendedor(VendedorPK vendedorPK, String nombre, String nCuentaBancaria, String nombreTienda, String telefono) {
         this.vendedorPK = vendedorPK;
         this.nombre = nombre;
         this.nCuentaBancaria = nCuentaBancaria;
@@ -111,11 +112,11 @@ public class Vendedor implements Serializable {
         this.vendedorPK = vendedorPK;
     }
 
-    public int getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(int nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
@@ -152,6 +153,7 @@ public class Vendedor implements Serializable {
         this.cuentaCollection = cuentaCollection;
     }
 
+    @XmlTransient
     public Cuenta getCuenta() {
         return cuenta;
     }
@@ -168,8 +170,8 @@ public class Vendedor implements Serializable {
     public void setVentaCollection(Collection<Venta> ventaCollection) {
         this.ventaCollection = ventaCollection;
     }
-
-    @XmlTransient
+    
+    
     public Collection<Producto> getProductoCollection() {
         return productoCollection;
     }
