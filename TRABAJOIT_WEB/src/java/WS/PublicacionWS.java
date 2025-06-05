@@ -8,6 +8,7 @@ package WS;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 
 /**
  * Jersey REST client generated for REST resource:we [model.publicacion]<br>
@@ -60,6 +61,11 @@ public class PublicacionWS {
      */
     public <T> T findAll_JSON(Class<T> responseType) throws ClientErrorException {
         return webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+    
+    public <T> T getPublicacionesExcludingCuenta(GenericType<T> gn,Long idCuenta){
+        WebTarget resource=webTarget;
+        return resource.path("findExcludingUser").path(idCuenta+"").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(gn);
     }
 
     public void close() {

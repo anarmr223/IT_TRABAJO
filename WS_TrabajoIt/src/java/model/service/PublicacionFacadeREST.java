@@ -18,6 +18,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import model.Cuenta;
 import model.Publicacion;
 
 /**
@@ -74,6 +75,16 @@ public class PublicacionFacadeREST extends AbstractFacade<Publicacion> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Publicacion> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
+    }
+    
+    //Nuestras funciones
+    @GET
+    @Path("findExcludingUser/{idCuentaExcluir}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Publicacion> findExcludingUser(@PathParam("idCuentaExcluir") Long idCuentaExcluir) {
+        return em.createQuery("SELECT p FROM Publicacion p WHERE p.idCuenta.idCuenta != :idCuentaExcluir", Publicacion.class)
+                 .setParameter("idCuentaExcluir", idCuentaExcluir)
+                 .getResultList();
     }
 
     @GET
