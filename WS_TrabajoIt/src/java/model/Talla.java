@@ -41,6 +41,10 @@ public class Talla implements Serializable {
     @JoinColumn(name = "idProducto", referencedColumnName = "idProducto")
     @ManyToOne(optional = false)
     private Producto idProducto;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "cantidad")
+    private int cantidad;
 
     public Talla() {
     }

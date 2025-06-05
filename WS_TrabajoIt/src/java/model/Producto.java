@@ -52,7 +52,7 @@ public class Producto implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "precio")
-    private int precio;
+    private double precio;
     @Basic(optional = false)
     @NotNull
     @Column(name = "stock")
@@ -112,11 +112,11 @@ public class Producto implements Serializable {
         this.idProducto = idProducto;
     }
 
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
