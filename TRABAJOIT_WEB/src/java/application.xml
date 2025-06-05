@@ -78,6 +78,9 @@
             <result>/usuario_detalle.jsp</result>
         </action>
         
+         <action name="buscarProductoAction" class="controller.detalle.buscarProductoAction">
+            <result>/usuario_detalle.jsp</result>
+        </action>
         
         
         
