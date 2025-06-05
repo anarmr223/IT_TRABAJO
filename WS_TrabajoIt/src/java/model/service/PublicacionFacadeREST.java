@@ -82,6 +82,18 @@ public class PublicacionFacadeREST extends AbstractFacade<Publicacion> {
     public String countREST() {
         return String.valueOf(super.count());
     }
+    
+    //nuestras funciones
+    
+    //Nuestras funciones
+    @GET
+    @Path("findExcludingUser/{idCuentaExcluir}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Publicacion> findExcludingUser(@PathParam("idCuentaExcluir") Long idCuentaExcluir) {
+        return em.createQuery("SELECT p FROM Publicacion p WHERE p.idCuenta.idCuenta != :idCuentaExcluir", Publicacion.class)
+                 .setParameter("idCuentaExcluir", idCuentaExcluir)
+                 .getResultList();
+    }
 
     @Override
     protected EntityManager getEntityManager() {
