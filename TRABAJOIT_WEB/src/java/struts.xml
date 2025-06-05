@@ -54,7 +54,7 @@
             </result>
         </action>
         
-        <action name="registroProductoAction">
+        <action name="registrarProductoAction">
             <result type="chain">
                 <param name="namespace">/registrar</param>
                 <param name="actionName">registrarProductoAction</param>
@@ -122,6 +122,13 @@
             <result type="chain">
                 <param name="namespace">/nav</param>
                 <param name="actionName">navTiendaVendedor</param>
+            </result>
+        </action>
+        
+        <action name="navRegistrarProducto">
+            <result type="chain">
+                <param name="namespace">/nav</param>
+                <param name="actionName">navRegistrarProducto</param>
             </result>
         </action>
         
