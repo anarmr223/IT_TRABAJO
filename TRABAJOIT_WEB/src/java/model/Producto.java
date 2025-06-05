@@ -39,7 +39,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Producto.findByPrecio", query = "SELECT p FROM Producto p WHERE p.precio = :precio")
     , @NamedQuery(name = "Producto.findByStock", query = "SELECT p FROM Producto p WHERE p.stock = :stock")
     , @NamedQuery(name = "Producto.findByURLImagen", query = "SELECT p FROM Producto p WHERE p.uRLImagen = :uRLImagen")
-    , @NamedQuery(name = "Producto.findByNombre", query = "SELECT p FROM Producto p WHERE p.nombre = :nombre")})
+    , @NamedQuery(name = "Producto.findByNombre", query = "SELECT p FROM Producto p WHERE p.nombre = :nombre")
+    , @NamedQuery(name = "Producto.findByDescripcion", query = "SELECT p FROM Producto p WHERE p.descripcion = :descripcion")})
 public class Producto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -66,6 +67,11 @@ public class Producto implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "nombre")
     private String nombre;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = "descripcion")
+    private String descripcion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto")
     private Collection<Talla> tallaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto")
@@ -79,7 +85,7 @@ public class Producto implements Serializable {
         // IMPORTANTE: el nombre de la columna en PRODUCTO que referencia a idCuenta de VendedorPK
         // Le he puesto un nombre de ejemplo `idCuentaVendedor` como hicimos en Venta.
         // DEBES CAMBIARLO AL NOMBRE REAL DE ESA COLUMNA EN TU BASE DE DATOS `producto`.
-        @JoinColumn(name = "idCuentaVendedor", referencedColumnName = "idCuenta", insertable = false, updatable = false)
+        @JoinColumn(name = "idCuenta", referencedColumnName = "idCuenta", insertable = false, updatable = false)
     })
     private Vendedor dni;
 
@@ -138,6 +144,16 @@ public class Producto implements Serializable {
         this.nombre = nombre;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
+    
+
     @XmlTransient
     public Collection<Talla> getTallaCollection() {
         return tallaCollection;
@@ -164,6 +180,8 @@ public class Producto implements Serializable {
     public void setDni(Vendedor dni) {
         this.dni = dni;
     }
+    
+    
 
     @Override
     public int hashCode() {
