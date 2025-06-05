@@ -115,7 +115,12 @@ body {
 }
 
 .tablaProductoForm{
-  margin-top: 31px;
+  margin-top: 20px;
+}
+
+.th{
+    text-align: left; 
+    padding-right: 100px;
 }
 
 /*VISTA CARRITO*/

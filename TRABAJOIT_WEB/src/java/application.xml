@@ -44,8 +44,8 @@
         </action>
         
         <action name="registrarProductoAction" class="controller.registrar.registroProductoAction">
-            <result name="success">/vistas/registrarUsuario.jsp</result>
-            <result name="input">/vistas/registrarUsuario.jsp</result>
+            <result name="success">/vistas/tiendaVendedor.jsp</result>
+            <result name="input">/vistas/registrarProducto.jsp</result>
         </action>
         
         <action name="registrarTiendaAction" class="controller.registrar.registroTiendaAction">
