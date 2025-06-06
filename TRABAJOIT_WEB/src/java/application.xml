@@ -75,7 +75,11 @@
         
         
          <action name="actualizarPasswordAction" class="controller.detalle.actualizarUsuarioAction">
-            <result>/usuario_detalle.jsp</result>
+            <result name="success" type="chain">
+                <param name="namespace">/login</param>
+                <param name="actionName">logOut</param>
+            </result>
+            <result name="input">/usuario_detalle.jsp</result>
         </action>
         
          <action name="buscarProductoAction" class="controller.detalle.buscarProductoAction">
