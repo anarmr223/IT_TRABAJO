@@ -28,7 +28,7 @@
                                 <h5 class="card-title"><a href="<s:url action="navProducto"><s:param name="id" value="%{#prod.nombre}"/></s:url>"><s:property value="#prod.nombre"/></a></h5>
                                 <p class="card-text text-muted mb-3"> 
                                     <a href="<s:url action="navTienda"><s:param name="idTienda" value="%{#prod.idTienda}"/></s:url>">
-                                        <s:property value="#prod.idTienda.nombreTienda"/></a>
+                                        <s:property value="#prod.dni.nombreTienda"/></a>
                                 </p>
                             </div>
                         </div>
