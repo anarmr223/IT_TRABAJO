@@ -125,6 +125,15 @@
             </result>
         </action>
         
+        <action name="navTienda">
+            <result>
+                <param name="namespace">/nav</param>
+                <param name="nameAction">navTiendaVendedor</param>
+            </result>
+                
+                
+        </action>
+        
         <action name="navRegistrarProducto">
             <result type="chain">
                 <param name="namespace">/nav</param>

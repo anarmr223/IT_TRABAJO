@@ -99,7 +99,7 @@
             <result>/vistas/producto.jsp</result>
         </action>
         
-        <action name="navTiendaVendedor">
+        <action name="navTiendaVendedor" class="controller.consultar.listarProdsTiendaAction">
             <result>/vistas/tiendaVendedor.jsp</result>
         </action>
         
