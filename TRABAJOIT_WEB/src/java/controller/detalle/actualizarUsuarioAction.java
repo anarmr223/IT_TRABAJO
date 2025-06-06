@@ -6,11 +6,14 @@
 package controller.detalle;
 
 import WS.CuentaWS;
+import WS.VendedorWS;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.util.logging.Logger;
 import controller.util.GestorContrasenias;
 import java.util.Map;
+import javax.ws.rs.core.GenericType;
 import model.Cuenta;
+import model.Vendedor;
 import org.apache.struts2.interceptor.SessionAware;
 
 /**
@@ -26,6 +29,7 @@ public class actualizarUsuarioAction extends ActionSupport implements SessionAwa
     private String nCuenta;
     private String nombreTienda;
     private String telefono;
+    private String cuentaBancaria;
     private String oldPassword;
     private String newPassword;
     private Map<String,Object> session;
@@ -35,26 +39,49 @@ public class actualizarUsuarioAction extends ActionSupport implements SessionAwa
     }
     
     public String execute() throws Exception {
-            
+        
+        boolean actualizarVendedor=false;
         
             GestorContrasenias gc = new GestorContrasenias();
             Cuenta c = (Cuenta)session.get("usuario");
+            if(!usuario.isEmpty()){
+                c.setUsuario(usuario);
+            }
             
-            if(gc.verificarContrasenia(oldPassword,c.getContraseniaHash(),c.getSalt())){
-                
-                    String[] newPasswordHash = gc.generarPasswordHash(newPassword);
+            if(!correo.isEmpty()){
+                c.setCorreo(correo);
+            }
+            
+            if(!newPassword.isEmpty()&&!oldPassword.isEmpty()&&gc.verificarContrasenia(oldPassword,c.getContraseniaHash(),c.getSalt())){
+                String[] newPasswordHash = gc.generarPasswordHash(newPassword);
                     
                     c.setContraseniaHash(newPasswordHash[0]);
                     c.setSalt(newPasswordHash[1]);
-                
-                    session.put("usuario",c);
-                
-                    CuentaWS cws = new CuentaWS();
-                    
-                    cws.actualizarCuenta(c);
-                    
-                    
             }
+            
+            Vendedor v= c.getVendedor();
+            
+            if(!nombreTienda.isEmpty()){
+               v.setNombreTienda(nombreTienda);
+               actualizarVendedor=true;
+            }
+            
+            if(!nombre.isEmpty()){
+                v.setNombre(nombre);
+                actualizarVendedor=true;
+            }
+            
+            if(!telefono.isEmpty()){
+                v.setTelefono(telefono);
+                actualizarVendedor=true;
+            }
+            if(actualizarVendedor){
+                VendedorWS vendedorWS=new VendedorWS();
+                vendedorWS.actualizarVendedor(v);
+                c.setVendedor(v);
+            }
+            CuentaWS cws = new CuentaWS();
+            cws.actualizarCuenta(c);
         
         
         
@@ -145,6 +172,56 @@ public class actualizarUsuarioAction extends ActionSupport implements SessionAwa
     }
     
     
-    
+    @Override
+    public void validate(){
+        if(!correo.isEmpty()&&!correo.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")){
+            addFieldError("correo", "No es un correo válido");
+        }
+        
+        if(!usuario.isEmpty()&&!usuario.matches("^[a-zA-Z0-9_-]{0,20}$")){
+            addFieldError("usuario","El nombre de usuario solo puede contener: letras, numeros, -, _");
+        }
+        
+        CuentaWS servicio= new CuentaWS();
+        
+        GenericType<Cuenta> genericType = new GenericType<Cuenta>() {
+        };
+        
+        Cuenta c=null;
+        
+        if(!usuario.isEmpty()){
+            try{
+                c=servicio.findCuentaByUsuario(genericType, usuario);
+            }catch(Exception ex){
+                c=null;
+            }
+            
+        }
+        
+        if(c!=null){
+            addFieldError("usuario", "El nombre de usuario ya está registrado.");
+        }
+        
+        if(!correo.isEmpty()){
+            try{
+                c=servicio.findCuentaByCorreo(genericType, usuario);
+            }catch(Exception ex){
+                c=null;
+            }
+        }
+        
+        if(c!=null){
+            addFieldError("correo", "El correo ya está registrado");
+        }
+        
+        c=(Cuenta) session.get("usuario");
+        
+        if(c.getVendedor()!=null){
+            
+            if(!telefono.isEmpty()&&!telefono.matches("^\\d{9}$")){
+                addFieldError("telefono", "telefono introducido es incorrecto");
+            }
+        }
+    }
     
 }

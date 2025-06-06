@@ -61,7 +61,6 @@ public class registroCuentaAction extends ActionSupport implements SessionAware,
             String[] passparam=gc.generarPasswordHash(contrasenia);
             c.setContraseniaHash(passparam[0]);
             c.setSalt(passparam[1]);
-            //creamos la cuenta en la base de datos
             servicioC.create_XML(c);
         if(mostrarInputsVendedor){
             GenericType<Cuenta> gn= new GenericType<Cuenta>(){};
@@ -75,8 +74,11 @@ public class registroCuentaAction extends ActionSupport implements SessionAware,
             v.setTelefono(telefono);
             v.setNombreTienda(nombreTienda);
             servicioV.create_XML(v);
-            session.put("vendedor", v);
+            c.setVendedor(v);
+            servicioC.actualizarCuenta(c);
         }
+        
+        
         return SUCCESS;
         
     }

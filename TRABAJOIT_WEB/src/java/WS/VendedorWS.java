@@ -7,7 +7,9 @@ package WS;
 
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import model.Vendedor;
 
 /**
  * Jersey REST client generated for REST resource:we [model.vendedor]<br>
@@ -61,7 +63,13 @@ public class VendedorWS {
     public <T> T findAll_JSON(Class<T> responseType) throws ClientErrorException {
         return webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
-
+    
+    //Nuestras funciones
+    
+    public void actualizarVendedor(Vendedor v){
+        Entity<Vendedor> entity= Entity.xml(v);
+        webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_XML).put(entity);
+    }
     public void close() {
         client.close();
     }
