@@ -115,7 +115,22 @@
             <result>/vistas/registrarProducto.jsp</result>
         </action>
         
+         
+        
+        
     </package>
+    
+    <package name="eliminar" namespace="/eliminar" extends="struts-default">
+        
+        
+        <action name="borrarProductoAction" class="controller.borrar.borrarProductoAction">
+            <result>/vistas/tiendaVendedor.jsp</result>
+        </action>
+        
+      
+    </package>
+    
+        
     
     
 </struts>
