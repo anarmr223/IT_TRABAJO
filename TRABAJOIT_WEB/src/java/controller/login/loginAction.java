@@ -48,8 +48,11 @@ public class loginAction extends ActionSupport implements SessionAware, ServletR
             session.put("usuario", c);
             return SUCCESS;
         }
+        else{
+            addFieldError("contrasenia", "Contraseña incorrecta");
+            return INPUT;
+        }
         
-        return ERROR;
     }
 
     public String getUsuario() {

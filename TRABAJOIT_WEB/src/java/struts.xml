@@ -163,7 +163,12 @@
             </result>
         </action>
         
-          
+        <action name = "navCarrito">
+            <result type="chain">
+                <param name="namespace">/nav</param>
+                <param name="actionName">navCarrito</param>
+            </result>
+        </action>  
         
         
     </package>

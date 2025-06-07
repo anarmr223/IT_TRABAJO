@@ -53,7 +53,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-cart"></i></a>
+                        <a class="nav-link" href="<s:url action="verDetalleUsuario"/>"><s:property value="%{#session.usuario.usuario}"/><i class="bi bi-cart"></i></a>
                     </li>
                     <s:if test="#session.usuario.vendedor!=null">
                         <li class="nav-item ms-auto">

@@ -20,7 +20,6 @@
         <action name="loginAction" class="controller.login.loginAction">
             <result name="success">/vistas/inicio.jsp</result>
             <result name="input">/vistas/login.jsp</result>
-            <result name="error">/error.jsp</result>
         </action>
         
         <action name="logOut" class="controller.login.logOutAction">
@@ -113,6 +112,10 @@
         
         <action name="navRegistrarProducto">
             <result>/vistas/registrarProducto.jsp</result>
+        </action>
+        <action name="navCarrito" class = "">
+
+            <result name ="success">/vistas/carrito.jsp</result>
         </action>
         
          
