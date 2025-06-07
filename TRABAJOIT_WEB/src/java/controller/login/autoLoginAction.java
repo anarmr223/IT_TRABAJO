@@ -10,6 +10,7 @@ import WS.CuentaWS;
 import WS.ProductoWS;
 import WS.VendedorWS;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.util.logging.Logger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +43,7 @@ public class autoLoginAction extends ActionSupport implements ServletRequestAwar
         boolean enc=false;
         int i=0;
          
-         VendedorWS client= new VendedorWS();
+            VendedorWS client= new VendedorWS();
             GenericType<List<Vendedor>> gn= new GenericType<List<Vendedor>>(){};
             try{
                 tiendas = client.findAll_XML(gn);
@@ -96,6 +97,23 @@ public class autoLoginAction extends ActionSupport implements ServletRequestAwar
     public void setRequest(HttpServletRequest request) {
         this.request = request;
     }
+
+    public List<Vendedor> getTiendas() {
+        return tiendas;
+    }
+
+    public void setTiendas(List<Vendedor> tiendas) {
+        this.tiendas = tiendas;
+    }
+
+    public static Logger getLOG() {
+        return LOG;
+    }
+
+    public static void setLOG(Logger LOG) {
+        ActionSupport.LOG = LOG;
+    }
+    
     
     
     
