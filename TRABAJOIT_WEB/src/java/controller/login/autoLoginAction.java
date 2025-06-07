@@ -8,6 +8,7 @@ package controller.login;
 
 import WS.CuentaWS;
 import WS.ProductoWS;
+import WS.VendedorWS;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.GenericType;
 import model.Cuenta;
 import model.Producto;
+import model.Vendedor;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -29,6 +31,7 @@ public class autoLoginAction extends ActionSupport implements ServletRequestAwar
     
     private HttpServletRequest request;
     private Map<String,Object> session;
+    private List<Vendedor> tiendas;
     
     public autoLoginAction() {
     }
@@ -38,6 +41,17 @@ public class autoLoginAction extends ActionSupport implements ServletRequestAwar
         Cookie[] cookies=request.getCookies();
         boolean enc=false;
         int i=0;
+         
+         VendedorWS client= new VendedorWS();
+            GenericType<List<Vendedor>> gn= new GenericType<List<Vendedor>>(){};
+            try{
+                tiendas = client.findAll_XML(gn);
+            }catch(Exception ex){
+                tiendas=null;
+            }
+        
+        
+        
         while(!enc && ( cookies!=null && i<cookies.length  )){
             enc=cookies[i].getName().equals("usuario");
             i++;
