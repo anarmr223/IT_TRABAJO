@@ -20,6 +20,8 @@ public class listarProdsTiendaAction extends ActionSupport {
     
     private List<Producto> listaProdTienda;
     private String nombreTienda;
+    private String dni;
+    private int idCuenta;
     
     public listarProdsTiendaAction() {
     }
@@ -28,7 +30,7 @@ public class listarProdsTiendaAction extends ActionSupport {
         
         ProductoWS p = new ProductoWS();
         
-       this.listaProdTienda = p.findAll_XML(new GenericType<List<Producto>>(){});
+       this.listaProdTienda = p.findProductosByVendedor_XML(new GenericType<List<Producto>>(){},dni,idCuenta);
         
         
        
@@ -58,6 +60,22 @@ public class listarProdsTiendaAction extends ActionSupport {
 
     public static void setLOG(Logger LOG) {
         ActionSupport.LOG = LOG;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public int getIdCuenta() {
+        return idCuenta;
+    }
+
+    public void setIdCuenta(int idCuenta) {
+        this.idCuenta = idCuenta;
     }
     
     

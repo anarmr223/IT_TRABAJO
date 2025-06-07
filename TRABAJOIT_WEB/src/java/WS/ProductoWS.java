@@ -9,6 +9,7 @@ import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Jersey REST client generated for REST resource:we [model.producto]<br>
@@ -77,6 +78,12 @@ public class ProductoWS {
         
         
         
+    }
+    
+    
+    public <T> T findProductosByVendedor_XML(GenericType<T> gn, String dni, int idCuenta) throws ClientErrorException {
+        WebTarget resource = webTarget.path("byVendedor").path(dni).path(String.valueOf(idCuenta));
+        return resource.request(MediaType.APPLICATION_XML).get(gn);
     }
     
 

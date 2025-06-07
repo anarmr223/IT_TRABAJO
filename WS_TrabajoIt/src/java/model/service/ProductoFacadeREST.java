@@ -18,7 +18,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import model.Producto;
+import model.Vendedor; 
+import model.VendedorPK; 
 
 /**
  *
@@ -82,10 +85,50 @@ public class ProductoFacadeREST extends AbstractFacade<Producto> {
     public String countREST() {
         return String.valueOf(super.count());
     }
+    
+    
 
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
     
+    
+    @GET
+    @Path("byVendedor/{dni}/{idCuenta}") // Este es el endpoint que tu cliente ProductoWS llamará
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Producto> findByVendedor(
+            @PathParam("dni") String dni,
+            @PathParam("idCuenta") int idCuenta) {
+
+        // 1. Reconstruir la clave primaria compuesta del Vendedor
+        VendedorPK vendedorPK = new VendedorPK(dni, idCuenta);
+
+        // 2. Recuperar el objeto Vendedor de la base de datos
+        // Esto es necesario para poder pasar un objeto Vendedor a la NamedQuery
+        // que espera un parámetro de tipo Vendedor.
+        Vendedor vendedor = em.find(Vendedor.class, vendedorPK);
+
+        // 3. Verificar si el vendedor existe
+        if (vendedor == null) {
+            // Si el vendedor no se encuentra, puedes lanzar una excepción
+            // o devolver una lista vacía, o un 404. Devolver una lista vacía es común
+            // pero si quieres indicar que el vendedor no existe, un 404 es más RESTful.
+            // Opción 1: Devolver una lista vacía (no indica si el vendedor existe o no)
+            // return new ArrayList<>();
+
+            // Opción 2: Lanzar una excepción WebApplicationException para un 404 NOT FOUND
+            throw new javax.ws.rs.WebApplicationException(Response.Status.NOT_FOUND);
+        }
+
+        // 4. Ejecutar la NamedQuery
+        // La NamedQuery "Producto.findByVendedor" espera un objeto Vendedor como parámetro
+        return em.createNamedQuery("Producto.findByVendedor", Producto.class)
+                 .setParameter("vendedor", vendedor) // Asignar el objeto Vendedor recuperado al parámetro
+                 .getResultList();
+    }
 }
+    
+    
+    
+
