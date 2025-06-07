@@ -167,3 +167,10 @@ body {
     background-color: rgba(252, 252, 252, 0.5);
 }
 
+.detalleLogout{
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Centra verticalmente si necesitas */
+    margin-top: 20px;
+}
+
