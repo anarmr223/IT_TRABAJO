@@ -47,6 +47,7 @@ public class autoLoginAction extends ActionSupport implements ServletRequestAwar
             GenericType<List<Vendedor>> gn= new GenericType<List<Vendedor>>(){};
             try{
                 tiendas = client.findAll_XML(gn);
+                session.put("tiendas",tiendas);
             }catch(Exception ex){
                 tiendas=null;
             }
