@@ -49,7 +49,7 @@
                        
                         <ul class="dropdown-menu" aria-labelledby="dropdownTiendas">
                             
-                             <s:iterator value="tiendas" id="tienda">
+                             <s:iterator value="%{#session.tiendas}" id="tienda">
                             
                                  
                                  <li><a class="dropdown-item" href="<s:url action="navTiendaVendedor"><s:param name="nombreTienda" value="%{#tienda.nombreTienda}"></s:param></s:url>"><s:property value="%{#tienda.nombreTienda}"/></a></li>
