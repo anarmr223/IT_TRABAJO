@@ -62,6 +62,23 @@ public class ProductoWS {
     public <T> T findAll_JSON(Class<T> responseType) throws ClientErrorException {
         return webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
+    
+    
+    public <T> T findProductosByTienda(GenericType<T> gn, String nombreTienda){
+        WebTarget resource=webTarget;
+        return resource.path("producto").path(nombreTienda).request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(gn);
+    }
+    
+    public void eliminarProductoPorId(int id){
+        
+       WebTarget resource= client.target(BASE_URI+"model.producto"+"/"+id);
+       
+       resource.request().delete();
+        
+        
+        
+    }
+    
 
     public void close() {
         client.close();
