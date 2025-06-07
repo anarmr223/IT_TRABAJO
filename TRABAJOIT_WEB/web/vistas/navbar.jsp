@@ -46,18 +46,26 @@
                     <li class="nav-item dropdown">      
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tiendas</a>
 
+                       
                         <ul class="dropdown-menu" aria-labelledby="dropdownTiendas">
-                            <li><a class="dropdown-item" href="tiendaUsuario.jsp">Tienda 1</a></li>
-                            <li><a class="dropdown-item" href="tiendaUsuario.jsp">Tienda 2</a></li>
-                            <li><a class="dropdown-item" href="tiendaUsuario.jsp">Tienda 3</a></li>
+                            
+                             <s:iterator value="tiendas" id="tienda">
+                            
+                                 
+                                 <li><a class="dropdown-item" href="<s:url action="navTiendaVendedor"/>"><s:property value="%{#tienda.nombreTienda}"/></a></li>
+                            
+                            
+                             </s:iterator>
                         </ul>
+                            
+                            
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<s:url action="verDetalleUsuario"/>"><s:property value="%{#session.usuario.usuario}"/><i class="bi bi-cart"></i></a>
                     </li>
                     <s:if test="#session.usuario.vendedor!=null">
                         <li class="nav-item ms-auto">
-                            <a class="nav-link" href="<s:url action="navTiendaVendedor"/>"><s:property value="%{#session.usuario.vendedor.nombreTienda}"/></a>
+                            <a class="nav-link" href="<s:url action="navTiendaVendedor"><s:param name="nombreTienda" value="%{#session.usuario.vendedor.nombreTienda}"/></s:url>"><s:property value="%{#session.usuario.vendedor.nombreTienda}"/></a>
                         </li>
                     </s:if>
                 </ul>
