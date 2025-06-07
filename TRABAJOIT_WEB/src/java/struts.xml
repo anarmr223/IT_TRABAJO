@@ -154,5 +154,17 @@
                 <param name="actionName">crearPublicacionAction</param>
             </result>
         </action>
+        
+
+        <action name="borrarProducto">
+            <result type="chain">
+                <param name="namespace">/eliminar</param>
+                <param name="actionName">borrarProductoAction</param>
+            </result>
+        </action>
+        
+          
+        
+        
     </package>
 </struts>
