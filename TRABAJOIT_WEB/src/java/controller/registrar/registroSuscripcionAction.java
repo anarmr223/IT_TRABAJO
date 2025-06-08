@@ -26,12 +26,12 @@ public class registroSuscripcionAction extends ActionSupport {
     
     public String execute() throws Exception {
         
-        VendedorWS client = new VendedorWS();
+        /*VendedorWS client = new VendedorWS();
         
         Vendedor vendedor = client.findByNombreTienda(nombreTienda).get(0);
         
         client.addSuscripcion(vendedor.getVendedorPK().getDni(),vendedor.getVendedorPK().getIdCuenta(), idCuenta);
-                
+       */         
         return SUCCESS;
         
         

@@ -26,7 +26,7 @@
                             
                             <s:hidden name="idCuenta" value="#session.usuario.idCuenta"/>
                             <s:hidden name="nombreTienda" value="#nombreTienda"/>
-                            <s:submit class="btn btn-primary">Suscribirse</s:submit>
+                            <s:submit value="Suscribirse" class="btn btn-primary"/>
                         </s:form>
                     </s:if>
                 </div>
@@ -56,13 +56,13 @@
                                                                             </h5>
                                             <s:if test="#session.usuario.vendedor != null">
                                             <div class="d-flex justify-content-between gap-2 mt-auto">
-                                                <s:form action="<s:url action='editarProducto'/>" cssClass="flex-grow-1" method="post">
+                                                <s:form action="navEditarProducto" cssClass="flex-grow-1" method="post">
                                                     <s:hidden name="id" value="#prod.idProducto"/>
                                                     <button type="submit" class="btn btn-primary btn-sm w-100">
                                                         <i class="fas fa-edit"></i>
                                                     </button>
                                                 </s:form>
-                                                <s:form action="<s:url action='eliminarProducto'/>" cssClass="flex-grow-1" method="post">
+                                                <s:form action="borrarProducto" cssClass="flex-grow-1" method="post">
                                                     <s:hidden name="id" value="#prod.idProducto"/>
                                                     <button type="submit" class="btn btn-danger btn-sm w-100">
                                                         <i class="fas fa-trash"></i>

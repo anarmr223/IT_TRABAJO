@@ -53,7 +53,8 @@
         </action>
         
         <action name="registrarSuscripcionAction" class="controller.registrar.registroSuscripcionAction">
-            <result name="success">/vistas/tiendaUsuario.jsp</result>
+            <result name="success">/vistas/tiendaVendedor.jsp</result>
+             <result name="input">/vistas/inicio.jsp</result>
             
         </action>
         
