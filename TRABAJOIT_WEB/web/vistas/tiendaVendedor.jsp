@@ -33,33 +33,4 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="#">Editar producto</a>
                         </li>
-                    </ul>
-                </div>
-            </s:if>
-
-            <!-- Productos -->
-            <div class="<s:if test='#session.usuario.vendedor != null'>offset-md-3</s:if> col-12 col-md-9 mt-4">
-                <div class="row g-3">
-                    <s:iterator value="listaProdTienda" id="prod">
-                        <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-                            <div class="card h-100">
-                                <img src="<c:url value='#prod.urlImagen'/>" class="card-img-top" alt="Foto del producto">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">
-                                        <a href="<s:url action='navProducto'><s:param name='id' value='%{#prod.nombre}'/></s:url>">
-                                            <s:property value="#prod.nombre"/>
-                                        </a>
-                                    </h5>
-                                    <p class="card-text text-muted mb-3"><s:property value="#prod.dni.nombreTienda"/></p>
-                                </div>
-                            </div>
-                        </div>
-                    </s:iterator>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+                        <li class="nav-link"><a href="<s:url action="navEditarProducto"/>"> Editar  producto </a></li>
