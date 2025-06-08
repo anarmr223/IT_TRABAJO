@@ -154,6 +154,7 @@ body {
 }
 .detalleProducto {
     padding: 20px;
+    background-color: rgba(255, 255, 255, 0.7); 
 }
 .vendor-info {
     margin-top: 15px;

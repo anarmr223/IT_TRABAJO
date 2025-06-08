@@ -21,19 +21,19 @@
         <jsp:include page="navbar.jsp"/>
 
         <!--PRODUCTO FOTO MAS AÑADIR-->
-        <div class="container containerGeneral">
+        <div class="container detalleProducto">
             <div class="row especificacionProducto">
                 <div class="col-6 columna">
-                    <img class="fotoProducto" src="../imagenes/camiseta.png" alt="Nombre del producto">
+                    <img class="fotoProducto" src="<s:property value="producto.uRLImagen"/>" alt="Foto del producto">
                 </div>
 
                 <div class="col-6 columna">
-                    <h1>Nombre producto</h1>
-                    <p class="mt-5">Precio</p>
-                    <p>Especificaciones</p>
+                    <h1><s:property value="producto.nombre"/></h1>
+                    <p class="mt-5">Precio: <s:property value="producto.precio"/></p>
+                    <p>Especificaciones: <s:property value="producto.descripcion"/></p>
                     <div class="d-flex justify-content-center">
                         <!--ESTARIA BIEN QUE EL PRODUCTO TUVIERA ETIQUETAS Y QUE LO QUE SE MOSTRARA ABAJO FUERAN COSAS QUE TUVIERAN LA MISMA ETIQUETA-->
-                        <s:if test="#producto.tallaCollection!=null">
+                        <s:if test="producto.tallaCollection!=null">
                             <div class="w-75">
                                 <s:select name="talla" list="%{#producto.tallaCollection}" label="Seleccione una talla" id="talla" value="talla" key="talla" headerKey="" headerValue="Seleccione la talla" cssClass="form-control"/>
                             </div>
@@ -52,18 +52,6 @@
                         No hay productos disponibles
                     </s:else>
                 </div>
-            </div>
-            <h3>Productos que te podrían interesar:</h3>
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-6 col-lg-3 producto-item">
-                    <div class="card h-100">
-                        <img src="camiseta.png" class="card-img-top" alt="Nombre del producto">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title"><a href="producto.html">Nombre del Producto</a></h5>
-                            <p class="card-text text-muted mb-3"> <a href="tienda.html">Nombre de la tienda</a></p>
-                        </div>
-                    </div>
-                </div> 
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

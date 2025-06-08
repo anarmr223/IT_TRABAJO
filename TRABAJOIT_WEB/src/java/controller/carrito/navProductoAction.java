@@ -37,12 +37,12 @@ public class navProductoAction extends ActionSupport {
         this.id = id;
     }
 
-    public Producto getP() {
+    public Producto getProducto() {
         return producto;
     }
 
-    public void setP(Producto p) {
-        this.producto = p;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
-    
+
 }
