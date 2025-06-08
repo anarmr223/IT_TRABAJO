@@ -26,7 +26,7 @@
                             
                             <s:hidden name="idCuenta" value="#session.usuario.idCuenta"/>
                             <s:hidden name="nombreTienda" value="#nombreTienda"/>
-                            <s:submit class="btn btn-primary">Suscribirse</s:submit>
+                            <s:submit value="Suscribirse" class="btn btn-primary"/>
                         </s:form>
                     </s:if>
                 </div>
