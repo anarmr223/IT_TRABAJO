@@ -49,7 +49,6 @@
                                                         <s:property value="#prod.nombre"/>
                                                     </a>
                                                 </h5>
-                                                <p class="card-text text-muted mb-3"><s:property value="#prod.dni.nombreTienda"/></p>
                                             </div>
                                         </div>
                                     </div>
