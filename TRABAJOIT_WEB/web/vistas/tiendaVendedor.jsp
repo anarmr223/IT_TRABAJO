@@ -22,10 +22,10 @@
             <div class="row">
                 <div class="col-12 text-end mt-3 mb-3">
                     <s:if test="#session.usuario.vendedor==null">
-                        <s:form cssClass="d-inline-block">
+                        <s:form action="altaSuscripcion" cssClass="d-inline-block">
                             
                             <s:hidden name="idCuenta" value="#session.usuario.idCuenta"/>
-                           
+                            <s:hidden name="nombreTienda" value="#nombreTienda"/>
                             <s:submit class="btn btn-primary">Suscribirse</s:submit>
                         </s:form>
                     </s:if>
