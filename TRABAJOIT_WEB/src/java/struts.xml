@@ -170,6 +170,19 @@
             </result>
         </action>  
         
+         <action name = "editarProducto">
+            <result type="chain">
+                <param name="namespace">/registrar</param>
+                <param name="actionName">editarProductoAction</param>
+            </result>
+        </action>  
+        
+        <action name = "navEditarProducto">
+            <result type="chain">
+                <param name="namespace">/nav</param>
+                <param name="actionName">navEditarProducto</param>
+            </result>
+        </action>  
         
     </package>
 </struts>

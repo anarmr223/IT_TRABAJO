@@ -63,6 +63,11 @@
         </action>
         
         
+         <action name="editarProductoAction" class="controller.registrar.editarProductoAction">
+            <result name="success">/vistas/inicio.jsp</result>
+            
+        </action>
+        
     </package>
     
     
@@ -118,7 +123,10 @@
             <result name ="success">/vistas/carrito.jsp</result>
         </action>
         
-         
+        <action name="navEditarProducto">
+            <result>/vistas/editarProducto.jsp</result>
+        </action>  
+          
         
         
     </package>
