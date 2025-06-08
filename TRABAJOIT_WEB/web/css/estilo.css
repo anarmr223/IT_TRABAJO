@@ -47,7 +47,6 @@ body {
 
 .titulo{
     text-align: center;
-    position: fixed;
     margin: 0 auto;
     padding: 10px 0;
     top: 56px;    
@@ -78,6 +77,7 @@ body {
 .banner{
   background-color: cadetblue;
   height: 150px;
+  padding-top: 50px; 
 }
 
 /*.containerGeneral.producto{
@@ -163,8 +163,26 @@ body {
     margin-top: 20px;
 }
 
-.opcionesVendedor{
-    background-color: rgba(252, 252, 252, 0.5);
+.menu-lateral {
+  position: fixed;
+  top: 150px;
+  left: 0;
+  width: 200px;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 20px;
+  height: calc(100% - 150px);
+  z-index: 5;
+}
+
+.menu-lateral ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.menu-lateral .nav-link {
+  color: black;
+  padding: 10px 0;
+  display: block;
 }
 
 .detalleLogout{

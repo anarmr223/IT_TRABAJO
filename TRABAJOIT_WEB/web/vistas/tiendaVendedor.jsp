@@ -22,16 +22,16 @@
         <jsp:include page="navbar.jsp"/>
                 </div>
         <div class="container-fluid banner">
-            <h1 class="text-center pt-5">TIENDA <s:property value="nombreTienda"/></h1>
+            <h1 class="text-center pt-5"><s:property value="nombreTienda"/></h1>
         </div>
 
         <div class="container containerPrincipal">
             <div class="row">
-                <div class="col-3 col-md-3 me-auto">
-                    <ul class="navbar-var">
+                <div class="menu-lateral">
+                    <ul>
                         <li class="nav-link"><a href="registrarProducto.jsp">Registrar producto</a></li>
                         <li class="nav-link">Eliminar producto</li>
-                        <li class="nav-link">Editar  producto</li>
+                        <li class="nav-link">Editar producto</li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-9">
