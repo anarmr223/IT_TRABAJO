@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 package controller.registrar;
 
 import WS.ProductoWS;
+import WS.TallaWS;
 import com.opensymphony.xwork2.ActionSupport;
 import controller.util.cargadorDeImagenes;
 import java.io.File;
@@ -31,9 +30,8 @@ import org.apache.struts2.interceptor.SessionAware;
  *
  * @author Jose
  */
+public class registroProductoAction extends ActionSupport implements SessionAware {
 
-public class registroProductoAction extends ActionSupport implements SessionAware{
-    
     private String nombre;
     private String descripcion;
     private double precio;
@@ -48,51 +46,51 @@ public class registroProductoAction extends ActionSupport implements SessionAwar
     private int cantidadL;
     private int cantidadXL;
     private int cantidad2XL;
-    
+
     private Map<String, Object> session;
-    
+
     public registroProductoAction() {
     }
-    
+
     @Override
     public String execute() throws Exception {
-       // Guardar imagen en una ruta del servidor (puedes personalizar la ruta)
-            // 1. Guardar imagen en carpeta imgsProd
-            String url= cargadorDeImagenes.subirImagenProducto(imagen, imagenContentType, nombre + String.valueOf(System.currentTimeMillis()));
+        // Guardar imagen en una ruta del servidor (puedes personalizar la ruta)
+        ProductoWS prodWS = new ProductoWS();
+        TallaWS tallaWS= new TallaWS();
+        // 1. Guardar imagen en carpeta imgsProd
+        String url = cargadorDeImagenes.subirImagenProducto(imagen, imagenContentType, nombre + String.valueOf(System.currentTimeMillis()));
 
-            // 2. Crear producto
-            Producto producto = new Producto();
-            producto.setNombre(nombre);
-            producto.setDescripcion(descripcion);
-            producto.setPrecio(precio);
-            producto.setURLImagen(url);
-            Cuenta c = (Cuenta) session.get("usuario");
-            producto.setDni(c.getVendedor());
-            ProductoWS em= new ProductoWS();
+        // 2. Crear producto
+        Producto producto = new Producto();
+        producto.setNombre(nombre);
+        producto.setDescripcion(descripcion);
+        producto.setPrecio(precio);
+        producto.setURLImagen(url);
+        Cuenta c = (Cuenta) session.get("usuario");
+        producto.setDni(c.getVendedor());
 
-            // Creamos tallas y asociarlas al producto
-            String[] tallas = {"XS", "S", "M", "L", "XL", "2XL"};
-            int[] cantidades = {cantidadXS, cantidadS, cantidadM, cantidadL, cantidadXL, cantidad2XL};
-            int stock=0;
-            
-            List<Talla> tallaList = new ArrayList<>();
-            for (int i = 0; i < tallas.length; i++) {
-                stock+=cantidades[i];
-                Talla talla = new Talla();
-                talla.setTalla(tallas[i]);
-                talla.setCantidad(cantidades[i]);
-                talla.setIdProducto(producto); // relación inversa
-                tallaList.add(talla);
-            }
-            producto.setStock(stock);
-            producto.setTallaCollection(tallaList);
+        // Creamos tallas y asociarlas al producto
+        String[] tallas = {"XS", "S", "M", "L", "XL", "2XL"};
+        int[] cantidades = {cantidadXS, cantidadS, cantidadM, cantidadL, cantidadXL, cantidad2XL};
+        int stock = 0;
 
-           
-           // Guardar producto en base de datos
-           em.create_XML(producto);
-           return SUCCESS;
+        List<Talla> tallaList = new ArrayList<>();
+        for (int i = 0; i < tallas.length; i++) {
+            stock += cantidades[i];
+            Talla talla = new Talla();
+            talla.setTalla(tallas[i]);
+            talla.setCantidad(cantidades[i]);
+            talla.setIdProducto(producto); 
+            tallaWS.create_XML(talla);
+            tallaList.add(talla);
         }
-    
+        producto.setStock(stock);
+        //producto.setTallaCollection(tallaList);
+
+        // Guardar producto en base de datos
+        prodWS.create_XML(producto);
+        return SUCCESS;
+    }
 
     public String getNombre() {
         return nombre;
@@ -192,7 +190,7 @@ public class registroProductoAction extends ActionSupport implements SessionAwar
 
     @Override
     public void setSession(Map<String, Object> map) {
-        this.session=map;
+        this.session = map;
     }
-    
+
 }
