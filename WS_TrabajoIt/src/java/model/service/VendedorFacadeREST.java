@@ -113,4 +113,15 @@ public class VendedorFacadeREST extends AbstractFacade<Vendedor> {
         return em;
     }
     
+    
+    @GET
+    @Path("findByNombreTienda/{nombreTienda}") 
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Vendedor> findByNombreTienda(@PathParam("nombreTienda") String nombreTienda) {
+        
+        return em.createNamedQuery("Vendedor.findByNombreTienda", Vendedor.class)
+                 .setParameter("nombreTienda", nombreTienda)
+                 .getResultList();
+    }
+    
 }

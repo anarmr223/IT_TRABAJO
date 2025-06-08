@@ -52,7 +52,7 @@
                              <s:iterator value="%{#session.tiendas}" id="tienda">
                             
                                  
-                                 <li><a class="dropdown-item" href="<s:url action="navTiendaVendedor"><s:param name="nombreTienda" value="%{#tienda.nombreTienda}"></s:param><s:param name="dni" value="%{#session.usuario.vendedor.vendedorPK.dni}"/><s:param name="idCuenta" value="%{#session.usuario.vendedor.vendedorPK.idCuenta}"/></s:url>"><s:property value="%{#tienda.nombreTienda}"/></a></li>
+                                 <li><a class="dropdown-item" href="<s:url action="navTiendaVendedor"><s:param name="nombreTienda" value="%{#tienda.nombreTienda}"></s:param></s:url>"><s:property value="%{#tienda.nombreTienda}"/></a></li>
                             
                             
                              </s:iterator>
