@@ -25,12 +25,10 @@
                         <s:form cssClass="d-inline-block">
                             <button class="btn btn-primary">Suscribirse</button>
                         </s:form>
-                        </s:if>
+                    </s:if>
                 </div>
 
-                <div class="offset-md-3 col-12 col-md-9 mt-4">
-                        <s:if test='#session.usuario.vendedor != null'>
-
+                <div class="col-12 mt-4"> <div class="row g-3"> <s:if test='#session.usuario.vendedor != null'>
                             <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                                 <div class="card h-100">
                                     <s:form action="navRegistrarProducto" cssClass="h-100" method="post">
@@ -41,8 +39,8 @@
                                     </s:form>
                                 </div>
                             </div>
-
                         </s:if>
+
                         <s:iterator value="listaProdTienda" id="prod">
                             <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                                 <div class="card h-100">
@@ -52,8 +50,8 @@
                                             <a href="<s:url action='navProducto'><s:param name='id' value='%{#prod.nombre}'/></s:url>">
                                                 <s:property value="#prod.nombre"/>
                                             </a>
-                                        </h5>
-                                        <s:if test="#session.usuario.vendedor != null">
+                                                                            </h5>
+                                            <s:if test="#session.usuario.vendedor != null">
                                             <div class="d-flex justify-content-between gap-2 mt-auto">
                                                 <s:form action="<s:url action='editarProducto'/>" cssClass="flex-grow-1" method="post">
                                                     <s:hidden name="id" value="#prod.idProducto"/>
@@ -61,7 +59,6 @@
                                                         <i class="fas fa-edit"></i>
                                                     </button>
                                                 </s:form>
-
                                                 <s:form action="<s:url action='eliminarProducto'/>" cssClass="flex-grow-1" method="post">
                                                     <s:hidden name="id" value="#prod.idProducto"/>
                                                     <button type="submit" class="btn btn-danger btn-sm w-100">
@@ -78,7 +75,6 @@
                 </div>
             </div>
         </div>
-
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
