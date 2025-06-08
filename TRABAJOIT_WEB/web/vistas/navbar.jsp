@@ -73,9 +73,9 @@
                     
                 </ul>
                 
-                <form class="d-flex ms-auto barraBuscar" role="search"> <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search"/>
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
-                </form>
+                <s:form action="busquedaProductos" class="d-flex ms-auto barraBuscar" role="search"> <s:textfield name="nombreTienda" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search"/>
+                    <s:submit value="Buscar" class="btn btn-outline-success" type="submit"/>
+                </s:form>
             </div>
         </nav>
         <div class="container-fluid">

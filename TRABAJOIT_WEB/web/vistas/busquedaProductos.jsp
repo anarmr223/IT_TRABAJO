@@ -20,7 +20,7 @@
         <jsp:include page="navbar.jsp"/>
         <div class="container containerPrincipal">
             <div class="row justify-content-center">
-                <s:iterator value="#session.listaProductos" id="prod">
+                <s:iterator value="productos" id="prod">
                     <div class="col-12 col-sm-6 col-lg-3 col-xl-2 producto-item">
                         <div class="card h-100">
                             <img src="<c:url value='#prod.urlImagen'/>" class="card-img-top" alt="Nombre del producto">
