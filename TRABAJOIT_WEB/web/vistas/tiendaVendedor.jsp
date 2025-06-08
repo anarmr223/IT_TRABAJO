@@ -31,7 +31,11 @@
                     <ul>
                         <li class="nav-link"><a href="registrarProducto.jsp">Registrar producto</a></li>
                         <li class="nav-link">Eliminar producto</li>
+<<<<<<< Upstream, based on origin/main
                         <li class="nav-link">Editar producto</li>
+=======
+                        <li class="nav-link"><a href="<s:url action="navEditarProducto"/>"> Editar  producto </a></li>
+>>>>>>> bfd9207 Añadida funcionalidad de editar Producto
                     </ul>
                 </div>
                 <div class="col-6 col-md-9">
