@@ -63,9 +63,9 @@ public class PublicacionWS {
         return webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
     
-    public <T> T getPublicacionesExcludingCuenta(GenericType<T> gn,Long idCuenta){
+    public <T> T getPublicacionesExcludingCuenta(GenericType<T> gn,int idCuenta){
         WebTarget resource=webTarget;
-        return resource.path("findExcludingUser").path(idCuenta+"").request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(gn);
+        return resource.path("findExcludingUser").path(idCuenta+"").request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(gn);
     }
 
     public void close() {

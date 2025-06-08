@@ -6,15 +6,18 @@
 package controller.login;
 
 import WS.CuentaWS;
+import WS.PublicacionWS;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import controller.util.GestorContrasenias;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.GenericType;
 import model.Cuenta;
+import model.Publicacion;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
@@ -30,6 +33,7 @@ public class loginAction extends ActionSupport implements SessionAware, ServletR
     private String contrasenia;
     private Map<String, Object> session;
     private HttpServletResponse response;
+    private List<Publicacion> publicaciones;
     public loginAction() {
     }
     
@@ -46,13 +50,18 @@ public class loginAction extends ActionSupport implements SessionAware, ServletR
             cookie.setMaxAge(60*60*24);
             response.addCookie(cookie);
             session.put("usuario", c);
-            return SUCCESS;
         }
         else{
             addFieldError("contrasenia", "Contraseña incorrecta");
             return INPUT;
         }
+        if(session.get("publicaciones")==null&&session.get("usuario")!=null){
+            PublicacionWS servicioPublicacion=new PublicacionWS();
+            GenericType<List<Publicacion>> gn= new GenericType<List<Publicacion>>(){};
+            session.put("publicaciones",servicioPublicacion.getPublicacionesExcludingCuenta(gn, c.getIdCuenta()));
+        }
         
+        return SUCCESS;
     }
 
     public String getUsuario() {
@@ -82,6 +91,16 @@ public class loginAction extends ActionSupport implements SessionAware, ServletR
     public void setServletResponse(HttpServletResponse hsr) {
         this.response=hsr;
     }
+
+    public List<Publicacion> getPublicaciones() {
+        return publicaciones;
+    }
+
+    public void setPublicaciones(List<Publicacion> publicaciones) {
+        this.publicaciones = publicaciones;
+    }
+    
+    
     
     @Override
     public void validate(){
