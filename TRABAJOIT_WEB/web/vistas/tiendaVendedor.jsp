@@ -28,9 +28,7 @@
                     </s:if>
                 </div>
 
-                <div class="offset-md-3 col-12 col-md-9 mt-4">
-                        <s:if test='#session.usuario.vendedor != null'>
-                            
+                <div class="col-12 mt-4"> <div class="row g-3"> <s:if test='#session.usuario.vendedor != null'>
                             <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                                 <div class="card h-100">
                                     <s:form action="navRegistrarProducto" cssClass="h-100" method="post">
