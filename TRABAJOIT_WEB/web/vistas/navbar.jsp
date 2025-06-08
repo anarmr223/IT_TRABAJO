@@ -60,9 +60,6 @@
                             
                             
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<s:url action="verDetalleUsuario"/>"><s:property value="%{#session.usuario.usuario}"/><i class="bi bi-cart"></i></a>
-                    </li>
                     <s:if test="#session.usuario.vendedor!=null">
                         <li class="nav-item ms-auto">
                             <a class="nav-link" href="<s:url action="navTiendaVendedor"><s:param name="nombreTienda" value="%{#session.usuario.vendedor.nombreTienda}"/><s:param name="dni" value="%{#session.usuario.vendedor.vendedorPK.dni}"/><s:param name="idCuenta" value="%{#session.usuario.vendedor.vendedorPK.idCuenta}"/></s:url>"><s:property value="%{#session.usuario.vendedor.nombreTienda}"/></a>

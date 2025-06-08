@@ -146,6 +146,12 @@
       
     </package>
     
+    <package name="carrito" namespace="/carrito" extends="struts-default">
+        <action name="aniadirCarritoAction" class="controller.carrito.aniadirCarritoAction">
+            
+        </action>
+    </package>
+    
         
     
     
