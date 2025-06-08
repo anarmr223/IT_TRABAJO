@@ -23,8 +23,8 @@ private File miArchivo; // Representa el archivo temporal subido
     private String miArchivoContentType; // Tipo MIME del archivo (ej. image/jpeg)
     private String miArchivoFileName; // Nombre original del archivo*/
 public class cargadorDeImagenes {
-    public static String subirImagenProducto(List<File> archivos,List<String> contentType,String idProducto){
-        if(archivos==null||archivos.isEmpty()){
+    public static String subirImagenProducto(File archivo,String contentType,String idProducto){
+        if(archivo==null){
             return null;
         }
         
@@ -48,13 +48,9 @@ public class cargadorDeImagenes {
             
             uploadDir.mkdirs();
             
-            for(int i=0;i<archivos.size();i++){
-                File archivo= archivos.get(i);
-                String extension="."+contentType.get(i).split("/")[1];
-                File archivoDestino = new File(directorioImagenesWeb, i+extension);
-                org.apache.commons.io.FileUtils.copyFile(archivo, archivoDestino);
-            }
-            
+            String extension="."+contentType.split("/")[1];
+            File archivoDestino=new File(directorioImagenesWeb, "producto"+extension);
+            org.apache.commons.io.FileUtils.copyFile(archivo, archivoDestino);
             
             
             return uploadDir.getAbsolutePath();
