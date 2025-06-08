@@ -62,7 +62,7 @@
                                                         <i class="fas fa-edit"></i>
                                                     </button>
                                                 </s:form>
-                                                <s:form action="<s:url action='eliminarProducto'/>" cssClass="flex-grow-1" method="post">
+                                                <s:form action="borrarProducto" cssClass="flex-grow-1" method="post">
                                                     <s:hidden name="id" value="#prod.idProducto"/>
                                                     <button type="submit" class="btn btn-danger btn-sm w-100">
                                                         <i class="fas fa-trash"></i>
