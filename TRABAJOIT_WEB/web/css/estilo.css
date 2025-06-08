@@ -170,7 +170,7 @@ body {
   width: 200px;
   background-color: rgba(255, 255, 255, 0.7);
   padding: 20px;
-  height: calc(100% - 150px);
+  height: 300px;
   z-index: 5;
 }
 
