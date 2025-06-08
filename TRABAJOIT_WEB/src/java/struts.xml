@@ -194,7 +194,7 @@
         
         
         <action name="aniadirCarritoAction">
-            <result type="chain">
+            <result type="chain" >
                 <param name="namespace">/nav</param>
                 <param name="actionName">navEditarProducto</param>
             </result>

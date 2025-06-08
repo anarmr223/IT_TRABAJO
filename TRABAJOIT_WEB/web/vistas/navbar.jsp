@@ -60,11 +60,17 @@
                             
                             
                     </li>
+                    <s:if test="#session.usuario!=null">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<s:url action="navCarrito"/>"><i class="bi bi-cart"></i></a>
+                        </li>
+                    </s:if>
                     <s:if test="#session.usuario.vendedor!=null">
                         <li class="nav-item ms-auto">
                             <a class="nav-link" href="<s:url action="navTiendaVendedor"><s:param name="nombreTienda" value="%{#session.usuario.vendedor.nombreTienda}"/><s:param name="dni" value="%{#session.usuario.vendedor.vendedorPK.dni}"/><s:param name="idCuenta" value="%{#session.usuario.vendedor.vendedorPK.idCuenta}"/></s:url>"><s:property value="%{#session.usuario.vendedor.nombreTienda}"/></a>
                         </li>
                     </s:if>
+                    
                 </ul>
                 
                 <form class="d-flex ms-auto barraBuscar" role="search"> <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search"/>

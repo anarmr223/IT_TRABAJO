@@ -7,8 +7,10 @@ package controller.carrito;
 
 import WS.CarritoWS;
 import WS.CuentaWS;
+import WS.LineaProductoWS;
 import WS.ProductoWS;
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import model.Carrito;
@@ -61,12 +63,12 @@ public class aniadirCarritoAction extends ActionSupport implements SessionAware 
         
         Lineaproducto lp=new Lineaproducto();
         lp.setIdProducto(producto);
+        lp.setCantidad(cantidad);
         
         Cuenta c=(Cuenta) session.get("usuario");
-        
-        if(c.getCarrito()==null){
-            Carrito carrito= new Carrito();
-            
+        Carrito carrito=c.getCarrito();
+        if(carrito==null){
+            carrito=new Carrito();
             carrito.setCuenta(c);
             
             c.setCarrito(carrito);
@@ -78,10 +80,19 @@ public class aniadirCarritoAction extends ActionSupport implements SessionAware 
             cServicio.create_XML(carrito);
             
             servicioCuenta.actualizarCuenta(c);
-            
-             
         }
         
+        Collection<Lineaproducto> coleccionLp=carrito.getLineaproductoCollection();
+        
+        coleccionLp.add(lp);
+        
+        LineaProductoWS lpServicio= new LineaProductoWS();
+        
+        lpServicio.create_XML(lp);
+        
+        CarritoWS servicioCarrito= new CarritoWS();
+        
+        servicioCarrito.actualizarCarrito(carrito);
         return SUCCESS;
     }
 
