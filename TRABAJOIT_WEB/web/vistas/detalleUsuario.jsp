@@ -20,11 +20,11 @@
             <h2>Detalles de usuario</h2>
             <s:form action="actualizarUsuario" method="post" cssClass="needs-validation ">
                 <div class="form-group">
-                    <s:textfield name="usuario" label="Nombre Usuario" cssClass="form-control  w-100" />
+                    <s:textfield name="usuario" label="Nombre Usuario" placeholder="%{#session.usuario.usuario}" cssClass="form-control  w-100" />
                 </div>
 
                 <div class="form-group">
-                    <s:textfield name="correo" label="Correo" cssClass="form-control w-100" />
+                    <s:textfield name="correo" label="Correo" placeholder="%{#session.usuario.correo}" cssClass="form-control w-100" />
                 </div>
 
                 <div class="form-group">
