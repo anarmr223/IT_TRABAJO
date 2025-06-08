@@ -9,32 +9,40 @@ import WS.ProductoWS;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.util.logging.Logger;
 import java.util.List;
+import java.util.Map;
 import javax.ws.rs.core.GenericType;
+import model.Cuenta;
 import model.Producto;
+import org.apache.struts2.interceptor.SessionAware;
 
 /**
  *
  * @author Asus
  */
-public class listarProdsTiendaAction extends ActionSupport {
+public class listarProdsTiendaAction extends ActionSupport implements SessionAware{
     
     private List<Producto> listaProdTienda;
     private String nombreTienda;
     private String dni;
     private int idCuenta;
+    private Map<String, Object> session;
     
     public listarProdsTiendaAction() {
     }
     
+    @Override
     public String execute() throws Exception {
         
         ProductoWS p = new ProductoWS();
+        Cuenta c = (Cuenta) session.get("usuario");
+        
+        if(dni==null && c.getVendedor()!=null){
+            this.nombreTienda= c.getVendedor().getNombreTienda();
+            this.dni= c.getVendedor().getVendedorPK().getDni();
+            this.idCuenta= c.getVendedor().getVendedorPK().getIdCuenta();
+        }
         
        this.listaProdTienda = p.findProductosByVendedor_XML(new GenericType<List<Producto>>(){},dni,idCuenta);
-        
-        
-       
-        
         return SUCCESS;
     }
 
@@ -76,6 +84,11 @@ public class listarProdsTiendaAction extends ActionSupport {
 
     public void setIdCuenta(int idCuenta) {
         this.idCuenta = idCuenta;
+    }
+
+    @Override
+    public void setSession(Map<String, Object> map) {
+        this.session=map;
     }
     
     
