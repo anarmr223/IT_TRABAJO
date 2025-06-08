@@ -12,7 +12,6 @@
         <title>Inicio</title>
     </head>
     <body>
-        <!-- Menu navegación -->
         <jsp:include page="navbar.jsp"/>
 
         <div class="container-fluid banner">
@@ -21,19 +20,29 @@
 
         <div class="container-fluid">
             <div class="row">
-               <!-- Productos -->
-                <div class="<s:if test='#session.usuario.vendedor != null'>offset-md-3</s:if> col-12 col-md-9 mt-4">
-                        <div class="row g-3">
+                <div class="col-12 text-end mt-3 mb-3">
+                    <s:if test="#session.usuario.vendedor==null">
+                        <s:form cssClass="d-inline-block">
+                            <button class="btn btn-primary">Suscribirse</button>
+                        </s:form>
+                        </s:if>
+                </div>
+
+                <div class="offset-md-3 col-12 col-md-9 mt-4">
+                        <s:if test='#session.usuario.vendedor != null'>
+
                             <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                                 <div class="card h-100">
-                                <s:form action="navRegistrarProducto" cssClass="h-100">
-                                    <button type="submit" class="btn btn-light w-100 h-100 d-flex flex-column justify-content-center align-items-center">
-                                        <i class="fas fa-plus fa-2x mb-2"></i>
-                                        <span>Añadir</span>
-                                    </button>
-                                </s:form>
+                                    <s:form action="navRegistrarProducto" cssClass="h-100" method="post">
+                                        <button type="submit" class="btn btn-light w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+                                            <i class="fas fa-plus fa-2x mb-2"></i>
+                                            <span>Añadir</span>
+                                        </button>
+                                    </s:form>
+                                </div>
                             </div>
-                        </div>
+
+                        </s:if>
                         <s:iterator value="listaProdTienda" id="prod">
                             <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                                 <div class="card h-100">
@@ -44,19 +53,16 @@
                                                 <s:property value="#prod.nombre"/>
                                             </a>
                                         </h5>
-                                        <!-- boton eliminar prod para el vendedor -->
                                         <s:if test="#session.usuario.vendedor != null">
                                             <div class="d-flex justify-content-between gap-2 mt-auto">
-                                                <!-- Botón Editar -->
-                                                <s:form action="<s:url action='editarProducto'/>" method="get" cssClass="flex-grow-1">
+                                                <s:form action="<s:url action='editarProducto'/>" cssClass="flex-grow-1" method="post">
                                                     <s:hidden name="id" value="#prod.idProducto"/>
                                                     <button type="submit" class="btn btn-primary btn-sm w-100">
                                                         <i class="fas fa-edit"></i>
                                                     </button>
                                                 </s:form>
 
-                                                <!-- Botón Eliminar -->
-                                                <s:form action="<s:url action='eliminarProducto'/>" method="post" cssClass="flex-grow-1">
+                                                <s:form action="<s:url action='eliminarProducto'/>" cssClass="flex-grow-1" method="post">
                                                     <s:hidden name="id" value="#prod.idProducto"/>
                                                     <button type="submit" class="btn btn-danger btn-sm w-100">
                                                         <i class="fas fa-trash"></i>
@@ -68,7 +74,6 @@
                                 </div>
                             </div>
                         </s:iterator>
-
                     </div>
                 </div>
             </div>
@@ -77,4 +82,3 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
-
