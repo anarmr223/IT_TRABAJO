@@ -214,6 +214,13 @@
             </result>
         </action>  
         
+         <action name = "altaSuscripcion">
+            <result type="chain">
+                <param name="namespace">/registrar</param>
+                <param name="actionName">registrarSuscripcionAction</param>
+            </result>
+        </action>  
+        
         
     </package>
 </struts>
