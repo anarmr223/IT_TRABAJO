@@ -26,7 +26,7 @@
                     <div class="col-12 col-md-3 position-fixed top-0 start-0 mt-5 pt-5 bg-white bg-opacity-75 vh-100 overflow-auto">
                         <ul class="nav flex-column px-3">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" href="registrarProducto.jsp">Registrar producto</a>
+                                <a class="nav-link text-dark" href="<s:url action="registrarProductoAction"/>">Registrar producto</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" href="#">Eliminar producto</a>
