@@ -5,6 +5,7 @@
  */
 package WS;
 
+import java.util.List;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
@@ -97,6 +98,14 @@ public class ProductoWS {
         WebTarget resource = webTarget.path(java.text.MessageFormat.format("{0}", new Object[]{id}));
         return resource.request(MediaType.APPLICATION_XML).get(Producto.class); // O MediaType.APPLICATION_JSON si prefieres
     }
+    
+     public List<Producto> findByNombre(String nombreProducto) throws ClientErrorException {
+        WebTarget resource = webTarget.path("byNombre").path(nombreProducto);
+        // Usamos GenericType para manejar la deserialización de una lista de Producto
+        return resource.request(MediaType.APPLICATION_XML).get(new GenericType<List<Producto>>() {});
+        // O si esperas JSON: return resource.request(MediaType.APPLICATION_JSON).get(new GenericType<List<Producto>>() {});
+    }
+    
 
     public void close() {
         client.close();
