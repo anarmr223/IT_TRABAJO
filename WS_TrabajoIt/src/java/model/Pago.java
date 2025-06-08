@@ -87,7 +87,7 @@ public class Pago implements Serializable {
         this.total = total;
     }
 
-    public Pago(int idPago, int idVenta) {
+    public Pago(String idPago, int idVenta) {
         this.pagoPK = new PagoPK(idPago, idVenta);
     }
 

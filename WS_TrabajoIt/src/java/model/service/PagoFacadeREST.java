@@ -45,7 +45,7 @@ public class PagoFacadeREST extends AbstractFacade<Pago> {
         javax.ws.rs.core.MultivaluedMap<String, String> map = pathSegment.getMatrixParameters();
         java.util.List<String> idPago = map.get("idPago");
         if (idPago != null && !idPago.isEmpty()) {
-            key.setIdPago(new java.lang.Integer(idPago.get(0)));
+            key.setIdPago(new java.lang.String(idPago.get(0)));
         }
         java.util.List<String> idVenta = map.get("idVenta");
         if (idVenta != null && !idVenta.isEmpty()) {

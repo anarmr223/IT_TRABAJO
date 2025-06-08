@@ -148,6 +148,16 @@
         </action>
     </package>
     
+    <package name="pago" namespace="/pago" extends="struts-default">
+        <action name="procesarPagoAction" class="controller.registrar.registrarPagoAction">
+            <result>/vista/inicio.jsp</result>
+        </action>
+        
+        <action name="navPagoAction">
+            <result>/vista/pago.jsp</result>
+        </action>
+    </package>
+    
         
     
     

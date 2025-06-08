@@ -21,7 +21,7 @@ public class PagoPK implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "idPago")
-    private int idPago;
+    private String idPago;
     @Basic(optional = false)
     @NotNull
     @Column(name = "idVenta")
@@ -30,16 +30,16 @@ public class PagoPK implements Serializable {
     public PagoPK() {
     }
 
-    public PagoPK(int idPago, int idVenta) {
+    public PagoPK(String idPago, int idVenta) {
         this.idPago = idPago;
         this.idVenta = idVenta;
     }
 
-    public int getIdPago() {
+    public String getIdPago() {
         return idPago;
     }
 
-    public void setIdPago(int idPago) {
+    public void setIdPago(String idPago) {
         this.idPago = idPago;
     }
 
@@ -54,7 +54,7 @@ public class PagoPK implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) idPago;
+        hash +=  idPago.hashCode();
         hash += (int) idVenta;
         return hash;
     }

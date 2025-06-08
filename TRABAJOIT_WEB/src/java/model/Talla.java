@@ -53,7 +53,7 @@ public class Talla implements Serializable {
     public Talla(String talla) {
         this.talla = talla;
     }
-
+    
     public String getTalla() {
         return talla;
     }
@@ -70,7 +70,7 @@ public class Talla implements Serializable {
     public void setIdProducto(Producto idProducto) {
         this.idProducto = idProducto;
     }
-
+    
     public int getCantidad() {
         return cantidad;
     }
