@@ -8,6 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
         <link rel="stylesheet" href="<c:url value='/css/estilo.css'/>">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <title>Inicio</title>
     </head>
     <body>
@@ -21,25 +22,19 @@
         <<<<<<< HEAD
         <div class="container-fluid">
             <div class="row">
-                <!-- Mostrar menú lateral solo si el usuario es vendedor -->
-                <s:if test="#session.usuario.vendedor != null">
-                    <div class="col-12 col-md-3 position-fixed top-0 start-0 mt-5 pt-5 bg-white bg-opacity-75 vh-100 overflow-auto">
-                        <ul class="nav flex-column px-3">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" href="<s:url action="navRegistrarProducto"/>">Registrar producto</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" href="#">Eliminar producto</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<s:url action="navEditarProducto"/>"> Editar  producto </a>
-                            </li>
-                        </s:if>
-                </div>
-
-                <!-- Productos -->
+               <!-- Productos -->
                 <div class="<s:if test='#session.usuario.vendedor != null'>offset-md-3</s:if> col-12 col-md-9 mt-4">
                         <div class="row g-3">
+                            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                                <div class="card h-100">
+                                <s:form action="" cssClass="h-100">
+                                    <button type="submit" class="btn btn-light w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+                                        <i class="fas fa-plus fa-2x mb-2"></i>
+                                        <span>Añadir</span>
+                                    </button>
+                                </s:form>
+                            </div>
+                        </div>
                         <s:iterator value="listaProdTienda" id="prod">
                             <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                                 <div class="card h-100">
@@ -52,12 +47,23 @@
                                         </h5>
                                         <!-- boton eliminar prod para el vendedor -->
                                         <s:if test="#session.usuario.vendedor != null">
-                                            <form action="<s:url action='eliminarProducto'/>" method="post" class="mt-auto">
-                                                <input type="hidden" name="id" value="<s:property value='#prod.idProducto'/>" />
-                                                <button type="submit" class="btn btn-danger btn-sm w-100 mt-2">
-                                                    Eliminar
-                                                </button>
-                                            </form>
+                                            <div class="d-flex justify-content-between gap-2 mt-auto">
+                                                <!-- Botón Editar -->
+                                                <s:form action="<s:url action='editarProducto'/>" method="get" cssClass="flex-grow-1">
+                                                    <s:hidden name="id" value="#prod.idProducto"/>
+                                                    <button type="submit" class="btn btn-primary btn-sm w-100">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                </s:form>
+
+                                                <!-- Botón Eliminar -->
+                                                <s:form action="<s:url action='eliminarProducto'/>" method="post" cssClass="flex-grow-1">
+                                                    <s:hidden name="id" value="#prod.idProducto"/>
+                                                    <button type="submit" class="btn btn-danger btn-sm w-100">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </s:form>
+                                            </div>
                                         </s:if>
                                     </div>
                                 </div>
