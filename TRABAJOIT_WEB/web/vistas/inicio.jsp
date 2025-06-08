@@ -25,7 +25,7 @@
                     
                     <div class="col-12 col-sm-6 col-lg-3 col-xl-2 producto-item">
                         <div class="card h-100">
-                            <img src="<c:url value='#prod.urlImagen'/>" class="card-img-top" alt="Foto del producto">
+                            <img src="\web\imagenes\productos\top21749413553221.jpeg" class="card-img-top" alt="Foto del producto"/>
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title"><a href="<s:url action="navProducto"><s:param name="id" value="%{#prod.idProducto}"/></s:url>"><s:property value="#prod.nombre"/></a></h5>
                                 <p class="card-text text-muted mb-3"> 

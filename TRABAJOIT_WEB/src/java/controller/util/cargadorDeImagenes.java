@@ -53,7 +53,7 @@ public class cargadorDeImagenes {
             org.apache.commons.io.FileUtils.copyFile(archivo, archivoDestino);
             
             
-            return uploadDir.getAbsolutePath();
+            return "/web/imagenes/productos/" +idProducto+extension;
         }catch(  IOException ex){
             return null;
         }

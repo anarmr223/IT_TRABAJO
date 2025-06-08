@@ -66,13 +66,17 @@ public class registroProductoAction extends ActionSupport implements SessionAwar
         producto.setDescripcion(descripcion);
         producto.setPrecio(precio);
         producto.setURLImagen(url);
+        producto.setStock(0);
         Cuenta c = (Cuenta) session.get("usuario");
         producto.setDni(c.getVendedor());
-
+        prodWS.create_XML(producto);
         // Creamos tallas y asociarlas al producto
         String[] tallas = {"XS", "S", "M", "L", "XL", "2XL"};
         int[] cantidades = {cantidadXS, cantidadS, cantidadM, cantidadL, cantidadXL, cantidad2XL};
         int stock = 0;
+        
+        GenericType<Producto> gn= new GenericType<Producto>(){};
+        producto = prodWS.findByNombre(nombre).get(0);
 
         List<Talla> tallaList = new ArrayList<>();
         for (int i = 0; i < tallas.length; i++) {
@@ -82,13 +86,12 @@ public class registroProductoAction extends ActionSupport implements SessionAwar
             talla.setCantidad(cantidades[i]);
             talla.setIdProducto(producto); 
             tallaWS.create_XML(talla);
-            tallaList.add(talla);
         }
         producto.setStock(stock);
         //producto.setTallaCollection(tallaList);
 
         // Guardar producto en base de datos
-        prodWS.create_XML(producto);
+        
         return SUCCESS;
     }
 
