@@ -185,5 +185,14 @@
             </result>
         </action>  
         
+        <action name = "navTiendaDesplegable">
+            <result type="chain">
+                <param name="namespace">/nav</param>
+                <param name="actionName">navTiendaDesplegable</param>
+            </result>
+        </action>  
+        
+        
+        
     </package>
 </struts>
