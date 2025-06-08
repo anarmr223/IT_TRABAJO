@@ -21,8 +21,6 @@
     <!-- Menú de navegación -->
     <jsp:include page="navbar.jsp" />
 
-    <h1 class="titulo text-center">Umi</h1>
-
     <div class="container mt-5 login">
         <h2 class="mb-4 text-center">Iniciar sesión</h2>
 

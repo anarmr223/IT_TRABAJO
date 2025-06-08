@@ -76,7 +76,7 @@
             </div>
         </nav>
         <div class="container-fluid">
-             <h1 class="titulo">Umi</h1>
+             <h1 class="titulo">UMI</h1>
         </div>
     </body>
 </html>
