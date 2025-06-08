@@ -48,8 +48,8 @@ body {
 .titulo{
     text-align: center;
     margin: 0 auto;
-    padding: 10px 0;
-    top: 56px;    
+    padding: 0 0;
+    top: 40px;    
     left: 0;
     right: 0;
     z-index: 10;

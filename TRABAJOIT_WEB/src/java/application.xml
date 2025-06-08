@@ -43,7 +43,7 @@
         </action>
         
         <action name="registrarProductoAction" class="controller.registrar.registroProductoAction">
-            <result name="success">/vistas/tiendaVendedor.jsp</result>
+            <result name="success" type="redirectAction">navTiendaVendedor</result>
             <result name="input">/vistas/registrarProducto.jsp</result>
         </action>
         
