@@ -56,7 +56,7 @@
                                                                             </h5>
                                             <s:if test="#session.usuario.vendedor != null">
                                             <div class="d-flex justify-content-between gap-2 mt-auto">
-                                                <s:form action="<s:url action='editarProducto'/>" cssClass="flex-grow-1" method="post">
+                                                <s:form action="navEditarProducto" cssClass="flex-grow-1" method="post">
                                                     <s:hidden name="id" value="#prod.idProducto"/>
                                                     <button type="submit" class="btn btn-primary btn-sm w-100">
                                                         <i class="fas fa-edit"></i>
