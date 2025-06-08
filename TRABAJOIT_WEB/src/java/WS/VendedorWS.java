@@ -87,6 +87,29 @@ public class VendedorWS {
     }
     
     
+    public String addSuscripcion(String dniVendedor, int idCuentaVendedor, int idCuentaSuscripcion) throws ClientErrorException {
+        WebTarget resource = webTarget.path(dniVendedor)
+                                    .path(String.valueOf(idCuentaVendedor))
+                                    .path("suscripciones")
+                                    .path(String.valueOf(idCuentaSuscripcion));
+        
+        // No hay cuerpo de entidad para POST, ya que los IDs están en la URL
+        return resource.request(MediaType.APPLICATION_XML) // O MediaType.APPLICATION_JSON
+                       .post(null, String.class); // Enviamos null como entidad, esperamos String de vuelta
+    }
+    
+    
+    public String removeSuscripcion(String dniVendedor, int idCuentaVendedor, int idCuentaSuscripcion) throws ClientErrorException {
+        WebTarget resource = webTarget.path(dniVendedor)
+                                    .path(String.valueOf(idCuentaVendedor))
+                                    .path("suscripciones")
+                                    .path(String.valueOf(idCuentaSuscripcion));
+        
+        return resource.request(MediaType.APPLICATION_XML) // O MediaType.APPLICATION_JSON
+                       .delete(String.class); // Esperamos String de vuelta
+    }
+    
+    
     public void close() {
         client.close();
     }
