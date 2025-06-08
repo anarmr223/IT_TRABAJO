@@ -19,7 +19,7 @@
     <body>
         <!--Menu navegacion-->
         <jsp:include page="navbar.jsp"/>
-        
+
         <!--PRODUCTO FOTO MAS AÑADIR-->
         <div class="container containerGeneral">
             <div class="row especificacionProducto">
@@ -32,22 +32,29 @@
                     <p class="mt-5">Precio</p>
                     <p>Especificaciones</p>
                     <div class="d-flex justify-content-center">
-                            <!--ESTARIA BIEN QUE EL PRODUCTO TUVIERA ETIQUETAS Y QUE LO QUE SE MOSTRARA ABAJO FUERAN COSAS QUE TUVIERAN LA MISMA ETIQUETA-->
-                        <div class="w-75">
-                            <s:select name="talla" list="%{producto.tallaCollection}" label="Seleccione una talla" id="talla" value="producto.tallaCollection.talla" key="producto.tallaCollection.talla" headerKey="" headerValue="Seleccione la talla" cssClass="form-control"/>
+                        <!--ESTARIA BIEN QUE EL PRODUCTO TUVIERA ETIQUETAS Y QUE LO QUE SE MOSTRARA ABAJO FUERAN COSAS QUE TUVIERAN LA MISMA ETIQUETA-->
+                        <s:if test="#producto.tallaCollection!=null">
+                            <div class="w-75">
+                                <s:select name="talla" list="%{#producto.tallaCollection}" label="Seleccione una talla" id="talla" value="talla" key="talla" headerKey="" headerValue="Seleccione la talla" cssClass="form-control"/>
+                            </div>
+                            <div class="w-75">
+                                <s:textfield name="cantidad" label="Cantidad" cssClass="form-control" type="number" htmlType="number" min="1" max="50"/>
+                            </div>
+
+
                         </div>
-                        <div class="w-75">
-                            <s:textfield name="cantidad" label="Cantidad" cssClass="form-control" type="number" htmlType="number" min="1" max="50"/>
-                        </div>
-                    </div>
-                            <s:form action="">
-                                <s:hidden name="producto" value="%{producto}"/>
-                                <s:submit value="Añadir a carrito" cssClass="btn btn-primary w-100 d-block mx-auto Boton"/>
-                            </s:form>
+                        <s:form action="aniadirCarritoAction">
+                            <s:hidden name="producto" value="%{producto}"/>
+                            <s:submit value="Añadir a carrito" cssClass="btn btn-primary w-100 d-block mx-auto Boton"/>
+                        </s:form>
+                    </s:if>
+                    <s:else>
+                        No hay productos disponibles
+                    </s:else>
                 </div>
             </div>
             <h3>Productos que te podrían interesar:</h3>
-             <div class="row justify-content-center">
+            <div class="row justify-content-center">
                 <div class="col-12 col-md-6 col-lg-3 producto-item">
                     <div class="card h-100">
                         <img src="camiseta.png" class="card-img-top" alt="Nombre del producto">
