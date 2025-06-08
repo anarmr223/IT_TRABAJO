@@ -47,6 +47,7 @@
                         <s:file name="imagen" id="imagen" accept="image/*" required="true" />
                     </div>
                     
+                    
                             
                     <div class="col-md-6 tablaProductoForm ms-5">
                         <!--COL DCHA-->

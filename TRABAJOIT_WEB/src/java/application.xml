@@ -71,6 +71,7 @@
     </package>
     
     
+    
     <package name="detalleUsuario" namespace="/detalleUsuario" extends="struts-default">
         
         <action name="navVerDetalleUsuario">

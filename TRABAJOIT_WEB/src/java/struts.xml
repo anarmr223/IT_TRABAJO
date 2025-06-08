@@ -177,6 +177,7 @@
             </result>
         </action>  
         
+        
         <action name = "navEditarProducto">
             <result type="chain">
                 <param name="namespace">/nav</param>
