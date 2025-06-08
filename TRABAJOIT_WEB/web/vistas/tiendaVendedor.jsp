@@ -19,7 +19,6 @@
             <h1 class="text-center pt-5"><s:property value="nombreTienda"/></h1>
         </div>
 
-        <<<<<<< HEAD
         <div class="container-fluid">
             <div class="row">
                <!-- Productos -->
@@ -27,7 +26,7 @@
                         <div class="row g-3">
                             <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                                 <div class="card h-100">
-                                <s:form action="" cssClass="h-100">
+                                <s:form action="navRegistrarProducto" cssClass="h-100">
                                     <button type="submit" class="btn btn-light w-100 h-100 d-flex flex-column justify-content-center align-items-center">
                                         <i class="fas fa-plus fa-2x mb-2"></i>
                                         <span>Añadir</span>
