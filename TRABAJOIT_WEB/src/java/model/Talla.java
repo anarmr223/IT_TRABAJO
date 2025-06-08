@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -60,7 +61,8 @@ public class Talla implements Serializable {
     public void setTalla(String talla) {
         this.talla = talla;
     }
-
+    
+    @XmlTransient
     public Producto getIdProducto() {
         return idProducto;
     }

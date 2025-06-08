@@ -79,7 +79,8 @@ public class Carrito implements Serializable {
     public void setLineaproductoCollection(Collection<Lineaproducto> lineaproductoCollection) {
         this.lineaproductoCollection = lineaproductoCollection;
     }
-
+    
+    @XmlTransient
     public Cuenta getCuenta() {
         return cuenta;
     }
