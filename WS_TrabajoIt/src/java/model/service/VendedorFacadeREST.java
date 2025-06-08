@@ -5,6 +5,7 @@
  */
 package model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -19,6 +20,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.PathSegment;
+import javax.ws.rs.core.Response;
+import model.Cuenta;
 import model.Vendedor;
 import model.VendedorPK;
 
@@ -123,5 +126,112 @@ public class VendedorFacadeREST extends AbstractFacade<Vendedor> {
                  .setParameter("nombreTienda", nombreTienda)
                  .getResultList();
     }
+    
+    
+    @POST // Usamos POST para crear una nueva "relación" de suscripción
+    @Path("{dni}/{idCuentaVendedor}/suscripciones/{idCuentaSuscripcion}")
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON}) // No consume cuerpo, pero es buena práctica
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON}) // Para devolver el vendedor actualizado o un mensaje
+    public Response addSuscripcion(
+            @PathParam("dni") String dni,
+            @PathParam("idCuentaVendedor") int idCuentaVendedor,
+            @PathParam("idCuentaSuscripcion") int idCuentaSuscripcion) {
+
+        // 1. Encontrar al Vendedor
+        VendedorPK vendedorPK = new VendedorPK(dni, idCuentaVendedor);
+        Vendedor vendedor = em.find(Vendedor.class, vendedorPK);
+
+        if (vendedor == null) {
+            return Response.status(Response.Status.NOT_FOUND)
+                           .entity("Vendedor no encontrado.")
+                           .build();
+        }
+
+        // 2. Encontrar la Cuenta a la que se suscribirá
+        // Asume que la entidad Cuenta existe y tiene un ID simple 'idCuenta'
+        Cuenta cuenta = em.find(Cuenta.class, idCuentaSuscripcion);
+
+        if (cuenta == null) {
+            return Response.status(Response.Status.NOT_FOUND)
+                           .entity("Cuenta de suscripción no encontrada.")
+                           .build();
+        }
+
+        // 3. Verificar si la suscripción ya existe
+        if (vendedor.getCuentaCollection() != null && vendedor.getCuentaCollection().contains(cuenta)) {
+            return Response.status(Response.Status.CONFLICT) // 409 Conflict
+                           .entity("El vendedor ya está suscrito a esta cuenta.")
+                           .build();
+        }
+
+        // 4. Añadir la Cuenta a la colección del Vendedor
+        // Asegúrate de que la colección no sea nula. Si no ha sido inicializada por JPA, puede serlo.
+        if (vendedor.getCuentaCollection() == null) {
+            vendedor.setCuentaCollection(new ArrayList<>());
+        }
+        vendedor.getCuentaCollection().add(cuenta);
+
+        try {
+            // 5. Actualizar el Vendedor (JPA se encargará de la tabla de unión)
+            // Usamos super.edit(entity) para aprovechar el AbstractFacade
+            super.edit(vendedor);
+            // Si el Vendedor se ha desincronizado, podrías necesitar em.merge(vendedor);
+            // em.merge(vendedor); // Si super.edit() no funciona como esperas.
+
+            return Response.status(Response.Status.OK) // 200 OK o 201 Created si es un nuevo recurso
+                           .entity("Suscripción creada exitosamente.")
+                           .build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                           .entity("Error al crear la suscripción: " + e.getMessage())
+                           .build();
+        }
+    }
+    
+    
+    @DELETE // Usamos DELETE para eliminar una "relación" de suscripción
+    @Path("{dni}/{idCuentaVendedor}/suscripciones/{idCuentaSuscripcion}")
+    public Response removeSuscripcion(
+            @PathParam("dni") String dni,
+            @PathParam("idCuentaVendedor") int idCuentaVendedor,
+            @PathParam("idCuentaSuscripcion") int idCuentaSuscripcion) {
+
+        VendedorPK vendedorPK = new VendedorPK(dni, idCuentaVendedor);
+        Vendedor vendedor = em.find(Vendedor.class, vendedorPK);
+
+        if (vendedor == null) {
+            return Response.status(Response.Status.NOT_FOUND)
+                           .entity("Vendedor no encontrado.")
+                           .build();
+        }
+
+        Cuenta cuenta = em.find(Cuenta.class, idCuentaSuscripcion);
+
+        if (cuenta == null) {
+            return Response.status(Response.Status.NOT_FOUND)
+                           .entity("Cuenta de suscripción no encontrada.")
+                           .build();
+        }
+
+        if (vendedor.getCuentaCollection() == null || !vendedor.getCuentaCollection().contains(cuenta)) {
+            return Response.status(Response.Status.NOT_FOUND) // O 409 Conflict, dependiendo de la semántica
+                           .entity("La suscripción no existe.")
+                           .build();
+        }
+
+        vendedor.getCuentaCollection().remove(cuenta);
+
+        try {
+            super.edit(vendedor);
+            return Response.status(Response.Status.OK) // 200 OK
+                           .entity("Suscripción eliminada exitosamente.")
+                           .build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                           .entity("Error al eliminar la suscripción: " + e.getMessage())
+                           .build();
+        }
+    }
+    
     
 }
