@@ -5,11 +5,13 @@
  */
 package WS;
 
+import java.util.List;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
 import model.Vendedor;
 
 /**
@@ -76,6 +78,15 @@ public class VendedorWS {
         Entity<Vendedor> entity= Entity.xml(v);
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_XML).put(entity);
     }
+    
+    public List<Vendedor> findByNombreTienda(String nombreTienda) throws ClientErrorException {
+        WebTarget resource = webTarget.path("findByNombreTienda").path(nombreTienda);
+        // Usamos GenericType para manejar la deserialización de una lista de Vendedor
+        return resource.request(MediaType.APPLICATION_XML).get(new GenericType<List<Vendedor>>() {});
+       
+    }
+    
+    
     public void close() {
         client.close();
     }

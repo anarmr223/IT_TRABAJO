@@ -71,6 +71,8 @@ public class CarritoFacadeREST extends AbstractFacade<Carrito> {
     public void edit(@PathParam("id") PathSegment id, Carrito entity) {
         super.edit(entity);
     }
+    
+    
 
     @DELETE
     @Path("{id}")

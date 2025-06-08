@@ -119,7 +119,7 @@
         <action name="navRegistrarProducto">
             <result>/vistas/registrarProducto.jsp</result>
         </action>
-        <action name="navCarrito" class = "">
+        <action name="navCarrito" class = "controller.carrito.navProductoAction">
 
             <result name ="success">/vistas/carrito.jsp</result>
         </action>
@@ -128,6 +128,10 @@
             <result>/vistas/editarProducto.jsp</result>
         </action>  
           
+         <action name="navTiendaDesplegable" class="controller.consultar.listarProdsTiendaDesplegableAction">
+            <result>/vistas/tiendaVendedor.jsp</result>
+        </action>  
+        
         
         
     </package>
@@ -140,6 +144,12 @@
         </action>
         
       
+    </package>
+    
+    <package name="carrito" namespace="/carrito" extends="struts-default">
+        <action name="aniadirCarritoAction" class="controller.carrito.aniadirCarritoAction">
+            <result>/vista/producto.jsp</result>
+        </action>
     </package>
     
         

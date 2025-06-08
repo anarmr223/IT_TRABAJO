@@ -154,10 +154,6 @@ public class Producto implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-    
-
-    @XmlTransient
     public Collection<Talla> getTallaCollection() {
         return tallaCollection;
     }

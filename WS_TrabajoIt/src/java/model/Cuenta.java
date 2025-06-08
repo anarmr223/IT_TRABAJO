@@ -74,8 +74,8 @@ public class Cuenta implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCuenta")
     private Collection<Venta> ventaCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuenta")
-    private Collection<Carrito> carritoCollection;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "cuenta", optional = true)
+    private Carrito carrito;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCuenta")
     private Collection<Publicacion> publicacionCollection;
 
@@ -160,13 +160,12 @@ public class Cuenta implements Serializable {
         this.ventaCollection = ventaCollection;
     }
 
-    @XmlTransient
-    public Collection<Carrito> getCarritoCollection() {
-        return carritoCollection;
+    public Carrito getCarrito() {
+        return carrito;
     }
 
-    public void setCarritoCollection(Collection<Carrito> carritoCollection) {
-        this.carritoCollection = carritoCollection;
+    public void setCarrito(Carrito carrito) {
+        this.carrito = carrito;
     }
 
     @XmlTransient

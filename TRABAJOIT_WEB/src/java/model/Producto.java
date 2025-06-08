@@ -43,6 +43,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Producto.findByDescripcion", query = "SELECT p FROM Producto p WHERE p.descripcion = :descripcion")
     , @NamedQuery(name = "Producto.findByVendedor", query="SELECT p FROM Producto p WHERE p.dni = :vendedor")})
     
+
 public class Producto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -153,10 +154,6 @@ public class Producto implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-    
-
-    @XmlTransient
     public Collection<Talla> getTallaCollection() {
         return tallaCollection;
     }
