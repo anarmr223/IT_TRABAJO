@@ -80,15 +80,10 @@ public class Producto implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto")
     private Collection<Lineaproducto> lineaproductoCollection;
     
-    @ManyToOne(optional = false) // O las opciones que tengas para esta relación
-    @JoinColumns({ // <-- ¡Añade esta anotación en plural!
-        // Mapea la columna 'dni' en tu tabla 'producto' al 'dni' en VendedorPK
-        @JoinColumn(name = "dni", referencedColumnName = "dni", insertable = false, updatable = false),
-        // Mapea la columna 'idCuenta' en tu tabla 'producto' al 'idCuenta' en VendedorPK
-        // IMPORTANTE: el nombre de la columna en PRODUCTO que referencia a idCuenta de VendedorPK
-        // Le he puesto un nombre de ejemplo `idCuentaVendedor` como hicimos en Venta.
-        // DEBES CAMBIARLO AL NOMBRE REAL DE ESA COLUMNA EN TU BASE DE DATOS `producto`.
-        @JoinColumn(name = "idCuenta", referencedColumnName = "idCuenta", insertable = false, updatable = false)
+    @ManyToOne(optional = false) // Or adjust the optionality as per your DB schema
+    @JoinColumns({
+        @JoinColumn(name = "dni", referencedColumnName = "dni"), // Removed insertable/updatable
+        @JoinColumn(name = "idCuenta", referencedColumnName = "idCuenta") // Removed insertable/updatable
     })
     private Vendedor dni;
 

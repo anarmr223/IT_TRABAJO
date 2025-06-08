@@ -127,7 +127,9 @@
             <result>/vistas/tiendaVendedor.jsp</result>
         </action>  
         
-        
+         <action name="navBusquedaProductos" class="controller.consultar.productosBusquedaAction">
+            <result>/vistas/busquedaProductos.jsp</result>
+        </action> 
         
     </package>
     
