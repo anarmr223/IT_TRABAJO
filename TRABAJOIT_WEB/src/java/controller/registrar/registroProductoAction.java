@@ -58,32 +58,14 @@ public class registroProductoAction extends ActionSupport implements SessionAwar
     public String execute() throws Exception {
        // Guardar imagen en una ruta del servidor (puedes personalizar la ruta)
             // 1. Guardar imagen en carpeta imgsProd
-            String folderRelativo = "imgsProd";
-            ServletContext context = ServletActionContext.getServletContext();
-            String pathAbsoluto = context.getRealPath("/" + folderRelativo);
-
-            File folder = new File(pathAbsoluto);
-            if (!folder.exists()) folder.mkdirs();
-
-            // Nombre único (para evitar sobrescribir)
-            String nombreImagenUnico = UUID.randomUUID().toString() + "_" + imagenFileName;
-            File destino = new File(folder, nombreImagenUnico);
-
-            try (InputStream in = new FileInputStream(imagen);
-                 OutputStream out = new FileOutputStream(destino)) {
-                byte[] buffer = new byte[1024];
-                int len;
-                while ((len = in.read(buffer)) > 0) {
-                    out.write(buffer, 0, len);
-                }
-            }
+            String url= cargadorDeImagenes.subirImagenProducto(imagen, imagenContentType, nombre + String.valueOf(System.currentTimeMillis()));
 
             // 2. Crear producto
             Producto producto = new Producto();
             producto.setNombre(nombre);
             producto.setDescripcion(descripcion);
             producto.setPrecio(precio);
-            producto.setURLImagen(folderRelativo + "/" + nombreImagenUnico);
+            producto.setURLImagen(url);
             Cuenta c = (Cuenta) session.get("usuario");
             producto.setDni(c.getVendedor());
 
