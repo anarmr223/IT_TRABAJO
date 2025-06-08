@@ -17,19 +17,22 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.ws.rs.core.GenericType;
+import model.Cuenta;
 import model.Producto;
 import model.Talla;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.SessionAware;
 
 /**
  *
  * @author Jose
  */
 
-public class registroProductoAction extends ActionSupport {
+public class registroProductoAction extends ActionSupport implements SessionAware{
     
     private String nombre;
     private String descripcion;
@@ -45,6 +48,8 @@ public class registroProductoAction extends ActionSupport {
     private int cantidadL;
     private int cantidadXL;
     private int cantidad2XL;
+    
+    private Map<String, Object> session;
     
     public registroProductoAction() {
     }
@@ -79,20 +84,24 @@ public class registroProductoAction extends ActionSupport {
             producto.setDescripcion(descripcion);
             producto.setPrecio(precio);
             producto.setURLImagen(folderRelativo + "/" + nombreImagenUnico);
+            Cuenta c = (Cuenta) session.get("usuario");
+            producto.setDni(c.getVendedor());
 
             // Creamos tallas y asociarlas al producto
             String[] tallas = {"XS", "S", "M", "L", "XL", "2XL"};
             int[] cantidades = {cantidadXS, cantidadS, cantidadM, cantidadL, cantidadXL, cantidad2XL};
+            int stock=0;
 
             List<Talla> tallaList = new ArrayList<>();
             for (int i = 0; i < tallas.length; i++) {
+                stock+=cantidades[i];
                 Talla talla = new Talla();
                 talla.setTalla(tallas[i]);
                 talla.setCantidad(cantidades[i]);
                 talla.setIdProducto(producto); // relación inversa
                 tallaList.add(talla);
             }
-
+            producto.setStock(stock);
             producto.setTallaCollection(tallaList);
 
            ProductoWS em= new ProductoWS();
@@ -196,6 +205,11 @@ public class registroProductoAction extends ActionSupport {
 
     public void setCantidad2XL(int cantidad2XL) {
         this.cantidad2XL = cantidad2XL;
+    }
+
+    @Override
+    public void setSession(Map<String, Object> map) {
+        this.session=map;
     }
     
 }
