@@ -20,7 +20,9 @@
         <jsp:include page="navbar.jsp"/>
         <div class="container containerPrincipal">
             <div class="row justify-content-center">
+                <h2>PRODUCTOS</h2>
                 <s:iterator value="#session.listaProductos" id="prod">
+                    
                     <div class="col-12 col-sm-6 col-lg-3 col-xl-2 producto-item">
                         <div class="card h-100">
                             <img src="<c:url value='#prod.urlImagen'/>" class="card-img-top" alt="Foto del producto">
@@ -30,6 +32,16 @@
                                     <a href="<s:url action="navTienda"><s:param name="idTienda" value="%{#prod.idTienda}"/></s:url>">
                                         <s:property value="#prod.dni.nombreTienda"/></a>
                                 </p>
+                            </div>
+                        </div>
+                    </div>
+                </s:iterator>
+                <h2>PUBLICACIONES</h2>
+                <s:iterator value="#session.publicaciones" id="p">
+                    <div class="col-12 col-sm-6 col-lg-3 col-xl-2 producto-item">
+                        <div class="card h-100">
+                            <div class="card-body d-flex flex-column">
+                                <h3 class="card-title"><s:property value="#p.contenido"/></h3>
                             </div>
                         </div>
                     </div>

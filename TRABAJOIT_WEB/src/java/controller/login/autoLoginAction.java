@@ -8,6 +8,7 @@ package controller.login;
 
 import WS.CuentaWS;
 import WS.ProductoWS;
+import WS.PublicacionWS;
 import WS.VendedorWS;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.util.logging.Logger;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.GenericType;
 import model.Cuenta;
 import model.Producto;
+import model.Publicacion;
 import model.Vendedor;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
