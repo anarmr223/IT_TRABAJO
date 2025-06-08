@@ -49,10 +49,20 @@
                                                         <s:property value="#prod.nombre"/>
                                                     </a>
                                                 </h5>
+                                                <!-- boton eliminar prod para el vendedor -->
+                                                <s:if test="#session.usuario.vendedor != null">
+                                                    <form action="<s:url action='eliminarProducto'/>" method="post" class="mt-auto">
+                                                        <input type="hidden" name="id" value="<s:property value='#prod.idProducto'/>" />
+                                                        <button type="submit" class="btn btn-danger btn-sm w-100 mt-2">
+                                                            Eliminar
+                                                        </button>
+                                                    </form>
+                                                </s:if>
                                             </div>
                                         </div>
                                     </div>
                                 </s:iterator>
+
                             </div>
                         </div>
                 </div>
