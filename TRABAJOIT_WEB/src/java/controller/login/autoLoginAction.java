@@ -29,68 +29,82 @@ import org.apache.struts2.interceptor.SessionAware;
  *
  * @author Jose
  */
+public class autoLoginAction extends ActionSupport implements ServletRequestAware, SessionAware {
 
-public class autoLoginAction extends ActionSupport implements ServletRequestAware, SessionAware{
-    
     private HttpServletRequest request;
-    private Map<String,Object> session;
+    private Map<String, Object> session;
     private List<Vendedor> tiendas;
-    
+
     public autoLoginAction() {
     }
-    
+
     @Override
     public String execute() throws Exception {
-        Cookie[] cookies=request.getCookies();
-        boolean enc=false;
-        int i=0;
-         
-            VendedorWS client= new VendedorWS();
-            GenericType<List<Vendedor>> gn= new GenericType<List<Vendedor>>(){};
-            try{
-                tiendas = client.findAll_XML(gn);
-                session.put("tiendas",tiendas);
-            }catch(Exception ex){
-                tiendas=null;
-            }
-        
-        
-        
-        while(!enc && ( cookies!=null && i<cookies.length  )){
-            enc=cookies[i].getName().equals("usuario");
-            i++;
+        Cookie[] cookies = request.getCookies();
+        boolean enc = false;
+        int i = 0;
+
+        VendedorWS client = new VendedorWS();
+        GenericType<List<Vendedor>> gn = new GenericType<List<Vendedor>>() {
+        };
+        try {
+            tiendas = client.findAll_XML(gn);
+            session.put("tiendas", tiendas);
+        } catch (Exception ex) {
+            tiendas = null;
         }
-        
-        if(enc){
-            CuentaWS servicioC=new CuentaWS();
-            GenericType<Cuenta> genericType= new GenericType<Cuenta>(){};
-            Cuenta c=servicioC.findCuentaByUsuario(genericType, cookies[i].getValue());
+
+        while (!enc && (cookies != null && i < cookies.length)) {
+            enc = cookies[i].getName().equals("usuario");
+            if (!enc){
+                i++;
+            }
+        }
+
+        if (enc) {
+            CuentaWS servicioC = new CuentaWS();
+            GenericType<Cuenta> genericType = new GenericType<Cuenta>() {
+            };
+            Cuenta c = servicioC.findCuentaByUsuario(genericType, cookies[i].getValue());
             session.put("usuario", c);
         }
-        
-        if(session.get("listaProductos")==null){
+
+        if (session.get("listaProductos") == null) {
             List<Producto> listaProd;
-            ProductoWS prod= new ProductoWS();
-            GenericType<List<Producto>> genericType= new GenericType<List<Producto>>(){};
-            try{
+            ProductoWS prod = new ProductoWS();
+            GenericType<List<Producto>> genericType = new GenericType<List<Producto>>() {
+            };
+            try {
                 listaProd = prod.findAll_XML(genericType);
-            }catch(Exception ex){
-                listaProd=null;
+            } catch (Exception ex) {
+                listaProd = null;
             }
-            
+
             session.put("listaProductos", listaProd);
         }
+
+            PublicacionWS servicioPublicacion = new PublicacionWS();
+            GenericType<List<Publicacion>> pn = new GenericType<List<Publicacion>>() {
+            };
+            Cuenta c = (Cuenta) session.get("usuario");
+            if (c == null) {
+                session.put("publicaciones", servicioPublicacion.findAll_XML(pn));
+            } else {
+                session.put("publicaciones", servicioPublicacion.getPublicacionesExcludingCuenta(pn, c.getIdCuenta()));
+            }
+        
+
         return SUCCESS;
     }
 
     @Override
     public void setServletRequest(HttpServletRequest hsr) {
-        this.request=hsr;
+        this.request = hsr;
     }
 
     @Override
     public void setSession(Map<String, Object> map) {
-       this.session=map;
+        this.session = map;
     }
 
     public HttpServletRequest getRequest() {
@@ -116,8 +130,5 @@ public class autoLoginAction extends ActionSupport implements ServletRequestAwar
     public static void setLOG(Logger LOG) {
         ActionSupport.LOG = LOG;
     }
-    
-    
-    
-    
+
 }

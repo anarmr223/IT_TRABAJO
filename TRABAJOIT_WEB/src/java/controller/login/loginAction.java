@@ -55,7 +55,7 @@ public class loginAction extends ActionSupport implements SessionAware, ServletR
             addFieldError("contrasenia", "Contraseña incorrecta");
             return INPUT;
         }
-        if(session.get("publicaciones")==null&&session.get("usuario")!=null){
+        if(session.get("usuario")!=null){
             PublicacionWS servicioPublicacion=new PublicacionWS();
             GenericType<List<Publicacion>> gn= new GenericType<List<Publicacion>>(){};
             session.put("publicaciones",servicioPublicacion.getPublicacionesExcludingCuenta(gn, c.getIdCuenta()));

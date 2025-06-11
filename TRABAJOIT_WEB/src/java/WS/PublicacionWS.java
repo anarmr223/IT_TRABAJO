@@ -51,7 +51,7 @@ public class PublicacionWS {
      * @param responseType Class representing the response
      * @return response object (instance of responseType class)
      */
-    public <T> T findAll_XML(Class<T> responseType) throws ClientErrorException {
+    public <T> T findAll_XML(GenericType <T> responseType) throws ClientErrorException {
         return webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
     }
 

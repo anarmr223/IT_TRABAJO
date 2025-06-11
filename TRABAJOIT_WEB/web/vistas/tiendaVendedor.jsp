@@ -50,9 +50,7 @@
                                     <img src="<c:url value='#prod.urlImagen'/>" class="card-img-top" alt="Foto del producto">
                                     <div class="card-body d-flex flex-column">
                                         <h5 class="card-title">
-                                            <a href="<s:url action='navProducto'><s:param name='id' value='%{#prod.nombre}'/></s:url>">
-                                                <s:property value="#prod.nombre"/>
-                                            </a>
+                                            <a href="<s:url action="navProducto"><s:param name="id" value="%{#prod.idProducto}"/></s:url>"><s:property value="#prod.nombre"/></a>
                                                                             </h5>
                                             <s:if test="#session.usuario.vendedor != null">
                                             <div class="d-flex justify-content-between gap-2 mt-auto">
