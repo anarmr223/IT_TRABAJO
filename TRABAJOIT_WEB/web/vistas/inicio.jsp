@@ -42,6 +42,10 @@
                         <div class="card h-100">
                             <div class="card-body d-flex flex-column">
                                 <h3 class="card-title"><s:property value="#p.contenido"/></h3>
+                                <p class="card-text text-muted mb-3">
+                                    
+                                        <s:property value="#p.idCuenta.usuario"/></a>
+                                </p>
                             </div>
                         </div>
                     </div>
