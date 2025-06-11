@@ -29,8 +29,7 @@
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title"><a href="<s:url action="navProducto"><s:param name="id" value="%{#prod.idProducto}"/></s:url>"><s:property value="#prod.nombre"/></a></h5>
                                 <p class="card-text text-muted mb-3"> 
-                                    <a href="<s:url action="navTienda"><s:param name="idTienda" value="%{#prod.idTienda}"/></s:url>">
-                                        <s:property value="#prod.dni.nombreTienda"/></a>
+                                    <s:property value="#prod.dni.nombreTienda"/>
                                 </p>
                             </div>
                         </div>
@@ -43,8 +42,7 @@
                             <div class="card-body d-flex flex-column">
                                 <h3 class="card-title"><s:property value="#p.contenido"/></h3>
                                 <p class="card-text text-muted mb-3">
-                                    
-                                        <s:property value="#p.idCuenta.usuario"/></a>
+                                        <s:property value="#p.idCuenta.usuario"/>
                                 </p>
                             </div>
                         </div>
